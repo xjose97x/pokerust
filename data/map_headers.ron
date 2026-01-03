@@ -1,0 +1,1418 @@
+{
+    "AgathasRoom": (
+        tileset: "CEMETERY",
+        map_id: "AGATHAS_ROOM",
+        connections: [
+        ]
+    ),
+    "BikeShop": (
+        tileset: "CLUB",
+        map_id: "BIKE_SHOP",
+        connections: [
+        ]
+    ),
+    "BillsHouse": (
+        tileset: "INTERIOR",
+        map_id: "BILLS_HOUSE",
+        connections: [
+        ]
+    ),
+    "BluesHouse": (
+        tileset: "HOUSE",
+        map_id: "BLUES_HOUSE",
+        connections: [
+        ]
+    ),
+    "BrunosRoom": (
+        tileset: "GYM",
+        map_id: "BRUNOS_ROOM",
+        connections: [
+        ]
+    ),
+    "CeladonChiefHouse": (
+        tileset: "MANSION",
+        map_id: "CELADON_CHIEF_HOUSE",
+        connections: [
+        ]
+    ),
+    "CeladonCity": (
+        tileset: "OVERWORLD",
+        map_id: "CELADON_CITY",
+        connections: [
+            (direction: "west", target_map: "Route16", offset: 4),
+            (direction: "east", target_map: "Route7", offset: 4)
+        ]
+    ),
+    "CeladonDiner": (
+        tileset: "LOBBY",
+        map_id: "CELADON_DINER",
+        connections: [
+        ]
+    ),
+    "CeladonGym": (
+        tileset: "GYM",
+        map_id: "CELADON_GYM",
+        connections: [
+        ]
+    ),
+    "CeladonHotel": (
+        tileset: "POKECENTER",
+        map_id: "CELADON_HOTEL",
+        connections: [
+        ]
+    ),
+    "CeladonMansion1F": (
+        tileset: "MANSION",
+        map_id: "CELADON_MANSION_1F",
+        connections: [
+        ]
+    ),
+    "CeladonMansion2F": (
+        tileset: "MANSION",
+        map_id: "CELADON_MANSION_2F",
+        connections: [
+        ]
+    ),
+    "CeladonMansion3F": (
+        tileset: "MANSION",
+        map_id: "CELADON_MANSION_3F",
+        connections: [
+        ]
+    ),
+    "CeladonMansionRoof": (
+        tileset: "MANSION",
+        map_id: "CELADON_MANSION_ROOF",
+        connections: [
+        ]
+    ),
+    "CeladonMansionRoofHouse": (
+        tileset: "HOUSE",
+        map_id: "CELADON_MANSION_ROOF_HOUSE",
+        connections: [
+        ]
+    ),
+    "CeladonMart1F": (
+        tileset: "LOBBY",
+        map_id: "CELADON_MART_1F",
+        connections: [
+        ]
+    ),
+    "CeladonMart2F": (
+        tileset: "LOBBY",
+        map_id: "CELADON_MART_2F",
+        connections: [
+        ]
+    ),
+    "CeladonMart3F": (
+        tileset: "LOBBY",
+        map_id: "CELADON_MART_3F",
+        connections: [
+        ]
+    ),
+    "CeladonMart4F": (
+        tileset: "LOBBY",
+        map_id: "CELADON_MART_4F",
+        connections: [
+        ]
+    ),
+    "CeladonMart5F": (
+        tileset: "LOBBY",
+        map_id: "CELADON_MART_5F",
+        connections: [
+        ]
+    ),
+    "CeladonMartElevator": (
+        tileset: "LOBBY",
+        map_id: "CELADON_MART_ELEVATOR",
+        connections: [
+        ]
+    ),
+    "CeladonMartRoof": (
+        tileset: "LOBBY",
+        map_id: "CELADON_MART_ROOF",
+        connections: [
+        ]
+    ),
+    "CeladonPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "CELADON_POKECENTER",
+        connections: [
+        ]
+    ),
+    "CeruleanBadgeHouse": (
+        tileset: "SHIP",
+        map_id: "CERULEAN_BADGE_HOUSE",
+        connections: [
+        ]
+    ),
+    "CeruleanCave1F": (
+        tileset: "CAVERN",
+        map_id: "CERULEAN_CAVE_1F",
+        connections: [
+        ]
+    ),
+    "CeruleanCave2F": (
+        tileset: "CAVERN",
+        map_id: "CERULEAN_CAVE_2F",
+        connections: [
+        ]
+    ),
+    "CeruleanCaveB1F": (
+        tileset: "CAVERN",
+        map_id: "CERULEAN_CAVE_B1F",
+        connections: [
+        ]
+    ),
+    "CeruleanCity": (
+        tileset: "OVERWORLD",
+        map_id: "CERULEAN_CITY",
+        connections: [
+            (direction: "north", target_map: "Route24", offset: 5),
+            (direction: "south", target_map: "Route5", offset: 5),
+            (direction: "west", target_map: "Route4", offset: 4),
+            (direction: "east", target_map: "Route9", offset: 4)
+        ]
+    ),
+    "CeruleanGym": (
+        tileset: "GYM",
+        map_id: "CERULEAN_GYM",
+        connections: [
+        ]
+    ),
+    "CeruleanMart": (
+        tileset: "MART",
+        map_id: "CERULEAN_MART",
+        connections: [
+        ]
+    ),
+    "CeruleanPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "CERULEAN_POKECENTER",
+        connections: [
+        ]
+    ),
+    "CeruleanTradeHouse": (
+        tileset: "HOUSE",
+        map_id: "CERULEAN_TRADE_HOUSE",
+        connections: [
+        ]
+    ),
+    "CeruleanTrashedHouse": (
+        tileset: "HOUSE",
+        map_id: "CERULEAN_TRASHED_HOUSE",
+        connections: [
+        ]
+    ),
+    "ChampionsRoom": (
+        tileset: "GYM",
+        map_id: "CHAMPIONS_ROOM",
+        connections: [
+        ]
+    ),
+    "CinnabarGym": (
+        tileset: "FACILITY",
+        map_id: "CINNABAR_GYM",
+        connections: [
+        ]
+    ),
+    "CinnabarIsland": (
+        tileset: "OVERWORLD",
+        map_id: "CINNABAR_ISLAND",
+        connections: [
+            (direction: "north", target_map: "Route21", offset: 0),
+            (direction: "east", target_map: "Route20", offset: 0)
+        ]
+    ),
+    "CinnabarLab": (
+        tileset: "LAB",
+        map_id: "CINNABAR_LAB",
+        connections: [
+        ]
+    ),
+    "CinnabarLabFossilRoom": (
+        tileset: "LAB",
+        map_id: "CINNABAR_LAB_FOSSIL_ROOM",
+        connections: [
+        ]
+    ),
+    "CinnabarLabMetronomeRoom": (
+        tileset: "LAB",
+        map_id: "CINNABAR_LAB_METRONOME_ROOM",
+        connections: [
+        ]
+    ),
+    "CinnabarLabTradeRoom": (
+        tileset: "LAB",
+        map_id: "CINNABAR_LAB_TRADE_ROOM",
+        connections: [
+        ]
+    ),
+    "CinnabarMart": (
+        tileset: "MART",
+        map_id: "CINNABAR_MART",
+        connections: [
+        ]
+    ),
+    "CinnabarPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "CINNABAR_POKECENTER",
+        connections: [
+        ]
+    ),
+    "Colosseum": (
+        tileset: "CLUB",
+        map_id: "COLOSSEUM",
+        connections: [
+        ]
+    ),
+    "CopycatsHouse1F": (
+        tileset: "REDS_HOUSE_1",
+        map_id: "COPYCATS_HOUSE_1F",
+        connections: [
+        ]
+    ),
+    "CopycatsHouse2F": (
+        tileset: "REDS_HOUSE_2",
+        map_id: "COPYCATS_HOUSE_2F",
+        connections: [
+        ]
+    ),
+    "Daycare": (
+        tileset: "HOUSE",
+        map_id: "DAYCARE",
+        connections: [
+        ]
+    ),
+    "DiglettsCave": (
+        tileset: "CAVERN",
+        map_id: "DIGLETTS_CAVE",
+        connections: [
+        ]
+    ),
+    "DiglettsCaveRoute11": (
+        tileset: "CAVERN",
+        map_id: "DIGLETTS_CAVE_ROUTE_11",
+        connections: [
+        ]
+    ),
+    "DiglettsCaveRoute2": (
+        tileset: "CAVERN",
+        map_id: "DIGLETTS_CAVE_ROUTE_2",
+        connections: [
+        ]
+    ),
+    "FightingDojo": (
+        tileset: "DOJO",
+        map_id: "FIGHTING_DOJO",
+        connections: [
+        ]
+    ),
+    "FuchsiaBillsGrandpasHouse": (
+        tileset: "HOUSE",
+        map_id: "FUCHSIA_BILLS_GRANDPAS_HOUSE",
+        connections: [
+        ]
+    ),
+    "FuchsiaCity": (
+        tileset: "OVERWORLD",
+        map_id: "FUCHSIA_CITY",
+        connections: [
+            (direction: "south", target_map: "Route19", offset: 5),
+            (direction: "west", target_map: "Route18", offset: 4),
+            (direction: "east", target_map: "Route15", offset: 4)
+        ]
+    ),
+    "FuchsiaGoodRodHouse": (
+        tileset: "SHIP",
+        map_id: "FUCHSIA_GOOD_ROD_HOUSE",
+        connections: [
+        ]
+    ),
+    "FuchsiaGym": (
+        tileset: "GYM",
+        map_id: "FUCHSIA_GYM",
+        connections: [
+        ]
+    ),
+    "FuchsiaMart": (
+        tileset: "MART",
+        map_id: "FUCHSIA_MART",
+        connections: [
+        ]
+    ),
+    "FuchsiaMeetingRoom": (
+        tileset: "LAB",
+        map_id: "FUCHSIA_MEETING_ROOM",
+        connections: [
+        ]
+    ),
+    "FuchsiaPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "FUCHSIA_POKECENTER",
+        connections: [
+        ]
+    ),
+    "GameCorner": (
+        tileset: "LOBBY",
+        map_id: "GAME_CORNER",
+        connections: [
+        ]
+    ),
+    "GameCornerPrizeRoom": (
+        tileset: "LOBBY",
+        map_id: "GAME_CORNER_PRIZE_ROOM",
+        connections: [
+        ]
+    ),
+    "HallOfFame": (
+        tileset: "GYM",
+        map_id: "HALL_OF_FAME",
+        connections: [
+        ]
+    ),
+    "IndigoPlateau": (
+        tileset: "PLATEAU",
+        map_id: "INDIGO_PLATEAU",
+        connections: [
+            (direction: "south", target_map: "Route23", offset: 0)
+        ]
+    ),
+    "IndigoPlateauLobby": (
+        tileset: "MART",
+        map_id: "INDIGO_PLATEAU_LOBBY",
+        connections: [
+        ]
+    ),
+    "LancesRoom": (
+        tileset: "DOJO",
+        map_id: "LANCES_ROOM",
+        connections: [
+        ]
+    ),
+    "LavenderCuboneHouse": (
+        tileset: "HOUSE",
+        map_id: "LAVENDER_CUBONE_HOUSE",
+        connections: [
+        ]
+    ),
+    "LavenderMart": (
+        tileset: "MART",
+        map_id: "LAVENDER_MART",
+        connections: [
+        ]
+    ),
+    "LavenderPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "LAVENDER_POKECENTER",
+        connections: [
+        ]
+    ),
+    "LavenderTown": (
+        tileset: "OVERWORLD",
+        map_id: "LAVENDER_TOWN",
+        connections: [
+            (direction: "north", target_map: "Route10", offset: 0),
+            (direction: "south", target_map: "Route12", offset: 0),
+            (direction: "west", target_map: "Route8", offset: 0)
+        ]
+    ),
+    "LoreleisRoom": (
+        tileset: "GYM",
+        map_id: "LORELEIS_ROOM",
+        connections: [
+        ]
+    ),
+    "MrFujisHouse": (
+        tileset: "HOUSE",
+        map_id: "MR_FUJIS_HOUSE",
+        connections: [
+        ]
+    ),
+    "MrPsychicsHouse": (
+        tileset: "HOUSE",
+        map_id: "MR_PSYCHICS_HOUSE",
+        connections: [
+        ]
+    ),
+    "MtMoon1F": (
+        tileset: "CAVERN",
+        map_id: "MT_MOON_1F",
+        connections: [
+        ]
+    ),
+    "MtMoonB1F": (
+        tileset: "CAVERN",
+        map_id: "MT_MOON_B1F",
+        connections: [
+        ]
+    ),
+    "MtMoonB2F": (
+        tileset: "CAVERN",
+        map_id: "MT_MOON_B2F",
+        connections: [
+        ]
+    ),
+    "MtMoonPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "MT_MOON_POKECENTER",
+        connections: [
+        ]
+    ),
+    "Museum1F": (
+        tileset: "MUSEUM",
+        map_id: "MUSEUM_1F",
+        connections: [
+        ]
+    ),
+    "Museum2F": (
+        tileset: "MUSEUM",
+        map_id: "MUSEUM_2F",
+        connections: [
+        ]
+    ),
+    "NameRatersHouse": (
+        tileset: "HOUSE",
+        map_id: "NAME_RATERS_HOUSE",
+        connections: [
+        ]
+    ),
+    "OaksLab": (
+        tileset: "DOJO",
+        map_id: "OAKS_LAB",
+        connections: [
+        ]
+    ),
+    "PalletTown": (
+        tileset: "OVERWORLD",
+        map_id: "PALLET_TOWN",
+        connections: [
+            (direction: "north", target_map: "Route1", offset: 0),
+            (direction: "south", target_map: "Route21", offset: 0)
+        ]
+    ),
+    "PewterCity": (
+        tileset: "OVERWORLD",
+        map_id: "PEWTER_CITY",
+        connections: [
+            (direction: "south", target_map: "Route2", offset: 5),
+            (direction: "east", target_map: "Route3", offset: 4)
+        ]
+    ),
+    "PewterGym": (
+        tileset: "GYM",
+        map_id: "PEWTER_GYM",
+        connections: [
+        ]
+    ),
+    "PewterMart": (
+        tileset: "MART",
+        map_id: "PEWTER_MART",
+        connections: [
+        ]
+    ),
+    "PewterNidoranHouse": (
+        tileset: "HOUSE",
+        map_id: "PEWTER_NIDORAN_HOUSE",
+        connections: [
+        ]
+    ),
+    "PewterPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "PEWTER_POKECENTER",
+        connections: [
+        ]
+    ),
+    "PewterSpeechHouse": (
+        tileset: "HOUSE",
+        map_id: "PEWTER_SPEECH_HOUSE",
+        connections: [
+        ]
+    ),
+    "PokemonFanClub": (
+        tileset: "INTERIOR",
+        map_id: "POKEMON_FAN_CLUB",
+        connections: [
+        ]
+    ),
+    "PokemonMansion1F": (
+        tileset: "FACILITY",
+        map_id: "POKEMON_MANSION_1F",
+        connections: [
+        ]
+    ),
+    "PokemonMansion2F": (
+        tileset: "FACILITY",
+        map_id: "POKEMON_MANSION_2F",
+        connections: [
+        ]
+    ),
+    "PokemonMansion3F": (
+        tileset: "FACILITY",
+        map_id: "POKEMON_MANSION_3F",
+        connections: [
+        ]
+    ),
+    "PokemonMansionB1F": (
+        tileset: "FACILITY",
+        map_id: "POKEMON_MANSION_B1F",
+        connections: [
+        ]
+    ),
+    "PokemonTower1F": (
+        tileset: "CEMETERY",
+        map_id: "POKEMON_TOWER_1F",
+        connections: [
+        ]
+    ),
+    "PokemonTower2F": (
+        tileset: "CEMETERY",
+        map_id: "POKEMON_TOWER_2F",
+        connections: [
+        ]
+    ),
+    "PokemonTower3F": (
+        tileset: "CEMETERY",
+        map_id: "POKEMON_TOWER_3F",
+        connections: [
+        ]
+    ),
+    "PokemonTower4F": (
+        tileset: "CEMETERY",
+        map_id: "POKEMON_TOWER_4F",
+        connections: [
+        ]
+    ),
+    "PokemonTower5F": (
+        tileset: "CEMETERY",
+        map_id: "POKEMON_TOWER_5F",
+        connections: [
+        ]
+    ),
+    "PokemonTower6F": (
+        tileset: "CEMETERY",
+        map_id: "POKEMON_TOWER_6F",
+        connections: [
+        ]
+    ),
+    "PokemonTower7F": (
+        tileset: "CEMETERY",
+        map_id: "POKEMON_TOWER_7F",
+        connections: [
+        ]
+    ),
+    "PowerPlant": (
+        tileset: "FACILITY",
+        map_id: "POWER_PLANT",
+        connections: [
+        ]
+    ),
+    "RedsHouse1F": (
+        tileset: "REDS_HOUSE_1",
+        map_id: "REDS_HOUSE_1F",
+        connections: [
+        ]
+    ),
+    "RedsHouse2F": (
+        tileset: "REDS_HOUSE_2",
+        map_id: "REDS_HOUSE_2F",
+        connections: [
+        ]
+    ),
+    "RockTunnel1F": (
+        tileset: "CAVERN",
+        map_id: "ROCK_TUNNEL_1F",
+        connections: [
+        ]
+    ),
+    "RockTunnelB1F": (
+        tileset: "CAVERN",
+        map_id: "ROCK_TUNNEL_B1F",
+        connections: [
+        ]
+    ),
+    "RockTunnelPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "ROCK_TUNNEL_POKECENTER",
+        connections: [
+        ]
+    ),
+    "RocketHideoutB1F": (
+        tileset: "FACILITY",
+        map_id: "ROCKET_HIDEOUT_B1F",
+        connections: [
+        ]
+    ),
+    "RocketHideoutB2F": (
+        tileset: "FACILITY",
+        map_id: "ROCKET_HIDEOUT_B2F",
+        connections: [
+        ]
+    ),
+    "RocketHideoutB3F": (
+        tileset: "FACILITY",
+        map_id: "ROCKET_HIDEOUT_B3F",
+        connections: [
+        ]
+    ),
+    "RocketHideoutB4F": (
+        tileset: "FACILITY",
+        map_id: "ROCKET_HIDEOUT_B4F",
+        connections: [
+        ]
+    ),
+    "RocketHideoutElevator": (
+        tileset: "LOBBY",
+        map_id: "ROCKET_HIDEOUT_ELEVATOR",
+        connections: [
+        ]
+    ),
+    "Route1": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_1",
+        connections: [
+            (direction: "north", target_map: "ViridianCity", offset: -5),
+            (direction: "south", target_map: "PalletTown", offset: 0)
+        ]
+    ),
+    "Route10": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_10",
+        connections: [
+            (direction: "south", target_map: "LavenderTown", offset: 0),
+            (direction: "west", target_map: "Route9", offset: 0)
+        ]
+    ),
+    "Route11": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_11",
+        connections: [
+            (direction: "west", target_map: "VermilionCity", offset: -4),
+            (direction: "east", target_map: "Route12", offset: -27)
+        ]
+    ),
+    "Route11Gate1F": (
+        tileset: "GATE",
+        map_id: "ROUTE_11_GATE_1F",
+        connections: [
+        ]
+    ),
+    "Route11Gate2F": (
+        tileset: "GATE",
+        map_id: "ROUTE_11_GATE_2F",
+        connections: [
+        ]
+    ),
+    "Route12": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_12",
+        connections: [
+            (direction: "north", target_map: "LavenderTown", offset: 0),
+            (direction: "south", target_map: "Route13", offset: -20),
+            (direction: "west", target_map: "Route11", offset: 27)
+        ]
+    ),
+    "Route12Gate1F": (
+        tileset: "GATE",
+        map_id: "ROUTE_12_GATE_1F",
+        connections: [
+        ]
+    ),
+    "Route12Gate2F": (
+        tileset: "GATE",
+        map_id: "ROUTE_12_GATE_2F",
+        connections: [
+        ]
+    ),
+    "Route12SuperRodHouse": (
+        tileset: "HOUSE",
+        map_id: "ROUTE_12_SUPER_ROD_HOUSE",
+        connections: [
+        ]
+    ),
+    "Route13": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_13",
+        connections: [
+            (direction: "north", target_map: "Route12", offset: 20),
+            (direction: "west", target_map: "Route14", offset: 0)
+        ]
+    ),
+    "Route14": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_14",
+        connections: [
+            (direction: "west", target_map: "Route15", offset: 18),
+            (direction: "east", target_map: "Route13", offset: 0)
+        ]
+    ),
+    "Route15": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_15",
+        connections: [
+            (direction: "west", target_map: "FuchsiaCity", offset: -4),
+            (direction: "east", target_map: "Route14", offset: -18)
+        ]
+    ),
+    "Route15Gate1F": (
+        tileset: "GATE",
+        map_id: "ROUTE_15_GATE_1F",
+        connections: [
+        ]
+    ),
+    "Route15Gate2F": (
+        tileset: "GATE",
+        map_id: "ROUTE_15_GATE_2F",
+        connections: [
+        ]
+    ),
+    "Route16": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_16",
+        connections: [
+            (direction: "south", target_map: "Route17", offset: 0),
+            (direction: "east", target_map: "CeladonCity", offset: -4)
+        ]
+    ),
+    "Route16FlyHouse": (
+        tileset: "HOUSE",
+        map_id: "ROUTE_16_FLY_HOUSE",
+        connections: [
+        ]
+    ),
+    "Route16Gate1F": (
+        tileset: "GATE",
+        map_id: "ROUTE_16_GATE_1F",
+        connections: [
+        ]
+    ),
+    "Route16Gate2F": (
+        tileset: "GATE",
+        map_id: "ROUTE_16_GATE_2F",
+        connections: [
+        ]
+    ),
+    "Route17": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_17",
+        connections: [
+            (direction: "north", target_map: "Route16", offset: 0),
+            (direction: "south", target_map: "Route18", offset: 0)
+        ]
+    ),
+    "Route18": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_18",
+        connections: [
+            (direction: "north", target_map: "Route17", offset: 0),
+            (direction: "east", target_map: "FuchsiaCity", offset: -4)
+        ]
+    ),
+    "Route18Gate1F": (
+        tileset: "GATE",
+        map_id: "ROUTE_18_GATE_1F",
+        connections: [
+        ]
+    ),
+    "Route18Gate2F": (
+        tileset: "GATE",
+        map_id: "ROUTE_18_GATE_2F",
+        connections: [
+        ]
+    ),
+    "Route19": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_19",
+        connections: [
+            (direction: "north", target_map: "FuchsiaCity", offset: -5),
+            (direction: "west", target_map: "Route20", offset: 18)
+        ]
+    ),
+    "Route2": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_2",
+        connections: [
+            (direction: "north", target_map: "PewterCity", offset: -5),
+            (direction: "south", target_map: "ViridianCity", offset: -5)
+        ]
+    ),
+    "Route20": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_20",
+        connections: [
+            (direction: "west", target_map: "CinnabarIsland", offset: 0),
+            (direction: "east", target_map: "Route19", offset: -18)
+        ]
+    ),
+    "Route21": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_21",
+        connections: [
+            (direction: "north", target_map: "PalletTown", offset: 0),
+            (direction: "south", target_map: "CinnabarIsland", offset: 0)
+        ]
+    ),
+    "Route22": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_22",
+        connections: [
+            (direction: "north", target_map: "Route23", offset: 0),
+            (direction: "east", target_map: "ViridianCity", offset: -4)
+        ]
+    ),
+    "Route22Gate": (
+        tileset: "GATE",
+        map_id: "ROUTE_22_GATE",
+        connections: [
+        ]
+    ),
+    "Route23": (
+        tileset: "PLATEAU",
+        map_id: "ROUTE_23",
+        connections: [
+            (direction: "north", target_map: "IndigoPlateau", offset: 0),
+            (direction: "south", target_map: "Route22", offset: 0)
+        ]
+    ),
+    "Route24": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_24",
+        connections: [
+            (direction: "south", target_map: "CeruleanCity", offset: -5),
+            (direction: "east", target_map: "Route25", offset: 0)
+        ]
+    ),
+    "Route25": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_25",
+        connections: [
+            (direction: "west", target_map: "Route24", offset: 0)
+        ]
+    ),
+    "Route2Gate": (
+        tileset: "GATE",
+        map_id: "ROUTE_2_GATE",
+        connections: [
+        ]
+    ),
+    "Route2TradeHouse": (
+        tileset: "HOUSE",
+        map_id: "ROUTE_2_TRADE_HOUSE",
+        connections: [
+        ]
+    ),
+    "Route3": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_3",
+        connections: [
+            (direction: "north", target_map: "Route4", offset: 25),
+            (direction: "west", target_map: "PewterCity", offset: -4)
+        ]
+    ),
+    "Route4": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_4",
+        connections: [
+            (direction: "south", target_map: "Route3", offset: -25),
+            (direction: "east", target_map: "CeruleanCity", offset: -4)
+        ]
+    ),
+    "Route5": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_5",
+        connections: [
+            (direction: "north", target_map: "CeruleanCity", offset: -5),
+            (direction: "south", target_map: "SaffronCity", offset: -5)
+        ]
+    ),
+    "Route5Gate": (
+        tileset: "GATE",
+        map_id: "ROUTE_5_GATE",
+        connections: [
+        ]
+    ),
+    "Route6": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_6",
+        connections: [
+            (direction: "north", target_map: "SaffronCity", offset: -5),
+            (direction: "south", target_map: "VermilionCity", offset: -5)
+        ]
+    ),
+    "Route6Gate": (
+        tileset: "GATE",
+        map_id: "ROUTE_6_GATE",
+        connections: [
+        ]
+    ),
+    "Route7": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_7",
+        connections: [
+            (direction: "west", target_map: "CeladonCity", offset: -4),
+            (direction: "east", target_map: "SaffronCity", offset: -4)
+        ]
+    ),
+    "Route7Gate": (
+        tileset: "GATE",
+        map_id: "ROUTE_7_GATE",
+        connections: [
+        ]
+    ),
+    "Route8": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_8",
+        connections: [
+            (direction: "west", target_map: "SaffronCity", offset: -4),
+            (direction: "east", target_map: "LavenderTown", offset: 0)
+        ]
+    ),
+    "Route8Gate": (
+        tileset: "GATE",
+        map_id: "ROUTE_8_GATE",
+        connections: [
+        ]
+    ),
+    "Route9": (
+        tileset: "OVERWORLD",
+        map_id: "ROUTE_9",
+        connections: [
+            (direction: "west", target_map: "CeruleanCity", offset: -4),
+            (direction: "east", target_map: "Route10", offset: 0)
+        ]
+    ),
+    "SSAnne1F": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_1F",
+        connections: [
+        ]
+    ),
+    "SSAnne1FRooms": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_1F_ROOMS",
+        connections: [
+        ]
+    ),
+    "SSAnne2F": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_2F",
+        connections: [
+        ]
+    ),
+    "SSAnne2FRooms": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_2F_ROOMS",
+        connections: [
+        ]
+    ),
+    "SSAnne3F": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_3F",
+        connections: [
+        ]
+    ),
+    "SSAnneB1F": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_B1F",
+        connections: [
+        ]
+    ),
+    "SSAnneB1FRooms": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_B1F_ROOMS",
+        connections: [
+        ]
+    ),
+    "SSAnneBow": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_BOW",
+        connections: [
+        ]
+    ),
+    "SSAnneCaptainsRoom": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_CAPTAINS_ROOM",
+        connections: [
+        ]
+    ),
+    "SSAnneKitchen": (
+        tileset: "SHIP",
+        map_id: "SS_ANNE_KITCHEN",
+        connections: [
+        ]
+    ),
+    "SafariZoneCenter": (
+        tileset: "FOREST",
+        map_id: "SAFARI_ZONE_CENTER",
+        connections: [
+        ]
+    ),
+    "SafariZoneCenterRestHouse": (
+        tileset: "GATE",
+        map_id: "SAFARI_ZONE_CENTER_REST_HOUSE",
+        connections: [
+        ]
+    ),
+    "SafariZoneEast": (
+        tileset: "FOREST",
+        map_id: "SAFARI_ZONE_EAST",
+        connections: [
+        ]
+    ),
+    "SafariZoneEastRestHouse": (
+        tileset: "GATE",
+        map_id: "SAFARI_ZONE_EAST_REST_HOUSE",
+        connections: [
+        ]
+    ),
+    "SafariZoneGate": (
+        tileset: "GATE",
+        map_id: "SAFARI_ZONE_GATE",
+        connections: [
+        ]
+    ),
+    "SafariZoneNorth": (
+        tileset: "FOREST",
+        map_id: "SAFARI_ZONE_NORTH",
+        connections: [
+        ]
+    ),
+    "SafariZoneNorthRestHouse": (
+        tileset: "GATE",
+        map_id: "SAFARI_ZONE_NORTH_REST_HOUSE",
+        connections: [
+        ]
+    ),
+    "SafariZoneSecretHouse": (
+        tileset: "LAB",
+        map_id: "SAFARI_ZONE_SECRET_HOUSE",
+        connections: [
+        ]
+    ),
+    "SafariZoneWest": (
+        tileset: "FOREST",
+        map_id: "SAFARI_ZONE_WEST",
+        connections: [
+        ]
+    ),
+    "SafariZoneWestRestHouse": (
+        tileset: "GATE",
+        map_id: "SAFARI_ZONE_WEST_REST_HOUSE",
+        connections: [
+        ]
+    ),
+    "SaffronCity": (
+        tileset: "OVERWORLD",
+        map_id: "SAFFRON_CITY",
+        connections: [
+            (direction: "north", target_map: "Route5", offset: 5),
+            (direction: "south", target_map: "Route6", offset: 5),
+            (direction: "west", target_map: "Route7", offset: 4),
+            (direction: "east", target_map: "Route8", offset: 4)
+        ]
+    ),
+    "SaffronGym": (
+        tileset: "FACILITY",
+        map_id: "SAFFRON_GYM",
+        connections: [
+        ]
+    ),
+    "SaffronMart": (
+        tileset: "MART",
+        map_id: "SAFFRON_MART",
+        connections: [
+        ]
+    ),
+    "SaffronPidgeyHouse": (
+        tileset: "HOUSE",
+        map_id: "SAFFRON_PIDGEY_HOUSE",
+        connections: [
+        ]
+    ),
+    "SaffronPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "SAFFRON_POKECENTER",
+        connections: [
+        ]
+    ),
+    "SeafoamIslands1F": (
+        tileset: "CAVERN",
+        map_id: "SEAFOAM_ISLANDS_1F",
+        connections: [
+        ]
+    ),
+    "SeafoamIslandsB1F": (
+        tileset: "CAVERN",
+        map_id: "SEAFOAM_ISLANDS_B1F",
+        connections: [
+        ]
+    ),
+    "SeafoamIslandsB2F": (
+        tileset: "CAVERN",
+        map_id: "SEAFOAM_ISLANDS_B2F",
+        connections: [
+        ]
+    ),
+    "SeafoamIslandsB3F": (
+        tileset: "CAVERN",
+        map_id: "SEAFOAM_ISLANDS_B3F",
+        connections: [
+        ]
+    ),
+    "SeafoamIslandsB4F": (
+        tileset: "CAVERN",
+        map_id: "SEAFOAM_ISLANDS_B4F",
+        connections: [
+        ]
+    ),
+    "SilphCo10F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_10F",
+        connections: [
+        ]
+    ),
+    "SilphCo11F": (
+        tileset: "INTERIOR",
+        map_id: "SILPH_CO_11F",
+        connections: [
+        ]
+    ),
+    "SilphCo1F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_1F",
+        connections: [
+        ]
+    ),
+    "SilphCo2F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_2F",
+        connections: [
+        ]
+    ),
+    "SilphCo3F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_3F",
+        connections: [
+        ]
+    ),
+    "SilphCo4F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_4F",
+        connections: [
+        ]
+    ),
+    "SilphCo5F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_5F",
+        connections: [
+        ]
+    ),
+    "SilphCo6F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_6F",
+        connections: [
+        ]
+    ),
+    "SilphCo7F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_7F",
+        connections: [
+        ]
+    ),
+    "SilphCo8F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_8F",
+        connections: [
+        ]
+    ),
+    "SilphCo9F": (
+        tileset: "FACILITY",
+        map_id: "SILPH_CO_9F",
+        connections: [
+        ]
+    ),
+    "SilphCoElevator": (
+        tileset: "LOBBY",
+        map_id: "SILPH_CO_ELEVATOR",
+        connections: [
+        ]
+    ),
+    "TradeCenter": (
+        tileset: "CLUB",
+        map_id: "TRADE_CENTER",
+        connections: [
+        ]
+    ),
+    "UndergroundPathNorthSouth": (
+        tileset: "UNDERGROUND",
+        map_id: "UNDERGROUND_PATH_NORTH_SOUTH",
+        connections: [
+        ]
+    ),
+    "UndergroundPathRoute5": (
+        tileset: "GATE",
+        map_id: "UNDERGROUND_PATH_ROUTE_5",
+        connections: [
+        ]
+    ),
+    "UndergroundPathRoute6": (
+        tileset: "GATE",
+        map_id: "UNDERGROUND_PATH_ROUTE_6",
+        connections: [
+        ]
+    ),
+    "UndergroundPathRoute7": (
+        tileset: "GATE",
+        map_id: "UNDERGROUND_PATH_ROUTE_7",
+        connections: [
+        ]
+    ),
+    "UndergroundPathRoute7Copy": (
+        tileset: "GATE",
+        map_id: "UNDERGROUND_PATH_ROUTE_7",
+        connections: [
+        ]
+    ),
+    "UndergroundPathRoute8": (
+        tileset: "GATE",
+        map_id: "UNDERGROUND_PATH_ROUTE_8",
+        connections: [
+        ]
+    ),
+    "UndergroundPathWestEast": (
+        tileset: "UNDERGROUND",
+        map_id: "UNDERGROUND_PATH_WEST_EAST",
+        connections: [
+        ]
+    ),
+    "VermilionCity": (
+        tileset: "OVERWORLD",
+        map_id: "VERMILION_CITY",
+        connections: [
+            (direction: "north", target_map: "Route6", offset: 5),
+            (direction: "east", target_map: "Route11", offset: 4)
+        ]
+    ),
+    "VermilionDock": (
+        tileset: "SHIP_PORT",
+        map_id: "VERMILION_DOCK",
+        connections: [
+        ]
+    ),
+    "VermilionGym": (
+        tileset: "GYM",
+        map_id: "VERMILION_GYM",
+        connections: [
+        ]
+    ),
+    "VermilionMart": (
+        tileset: "MART",
+        map_id: "VERMILION_MART",
+        connections: [
+        ]
+    ),
+    "VermilionOldRodHouse": (
+        tileset: "HOUSE",
+        map_id: "VERMILION_OLD_ROD_HOUSE",
+        connections: [
+        ]
+    ),
+    "VermilionPidgeyHouse": (
+        tileset: "HOUSE",
+        map_id: "VERMILION_PIDGEY_HOUSE",
+        connections: [
+        ]
+    ),
+    "VermilionPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "VERMILION_POKECENTER",
+        connections: [
+        ]
+    ),
+    "VermilionTradeHouse": (
+        tileset: "HOUSE",
+        map_id: "VERMILION_TRADE_HOUSE",
+        connections: [
+        ]
+    ),
+    "VictoryRoad1F": (
+        tileset: "CAVERN",
+        map_id: "VICTORY_ROAD_1F",
+        connections: [
+        ]
+    ),
+    "VictoryRoad2F": (
+        tileset: "CAVERN",
+        map_id: "VICTORY_ROAD_2F",
+        connections: [
+        ]
+    ),
+    "VictoryRoad3F": (
+        tileset: "CAVERN",
+        map_id: "VICTORY_ROAD_3F",
+        connections: [
+        ]
+    ),
+    "ViridianCity": (
+        tileset: "OVERWORLD",
+        map_id: "VIRIDIAN_CITY",
+        connections: [
+            (direction: "north", target_map: "Route2", offset: 5),
+            (direction: "south", target_map: "Route1", offset: 5),
+            (direction: "west", target_map: "Route22", offset: 4)
+        ]
+    ),
+    "ViridianForest": (
+        tileset: "FOREST",
+        map_id: "VIRIDIAN_FOREST",
+        connections: [
+        ]
+    ),
+    "ViridianForestNorthGate": (
+        tileset: "FOREST_GATE",
+        map_id: "VIRIDIAN_FOREST_NORTH_GATE",
+        connections: [
+        ]
+    ),
+    "ViridianForestSouthGate": (
+        tileset: "FOREST_GATE",
+        map_id: "VIRIDIAN_FOREST_SOUTH_GATE",
+        connections: [
+        ]
+    ),
+    "ViridianGym": (
+        tileset: "GYM",
+        map_id: "VIRIDIAN_GYM",
+        connections: [
+        ]
+    ),
+    "ViridianMart": (
+        tileset: "MART",
+        map_id: "VIRIDIAN_MART",
+        connections: [
+        ]
+    ),
+    "ViridianNicknameHouse": (
+        tileset: "HOUSE",
+        map_id: "VIRIDIAN_NICKNAME_HOUSE",
+        connections: [
+        ]
+    ),
+    "ViridianPokecenter": (
+        tileset: "POKECENTER",
+        map_id: "VIRIDIAN_POKECENTER",
+        connections: [
+        ]
+    ),
+    "ViridianSchoolHouse": (
+        tileset: "HOUSE",
+        map_id: "VIRIDIAN_SCHOOL_HOUSE",
+        connections: [
+        ]
+    ),
+    "WardensHouse": (
+        tileset: "LAB",
+        map_id: "WARDENS_HOUSE",
+        connections: [
+        ]
+    )
+}

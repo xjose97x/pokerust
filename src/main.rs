@@ -13,6 +13,7 @@ use std::{
 
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use image::GenericImageView;
+use serde::{Deserialize, Serialize};
 use winit::{
     dpi::PhysicalSize,
     event::{ElementState, Event, KeyEvent, WindowEvent},
@@ -21,6 +22,7 @@ use winit::{
     window::WindowBuilder,
 };
 
+mod data;
 mod game_data;
 mod packaged_data;
 mod packaged_music;
@@ -48,7 +50,7 @@ enum Mode {
     Battle,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 enum Facing {
     Down,
     Up,
@@ -56,13 +58,13 @@ enum Facing {
     Right,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 enum WarpDest {
     LastMap,
     MapId(String),
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct WarpEvent {
     x: i32,
     y: i32,
@@ -70,7 +72,7 @@ struct WarpEvent {
     dest_warp_id: usize,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct ObjectEvent {
     sprite_id: u8,
     tx: i32,
@@ -80,20 +82,24 @@ struct ObjectEvent {
     movement_range: ObjectMovementRange,
     text_id: String,
     facing: Facing,
+    #[serde(default, skip_serializing_if = "is_zero_u8")]
     walk_intra_counter: u8,
+    #[serde(default, skip_serializing_if = "is_zero_u8")]
     walk_anim_frame: u8,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     move_anim: Option<MoveAnim>,
+    #[serde(default, skip_serializing_if = "is_zero_u8")]
     move_delay: u8,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct BgEvent {
     tx: i32,
     ty: i32,
     text_id: String,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct HiddenEvent {
     tx: i32,
     ty: i32,
@@ -101,7 +107,7 @@ struct HiddenEvent {
     action: HiddenAction,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 enum HiddenAction {
     OpenPokemonCenterPC,
     OpenRedsPC,
@@ -120,13 +126,19 @@ enum MenuScreen {
     Party,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 enum GrowthRate {
+    #[serde(rename = "GROWTH_MEDIUM_FAST")]
     MediumFast,
+    #[serde(rename = "GROWTH_SLIGHTLY_FAST")]
     SlightlyFast,
+    #[serde(rename = "GROWTH_SLIGHTLY_SLOW")]
     SlightlySlow,
+    #[serde(rename = "GROWTH_MEDIUM_SLOW")]
     MediumSlow,
+    #[serde(rename = "GROWTH_FAST")]
     Fast,
+    #[serde(rename = "GROWTH_SLOW")]
     Slow,
 }
 
@@ -249,7 +261,7 @@ struct PlayerMon {
     moves: Vec<String>,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct TrainerPartyMon {
     level: u8,
     species: String,
@@ -258,13 +270,13 @@ struct TrainerPartyMon {
 type TrainerParty = Vec<TrainerPartyMon>;
 type TypeChart = HashMap<String, HashMap<String, u8>>;
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct WildMonSlot {
     level: u8,
     species: String,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct WildEncounterTable {
     grass_rate: u8,
     grass: Vec<WildMonSlot>,
@@ -900,13 +912,13 @@ const ROOT_MENU_ITEMS: [&str; 6] = ["POKéDEX", "POKéMON", "ITEM", "SAVE", "OPT
 const ITEMS_VISIBLE_ROWS: usize = 12;
 const BATTLE_ITEMS_VISIBLE_ROWS: usize = 4;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 enum ObjectMovement {
     Walk,
     Stay,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 enum ObjectMovementRange {
     AnyDir,
     UpDown,
@@ -914,7 +926,7 @@ enum ObjectMovementRange {
     None,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 enum ObjectKind {
     Person,
     Item {
@@ -1035,7 +1047,10 @@ fn main() -> Result<(), Box<dyn Error>> {
         NonZeroU32::new(window_size.height.max(1)).unwrap(),
     )?;
 
-    let pokered_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../pokered");
+    // Use local `../pokered` assets (PNG/BLK/BST); game data is loaded from `data/*.ron`.
+    let project_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let pokered_root = project_root.join("../pokered");
+    let pokered_root = pokered_root.canonicalize().unwrap_or(pokered_root);
     let pokered_title_dir = pokered_root.join("gfx/title");
     let logo = load_grayscale_png(&pokered_title_dir.join("pokemon_logo.png"))?;
     let player = load_grayscale_png(&pokered_title_dir.join("player.png"))?;
@@ -1060,10 +1075,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     let empty_events: HashSet<String> = HashSet::new();
     let mut map_view = load_map_view(
         &pokered_root,
+        &data,
         map_name,
         None,
-        &data.sprite_constants,
-        &data.sprite_id_to_png,
         &empty_picked_up_items,
         &empty_events,
     )?;
@@ -1103,8 +1117,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     {
                         match load_game(
                             &pokered_root,
-                            &data.sprite_constants,
-                            &data.sprite_id_to_png,
+                            &data,
                         ) {
                             Ok(mut loaded) => {
                                 loaded.menu = None;
@@ -1137,14 +1150,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                         if let Err(err) = handle_a_button(
                             &mut map_view,
                             &pokered_root,
-                            &data.item_display_names,
-                            &data.item_prices,
-                            &data.tm_prices,
-                            &data.pokemon_display_names,
-                            &data.move_display_names,
-                            &data.pokemon_constant_ids,
-                            &data.evos_moves_ptrs,
-                            &data.evos_moves_asm,
+                            &data,
                         ) {
                             eprintln!("A-button error: {err}");
                             elwt.exit();
@@ -1164,9 +1170,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                                 &data.move_display_names,
                                 &data.pokemon_display_names,
                                 &data.type_chart,
-                                &data.pokemon_constant_ids,
-                                &data.evos_moves_ptrs,
-                                &data.evos_moves_asm,
+                                &data.pokemon_stats,
+                                &data.pokemon_moves,
                                 &pokered_root,
                             ) {
                                 Ok(r) => result = r,
@@ -1179,7 +1184,6 @@ fn main() -> Result<(), Box<dyn Error>> {
                                     result,
                                     battle,
                                     &mut map_view,
-                                    &pokered_root,
                                     &data.trainer_base_reward_money,
                                 );
                             }
@@ -1207,9 +1211,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                                 &data.move_display_names,
                                 &data.pokemon_display_names,
                                 &data.type_chart,
-                                &data.pokemon_constant_ids,
-                                &data.evos_moves_ptrs,
-                                &data.evos_moves_asm,
+                                &data.pokemon_stats,
+                                &data.pokemon_moves,
                                 &pokered_root,
                             ) {
                                 Ok(r) => result = r,
@@ -1222,7 +1225,6 @@ fn main() -> Result<(), Box<dyn Error>> {
                                     result,
                                     battle,
                                     &mut map_view,
-                                    &pokered_root,
                                     &data.trainer_base_reward_money,
                                 );
                             }
@@ -1486,10 +1488,9 @@ fn main() -> Result<(), Box<dyn Error>> {
                         &data.wild_slot_thresholds,
                         &map_view.party,
                         &map_view.inventory,
-                        &data.pokemon_constant_ids,
                         &data.pokemon_display_names,
-                        &data.evos_moves_ptrs,
-                        &data.evos_moves_asm,
+                        &data.pokemon_stats,
+                        &data.pokemon_moves,
                         map_view.rng,
                     ) {
                         Ok(battle) => {
@@ -1522,10 +1523,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                         &mut map_view,
                         &input,
                         &pokered_root,
-                        &data.map_id_to_name,
-                        &data.sprite_constants,
-                        &data.sprite_id_to_png,
-                        &data.wild_encounters,
+                        &data,
                     ) {
                         eprintln!("tick error: {err}");
                         elwt.exit();
@@ -1606,7 +1604,7 @@ struct Player {
     move_anim: Option<MoveAnim>,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct MoveAnim {
     dir: Facing,
     start_tx: i32,
@@ -1668,6 +1666,14 @@ struct MapHeaderInfo {
     map_id: String,
     tileset: String,
     connections: MapConnections,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+struct MapEvents {
+    warp_events: Vec<WarpEvent>,
+    bg_events: Vec<BgEvent>,
+    hidden_events: Vec<HiddenEvent>,
+    object_events: Vec<ObjectEvent>,
 }
 
 fn render_title_frame(
@@ -3455,29 +3461,23 @@ fn dmg_palette_color(color_index: u8) -> u32 {
 
 fn load_map_view(
     pokered_root: &Path,
+    game_data: &game_data::GameData,
     map_name: &str,
     last_outside_map: Option<String>,
-    sprite_constants: &HashMap<String, u8>,
-    sprite_id_to_png: &HashMap<u8, PathBuf>,
     picked_up_items: &HashSet<(String, String)>,
     events: &HashSet<String>,
 ) -> Result<MapView, Box<dyn Error>> {
-    let map_header_path = pokered_root
-        .join("data/maps/headers")
-        .join(format!("{map_name}.asm"));
-    let map_header_asm = fs::read_to_string(&map_header_path)?;
-    let header = parse_map_header(&map_header_asm)
-        .ok_or_else(|| format!("Failed to parse `{map_header_path:?}`"))?;
+    let header = game_data
+        .map_headers
+        .get(map_name)
+        .ok_or_else(|| format!("Missing map header for `{map_name}`"))?;
 
-    let map_constants_path = pokered_root.join("constants/map_constants.asm");
-    let map_constants_asm = fs::read_to_string(&map_constants_path)?;
-    let (width_blocks, height_blocks) = parse_map_dimensions(&header.map_id, &map_constants_asm)
-        .ok_or_else(|| {
-            format!(
-                "Missing map dimensions for `{}` in `{map_constants_path:?}`",
-                header.map_id
-            )
-        })?;
+    let (width_blocks, height_blocks) = map_dimensions_blocks_for_id(&header.map_id).ok_or_else(|| {
+        format!(
+            "Missing map dimensions for `{}` (see `src/data/map_constants.rs`)",
+            header.map_id
+        )
+    })?;
 
     let map_blk_path = pokered_root.join("maps").join(format!("{map_name}.blk"));
     let blocks = fs::read(&map_blk_path)?;
@@ -3490,16 +3490,14 @@ fn load_map_view(
         .into());
     }
 
-    let tilesets_asm_path = pokered_root.join("gfx/tilesets.asm");
-    let tilesets_asm = fs::read_to_string(&tilesets_asm_path)?;
-    let tileset_bases = parse_tileset_asset_bases(&tilesets_asm);
     let tileset_label = tileset_symbol_to_label(&header.tileset);
-    let tileset_base = tileset_bases
+    let tileset_base = game_data
+        .tileset_bases
         .get(&tileset_label)
         .ok_or_else(|| {
             format!(
-                "Unknown tileset `{}` (label `{tileset_label}`) in `{tilesets_asm_path:?}`",
-                header.tileset
+                "Unknown tileset `{}` (label `{tileset_label}`) in `data/tilesets.ron`",
+                header.tileset,
             )
         })?
         .to_string();
@@ -3518,7 +3516,11 @@ fn load_map_view(
 
     let tiles_per_row = tileset_png.width / TILE_SIZE;
     let tile_count = (tileset_png.width / TILE_SIZE) * (tileset_png.height / TILE_SIZE);
-    let grass_tile_id = load_tileset_grass_tile_id(pokered_root, &tileset_label)?;
+    let grass_tile_id = game_data
+        .tileset_grass_tile_ids
+        .get(&tileset_label)
+        .copied()
+        .ok_or_else(|| format!("Missing grass tile id for `{tileset_label}` in `data/tileset_headers.ron`"))?;
     let tileset = Tileset {
         img: tileset_png,
         tiles_per_row,
@@ -3526,7 +3528,11 @@ fn load_map_view(
         grass_tile_id,
     };
 
-    let passable_tiles = load_tileset_passable_tiles(pokered_root, &tileset_label)?;
+    let passable_tiles = game_data
+        .tileset_collision
+        .get(&tileset_label)
+        .cloned()
+        .ok_or_else(|| format!("Missing collision list for `{tileset_label}` in `data/tileset_collision.ron`"))?;
 
     let blockset_path = pokered_root
         .join("gfx/blocksets")
@@ -3560,14 +3566,14 @@ fn load_map_view(
     )
     .unwrap_or((0, 0));
 
-    let object_path = pokered_root
-        .join("data/maps/objects")
-        .join(format!("{map_name}.asm"));
-    let object_asm = fs::read_to_string(&object_path)?;
-    let warp_events = parse_warp_events(&object_asm);
-    let bg_events = parse_bg_events(&object_asm);
-    let hidden_events = load_hidden_events(pokered_root, &header.map_name)?;
-    let mut object_events = parse_object_events(&object_asm, sprite_constants);
+    let events_data = game_data
+        .map_events
+        .get(map_name)
+        .ok_or_else(|| format!("Missing map events for `{map_name}`"))?;
+    let warp_events = events_data.warp_events.clone();
+    let bg_events = events_data.bg_events.clone();
+    let hidden_events = events_data.hidden_events.clone();
+    let mut object_events = events_data.object_events.clone();
     object_events.retain(|o| {
         matches!(o.kind, ObjectKind::Person | ObjectKind::Trainer { .. })
             || !picked_up_items.contains(&(header.map_name.clone(), o.text_id.clone()))
@@ -3603,14 +3609,14 @@ fn load_map_view(
         }
         object_events.retain(|o| o.text_id != "TEXT_BLUESHOUSE_DAISY_WALKING");
     }
-    let object_sprites = load_object_sprite_sheets(&object_events, sprite_id_to_png)?;
+    let object_sprites = load_object_sprite_sheets(&object_events, &game_data.sprite_id_to_png)?;
 
     Ok(MapView {
-        map_name: header.map_name,
-        map_id: header.map_id,
+        map_name: header.map_name.clone(),
+        map_id: header.map_id.clone(),
         is_outside: is_outside_tileset(&header.tileset),
         last_outside_map,
-        connections: header.connections,
+        connections: header.connections.clone(),
         warp_events,
         bg_events,
         hidden_events,
@@ -3717,6 +3723,15 @@ fn parse_map_dimensions(map_id: &str, map_constants_asm: &str) -> Option<(u32, u
         let width = parts.next()?.parse().ok()?;
         let height = parts.next()?.parse().ok()?;
         return Some((width, height));
+    }
+    None
+}
+
+fn map_dimensions_blocks_for_id(map_id: &str) -> Option<(u32, u32)> {
+    for (id, w, h) in data::map_constants::MAP_DIMENSIONS {
+        if *id == map_id {
+            return Some((*w as u32, *h as u32));
+        }
     }
     None
 }
@@ -3829,79 +3844,6 @@ fn parse_bg_events(object_asm: &str) -> Vec<BgEvent> {
         });
     }
     events
-}
-
-fn load_hidden_events(
-    pokered_root: &Path,
-    map_name: &str,
-) -> Result<Vec<HiddenEvent>, Box<dyn Error>> {
-    let path = pokered_root.join("data/events/hidden_objects.asm");
-    let asm = match fs::read_to_string(&path) {
-        Ok(s) => s,
-        Err(_) => return Ok(Vec::new()),
-    };
-
-    let label = format!("{map_name}HiddenObjects:");
-    let mut in_block = false;
-    let mut out: Vec<HiddenEvent> = Vec::new();
-
-    for raw_line in asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if line.is_empty() {
-            continue;
-        }
-
-        if !in_block {
-            if line == label {
-                in_block = true;
-            }
-            continue;
-        }
-
-        if line.starts_with("db -1") {
-            break;
-        }
-
-        let Some(rest) = line.strip_prefix("hidden_object") else {
-            continue;
-        };
-        let args = rest.trim();
-        let parts: Vec<&str> = args
-            .split(',')
-            .map(|s| s.trim())
-            .filter(|s| !s.is_empty())
-            .collect();
-        if parts.len() < 4 {
-            continue;
-        }
-        let Some(x_units) = parse_asm_i32(parts[0]) else {
-            continue;
-        };
-        let Some(y_units) = parse_asm_i32(parts[1]) else {
-            continue;
-        };
-        let facing = match parts[2] {
-            "ANY_FACING" => None,
-            "SPRITE_FACING_UP" => Some(Facing::Up),
-            "SPRITE_FACING_DOWN" => Some(Facing::Down),
-            "SPRITE_FACING_LEFT" => Some(Facing::Left),
-            "SPRITE_FACING_RIGHT" => Some(Facing::Right),
-            _ => None,
-        };
-        let action = match parts[3] {
-            "OpenPokemonCenterPC" => HiddenAction::OpenPokemonCenterPC,
-            "OpenRedsPC" => HiddenAction::OpenRedsPC,
-            other => HiddenAction::Other(other.to_string()),
-        };
-        out.push(HiddenEvent {
-            tx: x_units * PLAYER_STEP_TILES,
-            ty: y_units * PLAYER_STEP_TILES,
-            facing,
-            action,
-        });
-    }
-
-    Ok(out)
 }
 
 fn parse_object_events(
@@ -4044,10 +3986,15 @@ fn parse_asm_u8(s: &str) -> Option<u8> {
     u8::try_from(v).ok()
 }
 
-fn load_sprite_constants(pokered_root: &Path) -> Result<HashMap<String, u8>, Box<dyn Error>> {
-    let path = pokered_root.join("constants/sprite_constants.asm");
-    let asm = fs::read_to_string(&path)?;
-    Ok(parse_sprite_constants(&asm))
+fn parse_asm_quoted_string(s: &str) -> Option<String> {
+    let s = s.trim();
+    let Some((_, rest)) = s.split_once('"') else {
+        return None;
+    };
+    let Some((value, _)) = rest.split_once('"') else {
+        return None;
+    };
+    Some(value.to_string())
 }
 
 fn parse_sprite_constants(asm: &str) -> HashMap<String, u8> {
@@ -4073,161 +4020,6 @@ fn parse_sprite_constants(asm: &str) -> HashMap<String, u8> {
         value = value.wrapping_add(1);
     }
     out
-}
-
-fn load_sprite_id_to_png(
-    pokered_root: &Path,
-    sprite_constants: &HashMap<String, u8>,
-) -> Result<HashMap<u8, PathBuf>, Box<dyn Error>> {
-    let sheet_table_path = pokered_root.join("data/sprites/sprites.asm");
-    let sheet_table_asm = fs::read_to_string(&sheet_table_path)?;
-    let const_to_sheet_label = parse_sprite_sheet_table(&sheet_table_asm);
-
-    let gfx_sprites_path = pokered_root.join("gfx/sprites.asm");
-    let gfx_sprites_asm = fs::read_to_string(&gfx_sprites_path)?;
-    let sheet_label_to_png = parse_gfx_sprite_png_paths(&gfx_sprites_asm);
-
-    let mut out: HashMap<u8, PathBuf> = HashMap::new();
-    for (const_name, &sprite_id) in sprite_constants {
-        if sprite_id == 0 {
-            continue;
-        }
-        let Some(sheet_label) = const_to_sheet_label.get(const_name) else {
-            continue;
-        };
-        let Some(png_rel_path) = sheet_label_to_png.get(sheet_label) else {
-            continue;
-        };
-        out.insert(sprite_id, pokered_root.join(png_rel_path));
-    }
-    Ok(out)
-}
-
-fn load_item_display_names(pokered_root: &Path) -> Result<HashMap<String, String>, Box<dyn Error>> {
-    let names_path = pokered_root.join("data/items/names.asm");
-    let names_asm = fs::read_to_string(&names_path)?;
-    let item_names = parse_item_names(&names_asm);
-
-    let constants_path = pokered_root.join("constants/item_constants.asm");
-    let constants_asm = fs::read_to_string(&constants_path)?;
-    let base_item_ids = parse_item_constant_ids(&constants_asm);
-    let tmhm_names = parse_tmhm_display_names(&constants_asm);
-
-    let mut out: HashMap<String, String> = HashMap::new();
-    for (name, id) in base_item_ids {
-        let idx = id as usize;
-        if let Some(display) = item_names.get(idx).cloned() {
-            out.insert(name, display);
-        }
-    }
-    out.extend(tmhm_names);
-    Ok(out)
-}
-
-fn load_item_prices(pokered_root: &Path) -> Result<HashMap<String, u32>, Box<dyn Error>> {
-    let prices_path = pokered_root.join("data/items/prices.asm");
-    let prices_asm = fs::read_to_string(&prices_path)?;
-    let mut out: HashMap<String, u32> = HashMap::new();
-
-    for raw_line in prices_asm.lines() {
-        let (before_comment, comment) = raw_line.split_once(';').unwrap_or((raw_line, ""));
-        let line = before_comment.trim();
-        if !line.starts_with("bcd3") {
-            continue;
-        }
-        let num = line.trim_start_matches("bcd3").trim();
-        let Ok(price) = num.parse::<u32>() else {
-            continue;
-        };
-        let Some(item_id) = comment.trim().split_whitespace().next() else {
-            continue;
-        };
-        if item_id.is_empty() {
-            continue;
-        }
-        out.insert(item_id.to_string(), price);
-    }
-
-    Ok(out)
-}
-
-fn load_tm_prices(pokered_root: &Path) -> Result<Vec<u32>, Box<dyn Error>> {
-    let tm_prices_path = pokered_root.join("data/items/tm_prices.asm");
-    let tm_prices_asm = fs::read_to_string(&tm_prices_path)?;
-    let mut out: Vec<u32> = Vec::new();
-
-    for raw_line in tm_prices_asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        let Some(rest) = line.strip_prefix("nybble ") else {
-            continue;
-        };
-        let Ok(thousands) = rest.trim().parse::<u32>() else {
-            continue;
-        };
-        out.push(thousands.saturating_mul(1000));
-    }
-
-    Ok(out)
-}
-
-fn load_trainer_base_reward_money(
-    pokered_root: &Path,
-) -> Result<HashMap<String, u32>, Box<dyn Error>> {
-    let trainer_constants_path = pokered_root.join("constants/trainer_constants.asm");
-    let trainer_constants_asm = fs::read_to_string(&trainer_constants_path)?;
-    let mut classes: Vec<String> = Vec::new();
-    for raw_line in trainer_constants_asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        let Some(rest) = line.strip_prefix("trainer_const") else {
-            continue;
-        };
-        let name = rest.trim().split_whitespace().next().unwrap_or("");
-        if !name.is_empty() {
-            classes.push(name.to_string());
-        }
-    }
-    let classes: Vec<String> = classes.into_iter().filter(|s| s != "NOBODY").collect();
-
-    let money_path = pokered_root.join("data/trainers/pic_pointers_money.asm");
-    let money_asm = fs::read_to_string(&money_path)?;
-    let mut bases: Vec<u32> = Vec::new();
-    for raw_line in money_asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        let Some(rest) = line.strip_prefix("pic_money") else {
-            continue;
-        };
-        let parts: Vec<&str> = rest.split(',').map(|s| s.trim()).collect();
-        if parts.len() < 2 {
-            continue;
-        }
-        let Ok(base) = parts[1].parse::<u32>() else {
-            continue;
-        };
-        bases.push(base);
-    }
-
-    if bases.len() != classes.len() {
-        return Err(format!(
-            "Trainer base money length mismatch: constants={} money={}",
-            classes.len(),
-            bases.len()
-        )
-        .into());
-    }
-
-    let mut out: HashMap<String, u32> = HashMap::new();
-    for (class, base) in classes.into_iter().zip(bases.into_iter()) {
-        out.insert(class, base);
-    }
-    Ok(out)
-}
-
-fn load_trainer_parties(
-    pokered_root: &Path,
-) -> Result<HashMap<String, Vec<TrainerParty>>, Box<dyn Error>> {
-    let parties_path = pokered_root.join("data/trainers/parties.asm");
-    let parties_asm = fs::read_to_string(&parties_path)?;
-    Ok(parse_trainer_parties(&parties_asm))
 }
 
 fn parse_trainer_parties(asm: &str) -> HashMap<String, Vec<TrainerParty>> {
@@ -4427,7 +4219,7 @@ fn load_map_music_constants(
     Ok(packaged_data::map_music_constants())
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct BaseStats {
     hp: u8,
     attack: u8,
@@ -4441,239 +4233,53 @@ struct BaseStats {
     growth_rate: GrowthRate,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct MoveData {
     power: u8,
     move_type: String,
     accuracy: u8,
 }
 
-fn load_move_display_names(pokered_root: &Path) -> Result<HashMap<String, String>, Box<dyn Error>> {
-    let names_path = pokered_root.join("data/moves/names.asm");
-    let names_asm = fs::read_to_string(&names_path)?;
-    let move_names = parse_item_names(&names_asm);
-
-    let constants_path = pokered_root.join("constants/move_constants.asm");
-    let constants_asm = fs::read_to_string(&constants_path)?;
-    let move_ids = parse_item_constant_ids(&constants_asm);
-
-    let mut out: HashMap<String, String> = HashMap::new();
-    for (name, id) in move_ids {
-        let idx = id as usize;
-        if let Some(display) = move_names.get(idx).cloned() {
-            out.insert(name, display);
-        }
-    }
-    Ok(out)
+#[derive(Clone, Debug, Serialize, Deserialize)]
+struct PokemonEvolution {
+    method: String,
+    #[serde(default)]
+    level: Option<u8>,
+    #[serde(default)]
+    item: Option<String>,
+    species: String,
 }
 
-fn load_move_db(pokered_root: &Path) -> Result<HashMap<String, MoveData>, Box<dyn Error>> {
-    let moves_path = pokered_root.join("data/moves/moves.asm");
-    let moves_asm = fs::read_to_string(&moves_path)?;
-    Ok(parse_move_db(&moves_asm))
+#[derive(Clone, Debug, Serialize, Deserialize)]
+struct PokemonLearnsetMove {
+    level: u8,
+    #[serde(rename = "move")]
+    move_id: String,
 }
 
-fn parse_move_db(asm: &str) -> HashMap<String, MoveData> {
-    let mut out: HashMap<String, MoveData> = HashMap::new();
-    for raw_line in asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if !line.starts_with("move ") {
-            continue;
-        }
-        let args = line.trim_start_matches("move").trim();
-        let parts: Vec<&str> = args.split(',').map(|s| s.trim()).collect();
-        if parts.len() < 6 {
-            continue;
-        }
-        let move_id = parts[0].to_string();
-        let power = parts.get(2).and_then(|s| parse_asm_u8(s)).unwrap_or(0);
-        let move_type = parts.get(3).unwrap_or(&"").to_string();
-        let accuracy = parts.get(4).and_then(|s| parse_asm_u8(s)).unwrap_or(100);
-        out.insert(
-            move_id,
-            MoveData {
-                power,
-                move_type,
-                accuracy,
-            },
-        );
-    }
-    out
-}
-
-fn load_pokemon_constant_ids(pokered_root: &Path) -> Result<HashMap<String, u8>, Box<dyn Error>> {
-    let path = pokered_root.join("constants/pokemon_constants.asm");
-    let asm = fs::read_to_string(&path)?;
-    Ok(parse_pokemon_constant_ids(&asm))
-}
-
-fn parse_pokemon_constant_ids(asm: &str) -> HashMap<String, u8> {
-    let mut out: HashMap<String, u8> = HashMap::new();
-    let mut value: i32 = 0;
-    for raw_line in asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if line.is_empty() {
-            continue;
-        }
-
-        if let Some(rest) = line.strip_prefix("const_def") {
-            value = rest.trim().parse::<i32>().unwrap_or(0);
-            continue;
-        }
-
-        if let Some(rest) = line.strip_prefix("const_next") {
-            if let Some(v) = parse_asm_i32(rest.trim()) {
-                value = v;
-            }
-            continue;
-        }
-
-        if let Some(rest) = line.strip_prefix("const_skip") {
-            let n = rest.trim().parse::<i32>().unwrap_or(1);
-            value += n.max(1);
-            continue;
-        }
-
-        if !line.starts_with("const ") {
-            continue;
-        }
-        let name = line.trim_start_matches("const").trim();
-        if name.is_empty() {
-            continue;
-        }
-        if !(0..=255).contains(&value) {
-            value += 1;
-            continue;
-        }
-        out.insert(name.to_string(), value as u8);
-        value += 1;
-    }
-    out
-}
-
-fn load_pokemon_display_names(
-    pokered_root: &Path,
-    pokemon_constant_ids: &HashMap<String, u8>,
-) -> Result<HashMap<String, String>, Box<dyn Error>> {
-    let path = pokered_root.join("data/pokemon/names.asm");
-    let asm = fs::read_to_string(&path)?;
-    let names = parse_pokemon_names(&asm);
-
-    let mut out: HashMap<String, String> = HashMap::new();
-    for (const_name, id) in pokemon_constant_ids {
-        let idx = *id as usize;
-        if let Some(raw) = names.get(idx).cloned() {
-            out.insert(const_name.clone(), sanitize_pokemon_display_name(&raw));
-        }
-    }
-    Ok(out)
-}
-
-fn parse_pokemon_names(asm: &str) -> Vec<String> {
-    let mut out: Vec<String> = vec![String::new()];
-    for raw_line in asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if line.starts_with("assert_table_length") {
-            break;
-        }
-        if !line.starts_with("dname ") {
-            continue;
-        }
-        let rest = line.trim_start_matches("dname").trim();
-        let Some(s) = parse_asm_quoted_string(rest) else {
-            continue;
-        };
-        out.push(s);
-    }
-    out
-}
-
-fn sanitize_pokemon_display_name(name: &str) -> String {
-    name.replace('♂', " M").replace('♀', " F")
-}
-
-fn load_base_stats(pokered_root: &Path, species_const: &str) -> Result<BaseStats, Box<dyn Error>> {
-    let slug = species_const_to_basestats_slug(species_const);
-    let path = pokered_root
-        .join("data/pokemon/base_stats")
-        .join(format!("{slug}.asm"));
-    let asm = fs::read_to_string(&path)?;
-    parse_base_stats(&asm).ok_or_else(|| format!("Failed to parse `{path:?}`").into())
-}
-
-fn parse_base_stats(asm: &str) -> Option<BaseStats> {
-    let mut stats: Option<(u8, u8, u8, u8, u8)> = None;
-    let mut types: Option<(String, String)> = None;
-    let mut catch_rate: Option<u8> = None;
-    let mut base_exp: Option<u8> = None;
-    let mut growth_rate: Option<GrowthRate> = None;
-
-    for raw_line in asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if !line.starts_with("db") {
-            continue;
-        }
-        let args = line.trim_start_matches("db").trim();
-        let tokens: Vec<&str> = args
-            .split(',')
-            .map(|t| t.trim())
-            .filter(|t| !t.is_empty())
-            .collect();
-        if tokens.len() == 5 && stats.is_none() {
-            let a = parse_asm_u8(tokens[0])?;
-            let b = parse_asm_u8(tokens[1])?;
-            let c = parse_asm_u8(tokens[2])?;
-            let d = parse_asm_u8(tokens[3])?;
-            let e = parse_asm_u8(tokens[4])?;
-            stats = Some((a, b, c, d, e));
-            continue;
-        }
-        if tokens.len() == 2 && types.is_none() {
-            if parse_asm_u8(tokens[0]).is_none() && parse_asm_u8(tokens[1]).is_none() {
-                types = Some((tokens[0].to_string(), tokens[1].to_string()));
-            }
-            continue;
-        }
-        if tokens.len() == 1 {
-            if growth_rate.is_none() {
-                growth_rate = GrowthRate::from_const(tokens[0]);
-            }
-            if types.is_some() {
-                let v = parse_asm_u8(tokens[0]);
-                if catch_rate.is_none() {
-                    catch_rate = v;
-                } else if base_exp.is_none() {
-                    base_exp = v;
-                }
-            }
-        }
-    }
-
-    let (hp, attack, defense, speed, special) = stats?;
-    let (type1, type2) = types?;
-    let catch_rate = catch_rate?;
-    let base_exp = base_exp?;
-    let growth_rate = growth_rate?;
-    Some(BaseStats {
-        hp,
-        attack,
-        defense,
-        speed,
-        special,
-        type1,
-        type2,
-        catch_rate,
-        base_exp,
-        growth_rate,
-    })
+#[derive(Clone, Debug, Serialize, Deserialize)]
+struct PokemonMoves {
+    evolutions: Vec<PokemonEvolution>,
+    learnset: Vec<PokemonLearnsetMove>,
 }
 
 fn load_type_chart(_pokered_root: &Path) -> Result<TypeChart, Box<dyn Error>> {
     Ok(packaged_type_chart::type_chart())
 }
 
-fn species_const_to_basestats_slug(species_const: &str) -> String {
-    species_const.to_ascii_lowercase().replace('_', "")
+fn species_const_to_ron_key(species_const: &str) -> String {
+    species_const.to_ascii_uppercase().replace('_', "")
+}
+
+fn base_stats_for_species<'a>(
+    pokemon_stats: &'a HashMap<String, BaseStats>,
+    species_const: &str,
+) -> Result<&'a BaseStats, Box<dyn Error>> {
+    let key = species_const_to_ron_key(species_const);
+    pokemon_stats.get(&key).ok_or_else(|| {
+        format!("Missing base stats for `{species_const}` (key `{key}`) in `data/pokemon_stats.ron`")
+            .into()
+    })
 }
 
 fn species_const_to_gfx_slug(species_const: &str) -> String {
@@ -4774,31 +4380,21 @@ fn parse_learnset_for_label(asm: &str, label: &str) -> Vec<(u8, String)> {
 fn pokemon_moves_at_level(
     species_const: &str,
     level: u8,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
 ) -> Vec<String> {
-    let Some(&id) = pokemon_constant_ids.get(species_const) else {
+    let key = species_const_to_ron_key(species_const);
+    let Some(moves) = pokemon_moves.get(&key) else {
         return vec![];
     };
-    if id == 0 {
-        return vec![];
-    }
-    let idx = (id - 1) as usize;
-    let Some(label) = evos_moves_ptrs.get(idx) else {
-        return vec![];
-    };
-
-    let learnset = parse_learnset_for_label(evos_moves_asm, label);
     let mut learned: Vec<String> = Vec::new();
-    for (lvl, mov) in learnset {
-        if lvl == 0 || lvl > level {
+    for entry in &moves.learnset {
+        if entry.level == 0 || entry.level > level {
             continue;
         }
-        if mov == "NO_MOVE" {
+        if entry.move_id == "NO_MOVE" {
             continue;
         }
-        learned.push(mov);
+        learned.push(entry.move_id.clone());
     }
     learned
         .into_iter()
@@ -5102,25 +4698,8 @@ fn strip_asm_comment(line: &str) -> &str {
     line.split(';').next().unwrap_or("")
 }
 
-fn load_tileset_passable_tiles(
-    pokered_root: &Path,
-    tileset_label: &str,
-) -> Result<HashSet<u8>, Box<dyn Error>> {
-    let collision_path = pokered_root.join("data/tilesets/collision_tile_ids.asm");
-    let collision_asm = fs::read_to_string(&collision_path)?;
-    let label = format!("{tileset_label}_Coll");
-    parse_passable_tiles_for_label(&collision_asm, &label)
-        .ok_or_else(|| format!("Missing `{label}::` in `{collision_path:?}`").into())
-}
-
-fn load_tileset_grass_tile_id(
-    pokered_root: &Path,
-    tileset_label: &str,
-) -> Result<Option<u8>, Box<dyn Error>> {
-    let path = pokered_root.join("data/tilesets/tileset_headers.asm");
-    let asm = fs::read_to_string(&path)?;
-    parse_tileset_grass_tile_id(&asm, tileset_label)
-        .ok_or_else(|| format!("Missing grass tile for `{tileset_label}` in `{path:?}`").into())
+fn is_zero_u8(v: &u8) -> bool {
+    *v == 0
 }
 
 fn parse_tileset_grass_tile_id(asm: &str, tileset_label: &str) -> Option<Option<u8>> {
@@ -5263,12 +4842,9 @@ fn tick_map(
     view: &mut MapView,
     input: &InputState,
     pokered_root: &Path,
-    map_id_to_name: &HashMap<String, String>,
-    sprite_constants: &HashMap<String, u8>,
-    sprite_id_to_png: &HashMap<u8, PathBuf>,
-    wild_encounters: &HashMap<String, WildEncounterTable>,
+    game_data: &game_data::GameData,
 ) -> Result<(), Box<dyn Error>> {
-    if try_run_pending_map_sequences(view, pokered_root, sprite_constants, sprite_id_to_png)? {
+    if try_run_pending_map_sequences(view, pokered_root, game_data)? {
         return Ok(());
     }
 
@@ -5283,16 +4859,10 @@ fn tick_map(
     let moved =
         view.player.move_anim.is_none() && (view.player.tx != old_tx || view.player.ty != old_ty);
     if moved {
-        if try_warp_transition(
-            view,
-            pokered_root,
-            map_id_to_name,
-            sprite_constants,
-            sprite_id_to_png,
-        )? {
+        if try_warp_transition(view, pokered_root, game_data)? {
             return Ok(());
         }
-        if try_connection_transition(view, pokered_root, sprite_constants, sprite_id_to_png)? {
+        if try_connection_transition(view, pokered_root, game_data)? {
             return Ok(());
         }
         if try_trigger_pallet_town_oak_escort(view, pokered_root)? {
@@ -5304,7 +4874,7 @@ fn tick_map(
         if try_trigger_oaks_lab_rival_battle(view, pokered_root)? {
             return Ok(());
         }
-        try_trigger_wild_encounter(view, wild_encounters);
+        try_trigger_wild_encounter(view, &game_data.wild_encounters);
     }
 
     if view.player.move_anim.is_none() {
@@ -5316,8 +4886,7 @@ fn tick_map(
 fn try_run_pending_map_sequences(
     view: &mut MapView,
     pokered_root: &Path,
-    sprite_constants: &HashMap<String, u8>,
-    sprite_id_to_png: &HashMap<u8, PathBuf>,
+    game_data: &game_data::GameData,
 ) -> Result<bool, Box<dyn Error>> {
     if view.player.move_anim.is_some() {
         return Ok(false);
@@ -5326,10 +4895,9 @@ fn try_run_pending_map_sequences(
     if view.events.contains("EVENT_OAK_ESCORT_TO_LAB_PENDING") {
         let mut new_view = load_map_view(
             pokered_root,
+            game_data,
             "OaksLab",
             Some("PalletTown".to_string()),
-            sprite_constants,
-            sprite_id_to_png,
             &view.picked_up_items,
             &view.events,
         )?;
@@ -5368,32 +4936,19 @@ fn try_run_pending_map_sequences(
         view.events
             .insert("EVENT_ROUTE22_RIVAL_WANTS_BATTLE".to_string());
 
-        let text_path = pokered_root.join("text").join("OaksLab.asm");
-        let text_asm = fs::read_to_string(&text_path)?;
-        let labels = [
-            "_OaksLabRivalGrampsText",
-            "_OaksLabRivalWhatDidYouCallMeForText",
-            "_OaksLabOakIHaveARequestText",
-            "_OaksLabOakMyInventionPokedexText",
-            "_OaksLabOakGotPokedexText",
-            "_OaksLabOakThatWasMyDreamText",
-            "_OaksLabRivalLeaveItAllToMeText",
+        let lines = vec![
+            "OAK: I have a request".to_string(),
+            "of you two.".to_string(),
+            String::new(),
+            "On the desk there is my".to_string(),
+            "invention, POKéDEX!".to_string(),
+            String::new(),
+            "It automatically records".to_string(),
+            "data on POKéMON you've".to_string(),
+            "seen or caught.".to_string(),
+            String::new(),
+            "Take this POKéDEX!".to_string(),
         ];
-        let mut lines: Vec<String> = Vec::new();
-        for label in labels {
-            if let Some(mut chunk) = parse_text_entry(&text_asm, label) {
-                if !lines.is_empty() {
-                    lines.push(String::new());
-                }
-                lines.append(&mut chunk);
-            }
-        }
-        if lines.is_empty() {
-            lines = vec![
-                "OAK: I have a request of you two.".to_string(),
-                "Take this POKéDEX!".to_string(),
-            ];
-        }
         open_dialog_from_lines(view, lines);
         return Ok(true);
     }
@@ -5461,27 +5016,13 @@ fn try_trigger_pallet_town_oak_escort(
         return Ok(false);
     }
 
-    let text_path = pokered_root.join("text").join("PalletTown.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-    let mut lines: Vec<String> = Vec::new();
-    if let Some(mut chunk) = parse_text_entry(&text_asm, "_PalletTownOakHeyWaitDontGoOutText") {
-        lines.append(&mut chunk);
-    }
-    if let Some(mut chunk) = parse_text_entry(&text_asm, "_PalletTownOakItsUnsafeText") {
-        if !lines.is_empty() {
-            lines.push(String::new());
-        }
-        lines.append(&mut chunk);
-    }
-    if lines.is_empty() {
-        lines = vec![
-            "OAK: Hey! Wait!".to_string(),
-            "Don't go out!".to_string(),
-            String::new(),
-            "It's unsafe! Wild POKéMON".to_string(),
-            "live in tall grass!".to_string(),
-        ];
-    }
+    let lines = vec![
+        "OAK: Hey! Wait!".to_string(),
+        "Don't go out!".to_string(),
+        String::new(),
+        "It's unsafe! Wild POKéMON".to_string(),
+        "live in tall grass!".to_string(),
+    ];
     open_dialog_from_lines(view, lines);
     view.events
         .insert("EVENT_OAK_ESCORT_TO_LAB_PENDING".to_string());
@@ -5523,15 +5064,7 @@ fn try_trigger_route22_rival1_battle(
 
     let trainer_number = route22_rival1_trainer_number(view).unwrap_or_else(|| "4".to_string());
 
-    let text_path = pokered_root.join("text").join("Route22.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-    let lines =
-        parse_text_entry(&text_asm, "_Route22RivalBeforeBattleText1").unwrap_or_else(|| {
-            vec![
-                "RIVAL: Hey PLAYER!".to_string(),
-                "Let's battle!".to_string(),
-            ]
-        });
+    let lines = vec!["RIVAL: Hey PLAYER!".to_string(), "Let's battle!".to_string()];
 
     open_dialog_from_lines(view, lines);
     view.pending_battle = Some(PendingBattle::Trainer {
@@ -5579,14 +5112,10 @@ fn try_trigger_oaks_lab_rival_battle(
 
     let trainer_number = oaks_lab_rival_trainer_number(view).unwrap_or_else(|| "1".to_string());
 
-    let text_path = pokered_root.join("text").join("OaksLab.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-    let lines = parse_text_entry(&text_asm, "_OaksLabRivalIllTakeYouOnText").unwrap_or_else(|| {
-        vec![
-            "RIVAL: Wait PLAYER!".to_string(),
-            "Come on, I'll take you on!".to_string(),
-        ]
-    });
+    let lines = vec![
+        "RIVAL: Wait PLAYER!".to_string(),
+        "Come on, I'll take you on!".to_string(),
+    ];
 
     open_dialog_from_lines(view, lines);
     view.pending_battle = Some(PendingBattle::Trainer {
@@ -5903,8 +5432,7 @@ fn save_game(view: &MapView) -> Result<(), Box<dyn Error>> {
 
 fn load_game(
     pokered_root: &Path,
-    sprite_constants: &HashMap<String, u8>,
-    sprite_id_to_png: &HashMap<u8, PathBuf>,
+    game_data: &game_data::GameData,
 ) -> Result<MapView, Box<dyn Error>> {
     let path = save_file_path();
     let text = fs::read_to_string(&path)?;
@@ -6042,7 +5570,7 @@ fn load_game(
                 let exp = match exp {
                     Some(v) => v,
                     None => {
-                        let base = load_base_stats(pokered_root, &species)?;
+                        let base = base_stats_for_species(&game_data.pokemon_stats, &species)?;
                         exp_for_level(base.growth_rate, level)
                     }
                 };
@@ -6102,7 +5630,7 @@ fn load_game(
                 let exp = match exp {
                     Some(v) => v,
                     None => {
-                        let base = load_base_stats(pokered_root, &species)?;
+                        let base = base_stats_for_species(&game_data.pokemon_stats, &species)?;
                         exp_for_level(base.growth_rate, level)
                     }
                 };
@@ -6145,10 +5673,9 @@ fn load_game(
 
     let mut view = load_map_view(
         pokered_root,
+        game_data,
         &map_name,
         last_outside_map,
-        sprite_constants,
-        sprite_id_to_png,
         &picked_up_items,
         &events,
     )?;
@@ -6211,10 +5738,9 @@ fn start_battle_from_pending(
     wild_slot_thresholds: &[u8],
     player_party: &[PlayerMon],
     inventory: &HashMap<String, u32>,
-    pokemon_constant_ids: &HashMap<String, u8>,
     pokemon_display_names: &HashMap<String, String>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
     rng: u32,
 ) -> Result<BattleState, Box<dyn Error>> {
     let mut rng = rng;
@@ -6278,19 +5804,16 @@ fn start_battle_from_pending(
         pokered_root,
         &enemy0.species,
         enemy0.level,
-        pokemon_constant_ids,
-        evos_moves_ptrs,
-        evos_moves_asm,
+        pokemon_stats,
+        pokemon_moves,
     )?;
 
     let mut player_party: Vec<PlayerMon> = if player_party.is_empty() {
         vec![make_player_mon(
-            pokered_root,
             "BULBASAUR",
             5,
-            pokemon_constant_ids,
-            evos_moves_ptrs,
-            evos_moves_asm,
+            pokemon_stats,
+            pokemon_moves,
         )?]
     } else {
         player_party.to_vec()
@@ -6300,9 +5823,7 @@ fn start_battle_from_pending(
             mon.moves = pokemon_moves_at_level(
                 &mon.species,
                 mon.level,
-                pokemon_constant_ids,
-                evos_moves_ptrs,
-                evos_moves_asm,
+                pokemon_moves,
             );
             if mon.moves.is_empty() {
                 mon.moves.push("TACKLE".to_string());
@@ -6316,9 +5837,8 @@ fn start_battle_from_pending(
     let player = make_battle_mon_from_player_mon(
         pokered_root,
         &player_party[player_party_index],
-        pokemon_constant_ids,
-        evos_moves_ptrs,
-        evos_moves_asm,
+        pokemon_stats,
+        pokemon_moves,
     )?;
 
     let mut battle = BattleState {
@@ -6386,22 +5906,14 @@ fn start_battle_from_pending(
 }
 
 fn make_player_mon(
-    pokered_root: &Path,
     species_const: &str,
     level: u8,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
 ) -> Result<PlayerMon, Box<dyn Error>> {
-    let base = load_base_stats(pokered_root, species_const)?;
+    let base = base_stats_for_species(pokemon_stats, species_const)?;
     let (max_hp, _attack, _defense, _speed, _special) = calc_battle_stats(&base, level);
-    let mut moves = pokemon_moves_at_level(
-        species_const,
-        level,
-        pokemon_constant_ids,
-        evos_moves_ptrs,
-        evos_moves_asm,
-    );
+    let mut moves = pokemon_moves_at_level(species_const, level, pokemon_moves);
     if moves.is_empty() {
         moves.push("TACKLE".to_string());
     }
@@ -6418,21 +5930,14 @@ fn make_player_mon(
 fn make_battle_mon_from_player_mon(
     pokered_root: &Path,
     mon: &PlayerMon,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
 ) -> Result<BattleMon, Box<dyn Error>> {
-    let base = load_base_stats(pokered_root, &mon.species)?;
+    let base = base_stats_for_species(pokemon_stats, &mon.species)?;
     let (max_hp, attack, defense, speed, special) = calc_battle_stats(&base, mon.level);
     let mut moves = mon.moves.clone();
     if moves.is_empty() {
-        moves = pokemon_moves_at_level(
-            &mon.species,
-            mon.level,
-            pokemon_constant_ids,
-            evos_moves_ptrs,
-            evos_moves_asm,
-        );
+        moves = pokemon_moves_at_level(&mon.species, mon.level, pokemon_moves);
     }
     if moves.is_empty() {
         moves.push("TACKLE".to_string());
@@ -6454,7 +5959,7 @@ fn make_battle_mon_from_player_mon(
     Ok(BattleMon {
         species: mon.species.clone(),
         level: mon.level,
-        types: (base.type1, base.type2),
+        types: (base.type1.clone(), base.type2.clone()),
         max_hp,
         hp,
         attack,
@@ -6473,19 +5978,12 @@ fn make_battle_mon(
     pokered_root: &Path,
     species_const: &str,
     level: u8,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
 ) -> Result<BattleMon, Box<dyn Error>> {
-    let base = load_base_stats(pokered_root, species_const)?;
+    let base = base_stats_for_species(pokemon_stats, species_const)?;
     let (max_hp, attack, defense, speed, special) = calc_battle_stats(&base, level);
-    let mut moves = pokemon_moves_at_level(
-        species_const,
-        level,
-        pokemon_constant_ids,
-        evos_moves_ptrs,
-        evos_moves_asm,
-    );
+    let mut moves = pokemon_moves_at_level(species_const, level, pokemon_moves);
     if moves.is_empty() {
         moves.push("TACKLE".to_string());
     }
@@ -6505,7 +6003,7 @@ fn make_battle_mon(
     Ok(BattleMon {
         species: species_const.to_string(),
         level,
-        types: (base.type1, base.type2),
+        types: (base.type1.clone(), base.type2.clone()),
         max_hp,
         hp: max_hp,
         attack,
@@ -6539,9 +6037,8 @@ fn battle_handle_a_button(
     move_display_names: &HashMap<String, String>,
     pokemon_display_names: &HashMap<String, String>,
     type_chart: &TypeChart,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
     pokered_root: &Path,
 ) -> Result<Option<BattleResult>, Box<dyn Error>> {
     if let Some(dialog) = &mut battle.dialog {
@@ -6554,9 +6051,8 @@ fn battle_handle_a_button(
             move_display_names,
             pokemon_display_names,
             type_chart,
-            pokemon_constant_ids,
-            evos_moves_ptrs,
-            evos_moves_asm,
+            pokemon_stats,
+            pokemon_moves,
             pokered_root,
         );
     }
@@ -6661,9 +6157,8 @@ fn battle_handle_a_button(
                     battle.player = make_battle_mon_from_player_mon(
                         pokered_root,
                         &battle.player_party[idx],
-                        pokemon_constant_ids,
-                        evos_moves_ptrs,
-                        evos_moves_asm,
+                        pokemon_stats,
+                        pokemon_moves,
                     )?;
                     let enemy_move = battle_choose_enemy_move(battle);
                     let player_name = pokemon_display_names
@@ -6738,12 +6233,10 @@ fn battle_handle_a_button(
                             let had_room = battle.player_party.len() < 6;
                             if had_room {
                                 if let Ok(mut mon) = make_player_mon(
-                                    pokered_root,
                                     &battle.enemy.species,
                                     battle.enemy.level,
-                                    pokemon_constant_ids,
-                                    evos_moves_ptrs,
-                                    evos_moves_asm,
+                                    pokemon_stats,
+                                    pokemon_moves,
                                 ) {
                                     mon.hp = battle.enemy.hp.min(mon.max_hp);
                                     battle.player_party.push(mon);
@@ -6858,9 +6351,8 @@ fn battle_handle_a_button(
         move_display_names,
         pokemon_display_names,
         type_chart,
-        pokemon_constant_ids,
-        evos_moves_ptrs,
-        evos_moves_asm,
+        pokemon_stats,
+        pokemon_moves,
         pokered_root,
     )
 }
@@ -6872,9 +6364,8 @@ fn battle_handle_b_button(
     move_display_names: &HashMap<String, String>,
     pokemon_display_names: &HashMap<String, String>,
     type_chart: &TypeChart,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
     pokered_root: &Path,
 ) -> Result<Option<BattleResult>, Box<dyn Error>> {
     if battle.dialog.is_some() {
@@ -6885,9 +6376,8 @@ fn battle_handle_b_button(
             move_display_names,
             pokemon_display_names,
             type_chart,
-            pokemon_constant_ids,
-            evos_moves_ptrs,
-            evos_moves_asm,
+            pokemon_stats,
+            pokemon_moves,
             pokered_root,
         );
     }
@@ -6910,9 +6400,8 @@ fn battle_pump_events(
     move_display_names: &HashMap<String, String>,
     pokemon_display_names: &HashMap<String, String>,
     type_chart: &TypeChart,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
     pokered_root: &Path,
 ) -> Result<Option<BattleResult>, Box<dyn Error>> {
     loop {
@@ -6941,10 +6430,8 @@ fn battle_pump_events(
                     move_display_names,
                     pokemon_display_names,
                     type_chart,
-                    pokered_root,
-                    pokemon_constant_ids,
-                    evos_moves_ptrs,
-                    evos_moves_asm,
+                    pokemon_stats,
+                    pokemon_moves,
                 )?;
                 return Ok(None);
             }
@@ -6957,10 +6444,8 @@ fn battle_pump_events(
                     move_display_names,
                     pokemon_display_names,
                     type_chart,
-                    pokered_root,
-                    pokemon_constant_ids,
-                    evos_moves_ptrs,
-                    evos_moves_asm,
+                    pokemon_stats,
+                    pokemon_moves,
                 )?;
                 return Ok(None);
             }
@@ -6977,9 +6462,8 @@ fn battle_pump_events(
                     pokered_root,
                     &spec.species,
                     spec.level,
-                    pokemon_constant_ids,
-                    evos_moves_ptrs,
-                    evos_moves_asm,
+                    pokemon_stats,
+                    pokemon_moves,
                 )?;
                 let enemy_name = pokemon_display_names
                     .get(&battle.enemy.species)
@@ -7011,9 +6495,8 @@ fn battle_pump_events(
                 battle.player = make_battle_mon_from_player_mon(
                     pokered_root,
                     &battle.player_party[next_i],
-                    pokemon_constant_ids,
-                    evos_moves_ptrs,
-                    evos_moves_asm,
+                    pokemon_stats,
+                    pokemon_moves,
                 )?;
                 battle.ui.screen = BattleUiScreen::Command;
                 battle.ui.selection = 0;
@@ -7126,10 +6609,8 @@ fn battle_exp_gain(battle: &BattleState, enemy_base_exp: u8, enemy_level: u8) ->
 fn battle_award_exp_to_active_player(
     battle: &mut BattleState,
     exp: u32,
-    pokered_root: &Path,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
 ) -> Result<(), Box<dyn Error>> {
     if exp == 0 {
         return Ok(());
@@ -7139,7 +6620,7 @@ fn battle_award_exp_to_active_player(
     };
 
     mon.exp = mon.exp.saturating_add(exp);
-    let base = load_base_stats(pokered_root, &mon.species)?;
+    let base = base_stats_for_species(pokemon_stats, &mon.species)?;
     let max_exp = exp_for_level(base.growth_rate, 100);
     if mon.exp > max_exp {
         mon.exp = max_exp;
@@ -7165,9 +6646,7 @@ fn battle_award_exp_to_active_player(
     let learned = pokemon_moves_at_level(
         &mon.species,
         mon.level,
-        pokemon_constant_ids,
-        evos_moves_ptrs,
-        evos_moves_asm,
+        pokemon_moves,
     );
     if !learned.is_empty() {
         mon.moves = learned;
@@ -7199,10 +6678,8 @@ fn battle_resolve_attack(
     move_display_names: &HashMap<String, String>,
     pokemon_display_names: &HashMap<String, String>,
     type_chart: &TypeChart,
-    pokered_root: &Path,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
 ) -> Result<(), Box<dyn Error>> {
     let attacker_species = if attacker_is_player {
         battle.player.species.as_str()
@@ -7297,10 +6774,8 @@ fn battle_resolve_attack(
                 battle_award_exp_to_active_player(
                     battle,
                     exp,
-                    pokered_root,
-                    pokemon_constant_ids,
-                    evos_moves_ptrs,
-                    evos_moves_asm,
+                    pokemon_stats,
+                    pokemon_moves,
                 )?;
                 battle.events.push_back(BattleEvent::Message(vec![
                     format!("{player_name} gained {exp} EXP. Points!"),
@@ -7412,7 +6887,6 @@ fn end_battle(
     result: BattleResult,
     battle: BattleState,
     map_view: &mut MapView,
-    pokered_root: &Path,
     trainer_base_reward_money: &HashMap<String, u32>,
 ) {
     let BattleState {
@@ -7444,28 +6918,10 @@ fn end_battle(
                 .insert((map_name.clone(), text_id.clone()));
             if map_name == "OaksLab" && text_id == "TEXT_OAKSLAB_RIVAL" && opponent == "OPP_RIVAL1"
             {
-                let text_path = pokered_root.join("text").join("OaksLab.asm");
-                let text_asm = fs::read_to_string(&text_path).unwrap_or_default();
-                let mut lines: Vec<String> = Vec::new();
-                if let Some(mut chunk) =
-                    parse_text_entry(&text_asm, "_OaksLabRivalIPickedTheWrongPokemonText")
-                {
-                    lines.append(&mut chunk);
-                }
-                if let Some(mut chunk) =
-                    parse_text_entry(&text_asm, "_OaksLabRivalAmIGreatOrWhatText")
-                {
-                    if !lines.is_empty() {
-                        lines.push(String::new());
-                    }
-                    lines.append(&mut chunk);
-                }
-                if lines.is_empty() {
-                    lines = vec![
-                        "WHAT? Unbelievable!".to_string(),
-                        "I picked the wrong POKéMON!".to_string(),
-                    ];
-                }
+                let mut lines = vec![
+                    "WHAT? Unbelievable!".to_string(),
+                    "I picked the wrong POKéMON!".to_string(),
+                ];
 
                 let last_level = enemy_party.last().map(|m| m.level).unwrap_or(0);
                 let class = opponent.strip_prefix("OPP_").unwrap_or(opponent);
@@ -7492,29 +6948,13 @@ fn end_battle(
 
             if map_name == "Route22" && text_id == "TEXT_ROUTE22_RIVAL1" && opponent == "OPP_RIVAL1"
             {
-                let text_path = pokered_root.join("text").join("Route22.asm");
-                let text_asm = fs::read_to_string(&text_path).unwrap_or_default();
-                let mut lines: Vec<String> = Vec::new();
-                if let Some(mut chunk) = parse_text_entry(&text_asm, "_Route22Rival1DefeatedText") {
-                    lines.append(&mut chunk);
-                }
-                if let Some(mut chunk) =
-                    parse_text_entry(&text_asm, "_Route22RivalAfterBattleText1")
-                {
-                    if !lines.is_empty() {
-                        lines.push(String::new());
-                    }
-                    lines.append(&mut chunk);
-                }
-                if lines.is_empty() {
-                    lines = vec![
-                        "Awww!".to_string(),
-                        "You just lucked out!".to_string(),
-                        String::new(),
-                        "You should quit dawdling".to_string(),
-                        "and get a move on!".to_string(),
-                    ];
-                }
+                let mut lines = vec![
+                    "Awww!".to_string(),
+                    "You just lucked out!".to_string(),
+                    String::new(),
+                    "You should quit dawdling".to_string(),
+                    "and get a move on!".to_string(),
+                ];
 
                 let last_level = enemy_party.last().map(|m| m.level).unwrap_or(0);
                 let class = opponent.strip_prefix("OPP_").unwrap_or(opponent);
@@ -7546,9 +6986,10 @@ fn end_battle(
                 map_view.money = map_view.money.saturating_add(reward);
             }
 
-            let mut lines =
-                load_trainer_end_battle_dialog_lines_for_text_id(pokered_root, map_name, text_id)
-                    .unwrap_or_else(|_| vec!["You won!".to_string(), String::new()]);
+            let mut lines = vec![
+                "You defeated the trainer!".to_string(),
+                format!("[{text_id}]"),
+            ];
             if reward > 0 {
                 lines.push(format!("Got ${reward} for"));
                 lines.push("winning!".to_string());
@@ -8220,12 +7661,10 @@ fn handle_pc_a_button(
 
 fn handle_choice_a_button(
     view: &mut MapView,
-    pokered_root: &Path,
     item_display_names: &HashMap<String, String>,
     pokemon_display_names: &HashMap<String, String>,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    pokemon_stats: &HashMap<String, BaseStats>,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
 ) -> Result<(), Box<dyn Error>> {
     if let Some(dialog) = &mut view.dialog {
         if dialog.has_more() {
@@ -8254,12 +7693,10 @@ fn handle_choice_a_button(
             }
 
             let mon = make_player_mon(
-                pokered_root,
                 &species,
                 5,
-                pokemon_constant_ids,
-                evos_moves_ptrs,
-                evos_moves_asm,
+                pokemon_stats,
+                pokemon_moves,
             )?;
             view.party.push(mon);
             view.events.insert("EVENT_GOT_STARTER".to_string());
@@ -8435,24 +7872,15 @@ fn handle_menu_a_button(
 fn handle_a_button(
     view: &mut MapView,
     pokered_root: &Path,
-    item_display_names: &HashMap<String, String>,
-    item_prices: &HashMap<String, u32>,
-    tm_prices: &[u32],
-    pokemon_display_names: &HashMap<String, String>,
-    move_display_names: &HashMap<String, String>,
-    pokemon_constant_ids: &HashMap<String, u8>,
-    evos_moves_ptrs: &[String],
-    evos_moves_asm: &str,
+    game_data: &game_data::GameData,
 ) -> Result<(), Box<dyn Error>> {
     if view.choice.is_some() {
         handle_choice_a_button(
             view,
-            pokered_root,
-            item_display_names,
-            pokemon_display_names,
-            pokemon_constant_ids,
-            evos_moves_ptrs,
-            evos_moves_asm,
+            &game_data.item_display_names,
+            &game_data.pokemon_display_names,
+            &game_data.pokemon_stats,
+            &game_data.pokemon_moves,
         )?;
         return Ok(());
     }
@@ -8465,12 +7893,12 @@ fn handle_a_button(
     }
 
     if view.shop.is_some() {
-        handle_shop_a_button(view, item_display_names);
+        handle_shop_a_button(view, &game_data.item_display_names);
         return Ok(());
     }
 
     if view.pc.is_some() {
-        handle_pc_a_button(view, item_display_names, pokemon_display_names);
+        handle_pc_a_button(view, &game_data.item_display_names, &game_data.pokemon_display_names);
         return Ok(());
     }
 
@@ -8478,9 +7906,9 @@ fn handle_a_button(
         return handle_menu_a_button(
             view,
             pokered_root,
-            item_display_names,
-            pokemon_display_names,
-            move_display_names,
+            &game_data.item_display_names,
+            &game_data.pokemon_display_names,
+            &game_data.move_display_names,
         );
     }
 
@@ -8505,7 +7933,8 @@ fn handle_a_button(
                 *view.inventory.entry(item_id.clone()).or_insert(0) += 1;
                 view.object_events.remove(obj_i);
 
-                let display_name = item_display_names
+                let display_name = game_data
+                    .item_display_names
                     .get(&item_id)
                     .cloned()
                     .unwrap_or_else(|| fallback_item_display_name(&item_id));
@@ -8521,54 +7950,66 @@ fn handle_a_button(
                 view.object_events[obj_i].walk_intra_counter = 0;
                 view.object_events[obj_i].walk_anim_frame = 0;
                 if view.map_name == "OaksLab" && text_id == "TEXT_OAKSLAB_RIVAL" {
-                    run_oaks_lab_rival_interaction(view, pokered_root)?;
+                    run_oaks_lab_rival_interaction(view)?;
                     return Ok(());
                 }
                 if view
                     .defeated_trainers
                     .contains(&(view.map_name.clone(), text_id.clone()))
                 {
-                    let lines = load_trainer_after_battle_dialog_lines_for_text_id(
-                        pokered_root,
-                        &view.map_name,
-                        &text_id,
-                    )
-                    .unwrap_or_else(|_| vec!["...".to_string(), String::new()]);
-                    open_dialog_from_lines(view, lines);
+                    open_dialog_from_lines(
+                        view,
+                        vec![format!("[{text_id}]"), "...".to_string(), String::new()],
+                    );
                 } else {
-                    let lines = load_trainer_battle_dialog_lines_for_text_id(
-                        pokered_root,
-                        &view.map_name,
-                        &text_id,
-                    )
-                    .unwrap_or_else(|_| {
-                        vec![
-                            "Trainer battle".to_string(),
-                            format!("N/A ({opponent} {trainer_number})"),
-                        ]
-                    });
                     view.pending_battle = Some(PendingBattle::Trainer {
                         map_name: view.map_name.clone(),
                         text_id: text_id.clone(),
                         opponent,
                         trainer_number,
                     });
-                    open_dialog_from_lines(view, lines);
+                    open_dialog_from_lines(
+                        view,
+                        vec![
+                            "Trainer wants to battle!".to_string(),
+                            format!("[{text_id}]"),
+                        ],
+                    );
                 }
             }
             ObjectKind::Person => {
                 let text_id = view.object_events[obj_i].text_id.clone();
+                let sprite_id = view.object_events[obj_i].sprite_id;
                 view.object_events[obj_i].facing = facing_opposite(view.player.facing);
                 view.object_events[obj_i].move_anim = None;
                 view.object_events[obj_i].walk_intra_counter = 0;
                 view.object_events[obj_i].walk_anim_frame = 0;
+
+                if sprite_id == data::sprite_constants::SPRITE_NURSE {
+                    run_pokecenter_nurse(view)?;
+                    return Ok(());
+                }
+                if sprite_id == data::sprite_constants::SPRITE_CLERK
+                    && (view.map_name.ends_with("Mart") || view.map_name == "IndigoPlateauLobby")
+                {
+                    if view.map_name == "ViridianMart" && text_id == "TEXT_VIRIDIANMART_CLERK" {
+                        run_viridian_mart_clerk(view, game_data)?;
+                        return Ok(());
+                    }
+                    let item_ids = mart_item_ids_for_map(&view.map_name);
+                    open_mart_shop(
+                        view,
+                        item_ids,
+                        &game_data.item_display_names,
+                        &game_data.item_prices,
+                        &game_data.tm_prices,
+                    );
+                    return Ok(());
+                }
                 open_dialog_for_text_id(
                     view,
-                    pokered_root,
+                    game_data,
                     &text_id,
-                    item_display_names,
-                    item_prices,
-                    tm_prices,
                 )?;
             }
         }
@@ -8583,11 +8024,8 @@ fn handle_a_button(
     {
         open_dialog_for_text_id(
             view,
-            pokered_root,
+            game_data,
             &text_id,
-            item_display_names,
-            item_prices,
-            tm_prices,
         )?;
         return Ok(());
     }
@@ -8625,31 +8063,19 @@ fn fallback_pokemon_display_name(species: &str) -> String {
 
 fn open_dialog_for_text_id(
     view: &mut MapView,
-    pokered_root: &Path,
+    game_data: &game_data::GameData,
     text_id: &str,
-    item_display_names: &HashMap<String, String>,
-    item_prices: &HashMap<String, u32>,
-    tm_prices: &[u32],
 ) -> Result<(), Box<dyn Error>> {
-    if view.map_name == "ViridianMart" && text_id == "TEXT_VIRIDIANMART_CLERK" {
-        return run_viridian_mart_clerk(
-            view,
-            pokered_root,
-            item_display_names,
-            item_prices,
-            tm_prices,
-        );
-    }
     if view.map_name == "BluesHouse" {
         match text_id {
             "TEXT_BLUESHOUSE_DAISY_SITTING" => {
-                return run_blues_house_daisy_sitting(view, pokered_root);
+                return run_blues_house_daisy_sitting(view);
             }
             "TEXT_BLUESHOUSE_DAISY_WALKING" => {
-                return run_blues_house_daisy_walking(view, pokered_root);
+                return run_blues_house_daisy_walking(view);
             }
             "TEXT_BLUESHOUSE_TOWN_MAP" => {
-                return run_blues_house_town_map(view, pokered_root);
+                return run_blues_house_town_map(view);
             }
             _ => {}
         }
@@ -8659,68 +8085,48 @@ fn open_dialog_for_text_id(
             "TEXT_OAKSLAB_CHARMANDER_POKE_BALL" => {
                 return run_oaks_lab_starter_ball(
                     view,
-                    pokered_root,
                     "CHARMANDER",
-                    "_OaksLabYouWantCharmanderText",
                 );
             }
             "TEXT_OAKSLAB_SQUIRTLE_POKE_BALL" => {
                 return run_oaks_lab_starter_ball(
                     view,
-                    pokered_root,
                     "SQUIRTLE",
-                    "_OaksLabYouWantSquirtleText",
                 );
             }
             "TEXT_OAKSLAB_BULBASAUR_POKE_BALL" => {
                 return run_oaks_lab_starter_ball(
                     view,
-                    pokered_root,
                     "BULBASAUR",
-                    "_OaksLabYouWantBulbasaurText",
                 );
             }
             "TEXT_OAKSLAB_OAK1" | "TEXT_OAKSLAB_OAK2" => {
-                if run_oaks_lab_parcel_delivery(view, pokered_root)? {
+                if run_oaks_lab_parcel_delivery(view)? {
                     return Ok(());
                 }
-                if run_oaks_lab_give_pokeballs(view, pokered_root)? {
+                if run_oaks_lab_give_pokeballs(view)? {
                     return Ok(());
                 }
                 if !view.events.contains("EVENT_GOT_STARTER") {
                     view.events
                         .insert("EVENT_OAK_ASKED_TO_CHOOSE_MON".to_string());
-                    let text_path = pokered_root.join("text").join("OaksLab.asm");
-                    let text_asm = fs::read_to_string(&text_path)?;
-                    if let Some(lines) =
-                        parse_text_entry(&text_asm, "_OaksLabOak1WhichPokemonDoYouWantText")
-                    {
-                        open_dialog_from_lines(view, lines);
-                    } else {
-                        open_dialog_from_lines(
-                            view,
-                            vec![
-                                "OAK: Now, PLAYER,".to_string(),
-                                "which POKéMON do you want?".to_string(),
-                            ],
-                        );
-                    }
+                    open_dialog_from_lines(
+                        view,
+                        vec![
+                            "OAK: Now, PLAYER,".to_string(),
+                            "which POKéMON do you want?".to_string(),
+                        ],
+                    );
                     return Ok(());
                 }
-                run_oaks_lab_oak_post_starter(view, pokered_root)?;
+                run_oaks_lab_oak_post_starter(view)?;
                 return Ok(());
             }
             _ => {}
         }
     }
-
-    match load_text_action_for_text_id(pokered_root, &view.map_name, text_id)? {
-        TextAction::Dialog(lines) => open_dialog_from_lines(view, lines),
-        TextAction::PokecenterNurse => run_pokecenter_nurse(view, pokered_root)?,
-        TextAction::Mart { item_ids } => {
-            open_mart_shop(view, item_ids, item_display_names, item_prices, tm_prices);
-        }
-    }
+    let _ = game_data;
+    open_dialog_from_lines(view, vec![format!("[{text_id}]"), String::new()]);
     Ok(())
 }
 
@@ -8729,114 +8135,16 @@ fn open_dialog_from_lines(view: &mut MapView, lines: Vec<String>) {
     view.dialog = Some(Dialog { lines, cursor: 0 });
 }
 
-enum TextAction {
-    Dialog(Vec<String>),
-    PokecenterNurse,
-    Mart { item_ids: Vec<String> },
-}
-
-fn load_text_action_for_text_id(
-    pokered_root: &Path,
-    map_name: &str,
-    text_id: &str,
-) -> Result<TextAction, Box<dyn Error>> {
-    let script_path = pokered_root.join("scripts").join(format!("{map_name}.asm"));
-    let script_asm = match fs::read_to_string(&script_path) {
-        Ok(s) => s,
-        Err(_) => return Ok(TextAction::Dialog(vec![format!("[{text_id}]")])),
-    };
-    let Some(text_script_label) = lookup_text_script_label(&script_asm, text_id) else {
-        return Ok(TextAction::Dialog(vec![format!("[{text_id}]")]));
-    };
-
-    if let Some(text_far_label) = extract_text_far_label(&script_asm, &text_script_label) {
-        let text_path = pokered_root.join("text").join(format!("{map_name}.asm"));
-        let text_asm = match fs::read_to_string(&text_path) {
-            Ok(s) => s,
-            Err(_) => return Ok(TextAction::Dialog(vec![format!("[{text_far_label}]")])),
-        };
-        let Some(lines) = parse_text_entry(&text_asm, &text_far_label) else {
-            return Ok(TextAction::Dialog(vec![format!("[{text_far_label}]")]));
-        };
-        return Ok(TextAction::Dialog(lines));
+fn mart_item_ids_for_map(map_name: &str) -> Vec<String> {
+    match map_name {
+        "ViridianMart" => vec![
+            "POKE_BALL".to_string(),
+            "ANTIDOTE".to_string(),
+            "PARLYZ_HEAL".to_string(),
+            "BURN_HEAL".to_string(),
+        ],
+        _ => Vec::new(),
     }
-
-    if label_block_contains(&script_asm, &text_script_label, "script_pokecenter_nurse") {
-        return Ok(TextAction::PokecenterNurse);
-    }
-
-    if let Some(item_ids) = extract_script_mart_items(&script_asm, &text_script_label) {
-        return Ok(TextAction::Mart { item_ids });
-    }
-
-    let marts_path = pokered_root.join("data/items/marts.asm");
-    if let Ok(marts_asm) = fs::read_to_string(&marts_path) {
-        if let Some(item_ids) = extract_script_mart_items(&marts_asm, &text_script_label) {
-            return Ok(TextAction::Mart { item_ids });
-        }
-    }
-
-    Ok(TextAction::Dialog(vec![format!("[{text_script_label}]")]))
-}
-
-fn label_block_contains(asm: &str, label: &str, needle: &str) -> bool {
-    let mut in_block = false;
-    for raw_line in asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if line.ends_with(':') || line.ends_with("::") {
-            let head = line.trim_end_matches(':').trim();
-            if head == label {
-                in_block = true;
-                continue;
-            }
-            if in_block && !head.starts_with('.') {
-                break;
-            }
-        }
-        if !in_block {
-            continue;
-        }
-        if line.starts_with(needle) {
-            return true;
-        }
-    }
-    false
-}
-
-fn extract_script_mart_items(asm: &str, label: &str) -> Option<Vec<String>> {
-    let mut in_block = false;
-    for raw_line in asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if line.ends_with(':') || line.ends_with("::") {
-            let head = line.trim_end_matches(':').trim();
-            if head == label {
-                in_block = true;
-                continue;
-            }
-            if in_block && !head.starts_with('.') {
-                break;
-            }
-        }
-        if !in_block {
-            continue;
-        }
-
-        let Some(rest) = line.strip_prefix("script_mart") else {
-            continue;
-        };
-        let rest = rest.trim();
-        if rest.is_empty() {
-            return Some(Vec::new());
-        }
-        let item_ids = rest
-            .split(',')
-            .map(|s| s.trim())
-            .filter(|s| !s.is_empty())
-            .map(|s| s.to_string())
-            .collect();
-        return Some(item_ids);
-    }
-    None
 }
 
 fn shop_item_price(
@@ -8878,111 +8186,72 @@ fn open_mart_shop(
     });
 }
 
-fn run_pokecenter_nurse(view: &mut MapView, pokered_root: &Path) -> Result<(), Box<dyn Error>> {
+fn run_pokecenter_nurse(view: &mut MapView) -> Result<(), Box<dyn Error>> {
     for mon in &mut view.party {
         mon.hp = mon.max_hp;
     }
-    let path = pokered_root.join("data/text/text_4.asm");
-    let asm = fs::read_to_string(&path)?;
-    let labels = [
-        "_PokemonCenterWelcomeText",
-        "_NeedYourPokemonText",
-        "_PokemonFightingFitText",
-        "_PokemonCenterFarewellText",
+    let lines = vec![
+        "Welcome to our POKéMON CENTER!".to_string(),
+        "Your POKéMON were healed.".to_string(),
     ];
-    let mut lines: Vec<String> = Vec::new();
-    for label in labels {
-        if let Some(mut chunk) = parse_text_entry(&asm, label) {
-            lines.append(&mut chunk);
-        }
-    }
-    if lines.is_empty() {
-        lines = vec![
-            "Welcome to our POKéMON CENTER!".to_string(),
-            "Your POKéMON were healed.".to_string(),
-        ];
-    }
     open_dialog_from_lines(view, lines);
     Ok(())
 }
 
 fn run_viridian_mart_clerk(
     view: &mut MapView,
-    pokered_root: &Path,
-    item_display_names: &HashMap<String, String>,
-    item_prices: &HashMap<String, u32>,
-    tm_prices: &[u32],
+    game_data: &game_data::GameData,
 ) -> Result<(), Box<dyn Error>> {
     if view.events.contains("EVENT_OAK_GOT_PARCEL") {
-        let marts_path = pokered_root.join("data/items/marts.asm");
-        let marts_asm = fs::read_to_string(&marts_path)?;
-        let item_ids =
-            extract_script_mart_items(&marts_asm, "ViridianMartClerkText").unwrap_or_default();
-        open_mart_shop(view, item_ids, item_display_names, item_prices, tm_prices);
+        open_mart_shop(
+            view,
+            mart_item_ids_for_map("ViridianMart"),
+            &game_data.item_display_names,
+            &game_data.item_prices,
+            &game_data.tm_prices,
+        );
         return Ok(());
     }
 
-    let text_path = pokered_root.join("text").join("ViridianMart.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
     let has_parcel = view.events.contains("EVENT_GOT_OAKS_PARCEL")
         || view.inventory.get("OAKS_PARCEL").copied().unwrap_or(0) > 0;
 
     if has_parcel {
-        if let Some(lines) = parse_text_entry(&text_asm, "_ViridianMartClerkSayHiToOakText") {
-            open_dialog_from_lines(view, lines);
-        } else {
-            open_dialog_from_lines(
-                view,
-                vec![
-                    "Okay! Say hi to".to_string(),
-                    "PROF.OAK for me!".to_string(),
-                ],
-            );
-        }
+        open_dialog_from_lines(
+            view,
+            vec![
+                "Okay! Say hi to".to_string(),
+                "PROF.OAK for me!".to_string(),
+            ],
+        );
         return Ok(());
     }
 
     *view.inventory.entry("OAKS_PARCEL".to_string()).or_insert(0) += 1;
     view.events.insert("EVENT_GOT_OAKS_PARCEL".to_string());
-    if let Some(lines) = parse_text_entry(&text_asm, "_ViridianMartClerkParcelQuestText") {
-        open_dialog_from_lines(view, lines);
-    } else {
-        open_dialog_from_lines(view, vec!["Got OAK's PARCEL!".to_string(), String::new()]);
-    }
+    open_dialog_from_lines(view, vec!["Got OAK's PARCEL!".to_string(), String::new()]);
     Ok(())
 }
 
 fn run_blues_house_daisy_sitting(
     view: &mut MapView,
-    pokered_root: &Path,
 ) -> Result<(), Box<dyn Error>> {
-    let text_path = pokered_root.join("text").join("BluesHouse.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-
     if view.events.contains("EVENT_GOT_TOWN_MAP") {
-        if let Some(lines) = parse_text_entry(&text_asm, "_BluesHouseDaisyUseMapText") {
-            open_dialog_from_lines(view, lines);
-        } else {
-            open_dialog_from_lines(
-                view,
-                vec![
-                    "Use the TOWN MAP".to_string(),
-                    "to find out where you are.".to_string(),
-                ],
-            );
-        }
+        open_dialog_from_lines(
+            view,
+            vec![
+                "Use the TOWN MAP".to_string(),
+                "to find out where you are.".to_string(),
+            ],
+        );
         return Ok(());
     }
 
     if !view.events.contains("EVENT_GOT_POKEDEX") {
-        if let Some(lines) = parse_text_entry(&text_asm, "_BluesHouseDaisyRivalAtLabText") {
-            open_dialog_from_lines(view, lines);
-        } else {
-            open_dialog_from_lines(
-                view,
-                vec!["Hi PLAYER!".to_string(), "RIVAL is at the lab.".to_string()],
-            );
-        }
+        open_dialog_from_lines(
+            view,
+            vec!["Hi PLAYER!".to_string(), "RIVAL is at the lab.".to_string()],
+        );
         return Ok(());
     }
 
@@ -8991,62 +8260,39 @@ fn run_blues_house_daisy_sitting(
     view.object_events
         .retain(|o| o.text_id != "TEXT_BLUESHOUSE_TOWN_MAP");
 
-    let mut lines: Vec<String> = Vec::new();
-    if let Some(mut chunk) = parse_text_entry(&text_asm, "_BluesHouseDaisyOfferMapText") {
-        lines.append(&mut chunk);
-    }
-    if !lines.is_empty() {
-        lines.push(String::new());
-    }
-    lines.push("PLAYER got a".to_string());
-    lines.push("TOWN MAP!".to_string());
-    if let Some(mut chunk) = parse_text_entry(&text_asm, "_BluesHouseDaisyUseMapText") {
-        if !lines.is_empty() {
-            lines.push(String::new());
-        }
-        lines.append(&mut chunk);
-    }
-    if lines.is_empty() {
-        lines = vec!["PLAYER got a TOWN MAP!".to_string(), String::new()];
-    }
+    let lines = vec![
+        "It's a TOWN MAP!".to_string(),
+        String::new(),
+        "PLAYER got a".to_string(),
+        "TOWN MAP!".to_string(),
+        String::new(),
+        "Use the TOWN MAP".to_string(),
+        "to find out where you are.".to_string(),
+    ];
     open_dialog_from_lines(view, lines);
     Ok(())
 }
 
 fn run_blues_house_daisy_walking(
     view: &mut MapView,
-    pokered_root: &Path,
 ) -> Result<(), Box<dyn Error>> {
-    let text_path = pokered_root.join("text").join("BluesHouse.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-    if let Some(lines) = parse_text_entry(&text_asm, "_BluesHouseDaisyWalkingText") {
-        open_dialog_from_lines(view, lines);
-    } else {
-        open_dialog_from_lines(
-            view,
-            vec![
-                "POKéMON are living things!".to_string(),
-                "If they get tired, rest.".to_string(),
-            ],
-        );
-    }
+    open_dialog_from_lines(
+        view,
+        vec![
+            "POKéMON are living things!".to_string(),
+            "If they get tired, rest.".to_string(),
+        ],
+    );
     Ok(())
 }
 
-fn run_blues_house_town_map(view: &mut MapView, pokered_root: &Path) -> Result<(), Box<dyn Error>> {
-    let text_path = pokered_root.join("text").join("BluesHouse.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-    if let Some(lines) = parse_text_entry(&text_asm, "_BluesHouseTownMapText") {
-        open_dialog_from_lines(view, lines);
-    } else {
-        open_dialog_from_lines(view, vec!["It's a big map!".to_string(), String::new()]);
-    }
+fn run_blues_house_town_map(view: &mut MapView) -> Result<(), Box<dyn Error>> {
+    open_dialog_from_lines(view, vec!["It's a big map!".to_string(), String::new()]);
     Ok(())
 }
 
 fn run_oaks_lab_parcel_delivery(
     view: &mut MapView,
-    pokered_root: &Path,
 ) -> Result<bool, Box<dyn Error>> {
     if view.events.contains("EVENT_OAK_GOT_PARCEL") {
         return Ok(false);
@@ -9068,31 +8314,18 @@ fn run_oaks_lab_parcel_delivery(
             .insert("EVENT_OAK_POKEDEX_SEQUENCE_PENDING".to_string());
     }
 
-    let text_path = pokered_root.join("text").join("OaksLab.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-    let mut lines: Vec<String> = Vec::new();
-    if let Some(mut chunk) = parse_text_entry(&text_asm, "_OaksLabOak1DeliverParcelText") {
-        lines.append(&mut chunk);
-    }
-    if let Some(mut chunk) = parse_text_entry(&text_asm, "_OaksLabOak1ParcelThanksText") {
-        if !lines.is_empty() {
-            lines.push(String::new());
-        }
-        lines.append(&mut chunk);
-    }
-    if lines.is_empty() {
-        lines = vec![
-            "PLAYER delivered OAK's PARCEL.".to_string(),
-            "Thank you!".to_string(),
-        ];
-    }
+    let lines = vec![
+        "PLAYER delivered".to_string(),
+        "OAK's PARCEL.".to_string(),
+        String::new(),
+        "OAK: Thank you!".to_string(),
+    ];
     open_dialog_from_lines(view, lines);
     Ok(true)
 }
 
 fn run_oaks_lab_give_pokeballs(
     view: &mut MapView,
-    pokered_root: &Path,
 ) -> Result<bool, Box<dyn Error>> {
     if view.events.contains("EVENT_GOT_POKEBALLS_FROM_OAK") {
         return Ok(false);
@@ -9111,32 +8344,14 @@ fn run_oaks_lab_give_pokeballs(
     view.events
         .insert("EVENT_GOT_POKEBALLS_FROM_OAK".to_string());
 
-    let text_path = pokered_root.join("text").join("OaksLab.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-    let mut lines: Vec<String> = Vec::new();
-    if let Some(mut chunk) = parse_text_entry(&text_asm, "_OaksLabOak1ReceivedPokeballsText") {
-        lines.append(&mut chunk);
-    }
-    if let Some(mut chunk) = parse_text_entry(&text_asm, "_OaksLabGivePokeballsExplanationText") {
-        if !lines.is_empty() {
-            lines.push(String::new());
-        }
-        lines.append(&mut chunk);
-    }
-    if lines.is_empty() {
-        lines = vec!["PLAYER got 5 POKé BALLs!".to_string(), String::new()];
-    }
+    let lines = vec!["PLAYER got 5 POKé BALLs!".to_string(), String::new()];
     open_dialog_from_lines(view, lines);
     Ok(true)
 }
 
 fn run_oaks_lab_oak_post_starter(
     view: &mut MapView,
-    pokered_root: &Path,
 ) -> Result<(), Box<dyn Error>> {
-    let text_path = pokered_root.join("text").join("OaksLab.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-
     let label = if !view.events.contains("EVENT_BATTLED_RIVAL_IN_OAKS_LAB") {
         "_OaksLabOak1YourPokemonCanFightText"
     } else if !view.events.contains("EVENT_GOT_POKEDEX") {
@@ -9149,7 +8364,7 @@ fn run_oaks_lab_oak_post_starter(
         "_OaksLabOak1PokemonAroundTheWorldText"
     };
 
-    let lines = parse_text_entry(&text_asm, label).unwrap_or_else(|| match label {
+    let lines = match label {
         "_OaksLabOak1YourPokemonCanFightText" => vec![
             "OAK: If a wild".to_string(),
             "POKéMON appears,".to_string(),
@@ -9175,50 +8390,30 @@ fn run_oaks_lab_oak_post_starter(
             "world wait for".to_string(),
             "you, PLAYER!".to_string(),
         ],
-    });
+    };
     open_dialog_from_lines(view, lines);
     Ok(())
 }
 
 fn run_oaks_lab_starter_ball(
     view: &mut MapView,
-    pokered_root: &Path,
     species: &str,
-    want_label: &str,
 ) -> Result<(), Box<dyn Error>> {
-    let text_path = pokered_root.join("text").join("OaksLab.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-
     if view.events.contains("EVENT_GOT_STARTER") {
-        if let Some(lines) = parse_text_entry(&text_asm, "_OaksLabLastMonText") {
-            open_dialog_from_lines(view, lines);
-        } else {
-            open_dialog_from_lines(
-                view,
-                vec!["That's PROF.OAK's".to_string(), "last POKéMON!".to_string()],
-            );
-        }
+        open_dialog_from_lines(
+            view,
+            vec!["That's PROF.OAK's".to_string(), "last POKéMON!".to_string()],
+        );
         return Ok(());
     }
 
     if !view.events.contains("EVENT_OAK_ASKED_TO_CHOOSE_MON") {
-        if let Some(lines) = parse_text_entry(&text_asm, "_OaksLabThoseArePokeBallsText") {
-            open_dialog_from_lines(view, lines);
-        } else {
-            open_dialog_from_lines(
-                view,
-                vec!["Those are POKé".to_string(), "BALLs.".to_string()],
-            );
-        }
+        open_dialog_from_lines(view, vec!["Those are POKé".to_string(), "BALLs.".to_string()]);
         return Ok(());
     }
 
-    if let Some(lines) = parse_text_entry(&text_asm, want_label) {
-        open_dialog_from_lines(view, lines);
-    } else {
-        let name = fallback_pokemon_display_name(species);
-        open_dialog_from_lines(view, vec![format!("So! You want"), format!("{name}?")]);
-    }
+    let name = fallback_pokemon_display_name(species);
+    open_dialog_from_lines(view, vec![format!("So! You want"), format!("{name}?")]);
     view.choice = Some(ChoiceState {
         kind: ChoiceKind::Starter {
             species: species.to_string(),
@@ -9307,11 +8502,7 @@ fn route22_rival1_trainer_number(view: &MapView) -> Option<String> {
 
 fn run_oaks_lab_rival_interaction(
     view: &mut MapView,
-    pokered_root: &Path,
 ) -> Result<(), Box<dyn Error>> {
-    let text_path = pokered_root.join("text").join("OaksLab.asm");
-    let text_asm = fs::read_to_string(&text_path)?;
-
     let label = if view.events.contains("EVENT_BATTLED_RIVAL_IN_OAKS_LAB")
         || view
             .defeated_trainers
@@ -9326,279 +8517,14 @@ fn run_oaks_lab_rival_interaction(
         "_OaksLabRivalMyPokemonLooksStrongerText"
     };
 
-    let lines = parse_text_entry(&text_asm, label).unwrap_or_else(|| vec!["...".to_string()]);
+    let lines = match label {
+        "_OaksLabRivalSmellYouLaterText" => vec!["SMELL YA LATER!".to_string(), String::new()],
+        "_OaksLabRivalGrampsIsntAroundText" => vec!["RIVAL: Gramps".to_string(), "isn't around.".to_string()],
+        "_OaksLabRivalGoAheadAndChooseText" => vec!["RIVAL: Go ahead,".to_string(), "pick one!".to_string()],
+        _ => vec!["RIVAL: My POKéMON".to_string(), "looks stronger!".to_string()],
+    };
     open_dialog_from_lines(view, lines);
     Ok(())
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-enum TrainerTextKind {
-    Battle,
-    EndBattle,
-    AfterBattle,
-}
-
-fn load_trainer_dialog_lines_for_text_id(
-    pokered_root: &Path,
-    map_name: &str,
-    text_id: &str,
-    kind: TrainerTextKind,
-) -> Result<Vec<String>, Box<dyn Error>> {
-    let script_path = pokered_root.join("scripts").join(format!("{map_name}.asm"));
-    let script_asm = fs::read_to_string(&script_path)?;
-
-    let text_script_label = lookup_text_script_label(&script_asm, text_id)
-        .ok_or_else(|| format!("Missing dw_const mapping for `{text_id}` in `{script_path:?}`"))?;
-    let trainer_header_label = extract_trainer_header_label(&script_asm, &text_script_label)
-        .ok_or_else(|| format!("Missing trainer header ref in `{text_script_label}`"))?;
-    let (battle_text_label, end_battle_text_label, after_battle_text_label) =
-        extract_trainer_text_labels(&script_asm, &trainer_header_label)
-            .ok_or_else(|| format!("Missing trainer macro in `{trainer_header_label}`"))?;
-    let chosen_label = match kind {
-        TrainerTextKind::Battle => battle_text_label,
-        TrainerTextKind::EndBattle => end_battle_text_label,
-        TrainerTextKind::AfterBattle => after_battle_text_label,
-    };
-    let text_far_label = extract_text_far_label(&script_asm, &chosen_label)
-        .ok_or_else(|| format!("Missing text_far in `{chosen_label}`"))?;
-
-    let text_path = pokered_root.join("text").join(format!("{map_name}.asm"));
-    let text_asm = fs::read_to_string(&text_path)?;
-    let lines = parse_text_entry(&text_asm, &text_far_label)
-        .ok_or_else(|| format!("Missing `{text_far_label}` in `{text_path:?}`"))?;
-    Ok(lines)
-}
-
-fn load_trainer_battle_dialog_lines_for_text_id(
-    pokered_root: &Path,
-    map_name: &str,
-    text_id: &str,
-) -> Result<Vec<String>, Box<dyn Error>> {
-    load_trainer_dialog_lines_for_text_id(pokered_root, map_name, text_id, TrainerTextKind::Battle)
-}
-
-fn load_trainer_end_battle_dialog_lines_for_text_id(
-    pokered_root: &Path,
-    map_name: &str,
-    text_id: &str,
-) -> Result<Vec<String>, Box<dyn Error>> {
-    load_trainer_dialog_lines_for_text_id(
-        pokered_root,
-        map_name,
-        text_id,
-        TrainerTextKind::EndBattle,
-    )
-}
-
-fn load_trainer_after_battle_dialog_lines_for_text_id(
-    pokered_root: &Path,
-    map_name: &str,
-    text_id: &str,
-) -> Result<Vec<String>, Box<dyn Error>> {
-    load_trainer_dialog_lines_for_text_id(
-        pokered_root,
-        map_name,
-        text_id,
-        TrainerTextKind::AfterBattle,
-    )
-}
-
-fn extract_trainer_header_label(script_asm: &str, label: &str) -> Option<String> {
-    let mut in_block = false;
-    for raw_line in script_asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if line.ends_with(':') || line.ends_with("::") {
-            let head = line.trim_end_matches(':').trim();
-            if head == label {
-                in_block = true;
-                continue;
-            }
-            if in_block && !head.starts_with('.') {
-                break;
-            }
-        }
-
-        if !in_block {
-            continue;
-        }
-
-        let Some((op, rest)) = line.split_once(',') else {
-            continue;
-        };
-        if op.trim() != "ld hl" {
-            continue;
-        }
-        let arg = rest.trim();
-        if arg.contains("TrainerHeader") {
-            return Some(arg.to_string());
-        }
-    }
-    None
-}
-
-fn extract_trainer_text_labels(
-    script_asm: &str,
-    trainer_header_label: &str,
-) -> Option<(String, String, String)> {
-    let mut in_block = false;
-    for raw_line in script_asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if line.ends_with(':') || line.ends_with("::") {
-            let head = line.trim_end_matches(':').trim();
-            if head == trainer_header_label {
-                in_block = true;
-                continue;
-            }
-            if in_block && !head.starts_with('.') {
-                break;
-            }
-        }
-
-        if !in_block {
-            continue;
-        }
-
-        if !line.starts_with("trainer") {
-            continue;
-        }
-        let args = line.trim_start_matches("trainer").trim();
-        let parts: Vec<&str> = args.split(',').map(|s| s.trim()).collect();
-        if parts.len() < 5 {
-            return None;
-        }
-        return Some((
-            parts[2].to_string(),
-            parts[3].to_string(),
-            parts[4].to_string(),
-        ));
-    }
-    None
-}
-
-fn lookup_text_script_label(script_asm: &str, text_id: &str) -> Option<String> {
-    for raw_line in script_asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if !line.starts_with("dw_const") {
-            continue;
-        }
-        let args = line.trim_start_matches("dw_const").trim();
-        let mut parts = args.split(',').map(|s| s.trim());
-        let label = parts.next()?;
-        let id = parts.next()?;
-        if id == text_id {
-            return Some(label.to_string());
-        }
-    }
-    None
-}
-
-fn extract_text_far_label(script_asm: &str, label: &str) -> Option<String> {
-    let mut in_block = false;
-    for raw_line in script_asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if line.ends_with(':') || line.ends_with("::") {
-            let head = line.trim_end_matches(':').trim();
-            if head == label {
-                in_block = true;
-                continue;
-            }
-            if in_block {
-                if !head.starts_with('.') {
-                    break;
-                }
-            }
-        }
-
-        if !in_block {
-            continue;
-        }
-        if line.starts_with("text_far") {
-            let arg = line.trim_start_matches("text_far").trim();
-            if !arg.is_empty() {
-                return Some(arg.to_string());
-            }
-        }
-    }
-    None
-}
-
-fn parse_text_entry(text_asm: &str, label: &str) -> Option<Vec<String>> {
-    let mut in_entry = false;
-    let mut out: Vec<String> = Vec::new();
-    let mut current = String::new();
-
-    let label_prefix = format!("{label}::");
-    for raw_line in text_asm.lines() {
-        let line = strip_asm_comment(raw_line).trim();
-        if !in_entry {
-            if line.starts_with(&label_prefix) {
-                in_entry = true;
-            }
-            continue;
-        }
-
-        if line.starts_with('_') && line.ends_with("::") {
-            break;
-        }
-
-        if line.starts_with("done") || line.starts_with("prompt") || line.starts_with("text_end") {
-            if !current.is_empty() {
-                out.push(current.trim_end().to_string());
-            }
-            break;
-        }
-
-        let Some((cmd, rest)) = line.split_once(' ') else {
-            continue;
-        };
-        let Some(mut text) = parse_asm_quoted_string(rest.trim()) else {
-            continue;
-        };
-        text = normalize_text_chunk(&text);
-
-        match cmd {
-            "text" => {
-                current.push_str(&text);
-            }
-            "line" | "cont" => {
-                if !current.is_empty() {
-                    out.push(current.trim_end().to_string());
-                    current.clear();
-                }
-                current.push_str(&text);
-            }
-            "para" => {
-                if !current.is_empty() {
-                    out.push(current.trim_end().to_string());
-                    current.clear();
-                }
-                out.push(String::new());
-                current.push_str(&text);
-            }
-            _ => {}
-        }
-    }
-
-    if in_entry && out.is_empty() && !current.is_empty() {
-        out.push(current.trim_end().to_string());
-    }
-    if in_entry { Some(out) } else { None }
-}
-
-fn parse_asm_quoted_string(s: &str) -> Option<String> {
-    let s = s.trim();
-    let s = s.strip_prefix('"')?;
-    let (inner, _) = s.split_once('"')?;
-    Some(inner.to_string())
-}
-
-fn normalize_text_chunk(s: &str) -> String {
-    let s = s.trim_end_matches('@');
-    let s = s.replace("#MON", "POKéMON");
-    let s = s.replace('#', "POKé");
-    let s = s.replace("<PLAYER>", "PLAYER");
-    let s = s.replace("<RIVAL>", "RIVAL");
-    s
 }
 
 fn wrap_dialog_lines(lines: Vec<String>, max_width: usize) -> Vec<String> {
@@ -9651,9 +8577,7 @@ fn facing_opposite(dir: Facing) -> Facing {
 fn try_warp_transition(
     view: &mut MapView,
     pokered_root: &Path,
-    map_id_to_name: &HashMap<String, String>,
-    sprite_constants: &HashMap<String, u8>,
-    sprite_id_to_png: &HashMap<u8, PathBuf>,
+    game_data: &game_data::GameData,
 ) -> Result<bool, Box<dyn Error>> {
     let (wx, wy) = player_coords_units(&view.player);
     let Some(warp) = view.warp_events.iter().find(|w| w.x == wx && w.y == wy) else {
@@ -9664,11 +8588,13 @@ fn try_warp_transition(
         && matches!(warp.dest_map, WarpDest::LastMap)
         && !view.events.contains("EVENT_GOT_STARTER")
     {
-        let text_path = pokered_root.join("text").join("OaksLab.asm");
-        let text_asm = fs::read_to_string(&text_path)?;
-        let lines = parse_text_entry(&text_asm, "_OaksLabOakDontGoAwayYetText")
-            .unwrap_or_else(|| vec!["OAK: Hey! Don't go away yet!".to_string(), String::new()]);
-        open_dialog_from_lines(view, lines);
+        open_dialog_from_lines(
+            view,
+            vec![
+                "OAK: Hey! Don't go away yet!".to_string(),
+                String::new(),
+            ],
+        );
         return Ok(true);
     }
 
@@ -9677,7 +8603,8 @@ fn try_warp_transition(
             .last_outside_map
             .clone()
             .ok_or_else(|| "Warp uses LAST_MAP but no last outside map is set".to_string())?,
-        WarpDest::MapId(map_id) => map_id_to_name
+        WarpDest::MapId(map_id) => game_data
+            .map_id_to_name
             .get(map_id)
             .cloned()
             .ok_or_else(|| format!("Unknown destination map id `{map_id}`"))?,
@@ -9691,10 +8618,9 @@ fn try_warp_transition(
 
     let mut new_view = load_map_view(
         pokered_root,
+        game_data,
         &dest_map_name,
         next_last_outside_map,
-        sprite_constants,
-        sprite_id_to_png,
         &view.picked_up_items,
         &view.events,
     )?;
@@ -9722,8 +8648,7 @@ fn try_warp_transition(
 fn try_connection_transition(
     view: &mut MapView,
     pokered_root: &Path,
-    sprite_constants: &HashMap<String, u8>,
-    sprite_id_to_png: &HashMap<u8, PathBuf>,
+    game_data: &game_data::GameData,
 ) -> Result<bool, Box<dyn Error>> {
     let (map_w_tiles, map_h_tiles) = map_dimensions_tiles(&view.map);
     let is_oob = view.player.tx < 0
@@ -9746,10 +8671,9 @@ fn try_connection_transition(
     let (cur_wx, cur_wy) = player_coords_units(&view.player);
     let mut new_view = load_map_view(
         pokered_root,
+        game_data,
         &conn.map_name,
         view.last_outside_map.clone(),
-        sprite_constants,
-        sprite_id_to_png,
         &view.picked_up_items,
         &view.events,
     )?;

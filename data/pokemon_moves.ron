@@ -1,0 +1,1942 @@
+{
+    "ABRA": (
+        evolutions: [
+            (method: "level", level: 16, species: "KADABRA")
+        ],
+        learnset: [
+        ]
+    ),
+    "AERODACTYL": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 33, move: "SUPERSONIC"),
+            (level: 38, move: "BITE"),
+            (level: 45, move: "TAKE_DOWN"),
+            (level: 54, move: "HYPER_BEAM")
+        ]
+    ),
+    "ALAKAZAM": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 16, move: "CONFUSION"),
+            (level: 20, move: "DISABLE"),
+            (level: 27, move: "PSYBEAM"),
+            (level: 31, move: "RECOVER"),
+            (level: 38, move: "PSYCHIC_M"),
+            (level: 42, move: "REFLECT")
+        ]
+    ),
+    "ARBOK": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 10, move: "POISON_STING"),
+            (level: 17, move: "BITE"),
+            (level: 27, move: "GLARE"),
+            (level: 36, move: "SCREECH"),
+            (level: 47, move: "ACID")
+        ]
+    ),
+    "ARCANINE": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "ARTICUNO": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 51, move: "BLIZZARD"),
+            (level: 55, move: "AGILITY"),
+            (level: 60, move: "MIST")
+        ]
+    ),
+    "BEEDRILL": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 12, move: "FURY_ATTACK"),
+            (level: 16, move: "FOCUS_ENERGY"),
+            (level: 20, move: "TWINEEDLE"),
+            (level: 25, move: "RAGE"),
+            (level: 30, move: "PIN_MISSILE"),
+            (level: 35, move: "AGILITY")
+        ]
+    ),
+    "BELLSPROUT": (
+        evolutions: [
+            (method: "level", level: 21, species: "WEEPINBELL")
+        ],
+        learnset: [
+            (level: 13, move: "WRAP"),
+            (level: 15, move: "POISONPOWDER"),
+            (level: 18, move: "SLEEP_POWDER"),
+            (level: 21, move: "STUN_SPORE"),
+            (level: 26, move: "ACID"),
+            (level: 33, move: "RAZOR_LEAF"),
+            (level: 42, move: "SLAM")
+        ]
+    ),
+    "BLASTOISE": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 8, move: "BUBBLE"),
+            (level: 15, move: "WATER_GUN"),
+            (level: 24, move: "BITE"),
+            (level: 31, move: "WITHDRAW"),
+            (level: 42, move: "SKULL_BASH"),
+            (level: 52, move: "HYDRO_PUMP")
+        ]
+    ),
+    "BULBASAUR": (
+        evolutions: [
+            (method: "level", level: 16, species: "IVYSAUR")
+        ],
+        learnset: [
+            (level: 7, move: "LEECH_SEED"),
+            (level: 13, move: "VINE_WHIP"),
+            (level: 20, move: "POISONPOWDER"),
+            (level: 27, move: "RAZOR_LEAF"),
+            (level: 34, move: "GROWTH"),
+            (level: 41, move: "SLEEP_POWDER"),
+            (level: 48, move: "SOLARBEAM")
+        ]
+    ),
+    "BUTTERFREE": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 12, move: "CONFUSION"),
+            (level: 15, move: "POISONPOWDER"),
+            (level: 16, move: "STUN_SPORE"),
+            (level: 17, move: "SLEEP_POWDER"),
+            (level: 21, move: "SUPERSONIC"),
+            (level: 26, move: "WHIRLWIND"),
+            (level: 32, move: "PSYBEAM")
+        ]
+    ),
+    "CATERPIE": (
+        evolutions: [
+            (method: "level", level: 7, species: "METAPOD")
+        ],
+        learnset: [
+        ]
+    ),
+    "CHANSEY": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 24, move: "SING"),
+            (level: 30, move: "GROWL"),
+            (level: 38, move: "MINIMIZE"),
+            (level: 44, move: "DEFENSE_CURL"),
+            (level: 48, move: "LIGHT_SCREEN"),
+            (level: 54, move: "DOUBLE_EDGE")
+        ]
+    ),
+    "CHARIZARD": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 9, move: "EMBER"),
+            (level: 15, move: "LEER"),
+            (level: 24, move: "RAGE"),
+            (level: 36, move: "SLASH"),
+            (level: 46, move: "FLAMETHROWER"),
+            (level: 55, move: "FIRE_SPIN")
+        ]
+    ),
+    "CHARMANDER": (
+        evolutions: [
+            (method: "level", level: 16, species: "CHARMELEON")
+        ],
+        learnset: [
+            (level: 9, move: "EMBER"),
+            (level: 15, move: "LEER"),
+            (level: 22, move: "RAGE"),
+            (level: 30, move: "SLASH"),
+            (level: 38, move: "FLAMETHROWER"),
+            (level: 46, move: "FIRE_SPIN")
+        ]
+    ),
+    "CHARMELEON": (
+        evolutions: [
+            (method: "level", level: 36, species: "CHARIZARD")
+        ],
+        learnset: [
+            (level: 9, move: "EMBER"),
+            (level: 15, move: "LEER"),
+            (level: 24, move: "RAGE"),
+            (level: 33, move: "SLASH"),
+            (level: 42, move: "FLAMETHROWER"),
+            (level: 56, move: "FIRE_SPIN")
+        ]
+    ),
+    "CLEFABLE": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "CLEFAIRY": (
+        evolutions: [
+            (method: "item", item: "MOON_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 13, move: "SING"),
+            (level: 18, move: "DOUBLESLAP"),
+            (level: 24, move: "MINIMIZE"),
+            (level: 31, move: "METRONOME"),
+            (level: 39, move: "DEFENSE_CURL"),
+            (level: 48, move: "LIGHT_SCREEN")
+        ]
+    ),
+    "CLOYSTER": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 50, move: "SPIKE_CANNON")
+        ]
+    ),
+    "CUBONE": (
+        evolutions: [
+            (method: "level", level: 28, species: "MAROWAK")
+        ],
+        learnset: [
+            (level: 25, move: "LEER"),
+            (level: 31, move: "FOCUS_ENERGY"),
+            (level: 38, move: "THRASH"),
+            (level: 43, move: "BONEMERANG"),
+            (level: 46, move: "RAGE")
+        ]
+    ),
+    "DEWGONG": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 30, move: "GROWL"),
+            (level: 35, move: "AURORA_BEAM"),
+            (level: 44, move: "REST"),
+            (level: 50, move: "TAKE_DOWN"),
+            (level: 56, move: "ICE_BEAM")
+        ]
+    ),
+    "DIGLETT": (
+        evolutions: [
+            (method: "level", level: 26, species: "DUGTRIO")
+        ],
+        learnset: [
+            (level: 15, move: "GROWL"),
+            (level: 19, move: "DIG"),
+            (level: 24, move: "SAND_ATTACK"),
+            (level: 31, move: "SLASH"),
+            (level: 40, move: "EARTHQUAKE")
+        ]
+    ),
+    "DITTO": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "DODRIO": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 20, move: "GROWL"),
+            (level: 24, move: "FURY_ATTACK"),
+            (level: 30, move: "DRILL_PECK"),
+            (level: 39, move: "RAGE"),
+            (level: 45, move: "TRI_ATTACK"),
+            (level: 51, move: "AGILITY")
+        ]
+    ),
+    "DODUO": (
+        evolutions: [
+            (method: "level", level: 31, species: "DODRIO")
+        ],
+        learnset: [
+            (level: 20, move: "GROWL"),
+            (level: 24, move: "FURY_ATTACK"),
+            (level: 30, move: "DRILL_PECK"),
+            (level: 36, move: "RAGE"),
+            (level: 40, move: "TRI_ATTACK"),
+            (level: 44, move: "AGILITY")
+        ]
+    ),
+    "DRAGONAIR": (
+        evolutions: [
+            (method: "level", level: 55, species: "DRAGONITE")
+        ],
+        learnset: [
+            (level: 10, move: "THUNDER_WAVE"),
+            (level: 20, move: "AGILITY"),
+            (level: 35, move: "SLAM"),
+            (level: 45, move: "DRAGON_RAGE"),
+            (level: 55, move: "HYPER_BEAM")
+        ]
+    ),
+    "DRAGONITE": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 10, move: "THUNDER_WAVE"),
+            (level: 20, move: "AGILITY"),
+            (level: 35, move: "SLAM"),
+            (level: 45, move: "DRAGON_RAGE"),
+            (level: 60, move: "HYPER_BEAM")
+        ]
+    ),
+    "DRATINI": (
+        evolutions: [
+            (method: "level", level: 30, species: "DRAGONAIR")
+        ],
+        learnset: [
+            (level: 10, move: "THUNDER_WAVE"),
+            (level: 20, move: "AGILITY"),
+            (level: 30, move: "SLAM"),
+            (level: 40, move: "DRAGON_RAGE"),
+            (level: 50, move: "HYPER_BEAM")
+        ]
+    ),
+    "DROWZEE": (
+        evolutions: [
+            (method: "level", level: 26, species: "HYPNO")
+        ],
+        learnset: [
+            (level: 12, move: "DISABLE"),
+            (level: 17, move: "CONFUSION"),
+            (level: 24, move: "HEADBUTT"),
+            (level: 29, move: "POISON_GAS"),
+            (level: 32, move: "PSYCHIC_M"),
+            (level: 37, move: "MEDITATE")
+        ]
+    ),
+    "DUGTRIO": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 15, move: "GROWL"),
+            (level: 19, move: "DIG"),
+            (level: 24, move: "SAND_ATTACK"),
+            (level: 35, move: "SLASH"),
+            (level: 47, move: "EARTHQUAKE")
+        ]
+    ),
+    "EEVEE": (
+        evolutions: [
+            (method: "item", item: "FIRE_STONE", species: "1"),
+            (method: "item", item: "THUNDER_STONE", species: "1"),
+            (method: "item", item: "WATER_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 27, move: "QUICK_ATTACK"),
+            (level: 31, move: "TAIL_WHIP"),
+            (level: 37, move: "BITE"),
+            (level: 45, move: "TAKE_DOWN")
+        ]
+    ),
+    "EKANS": (
+        evolutions: [
+            (method: "level", level: 22, species: "ARBOK")
+        ],
+        learnset: [
+            (level: 10, move: "POISON_STING"),
+            (level: 17, move: "BITE"),
+            (level: 24, move: "GLARE"),
+            (level: 31, move: "SCREECH"),
+            (level: 38, move: "ACID")
+        ]
+    ),
+    "ELECTABUZZ": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 34, move: "THUNDERSHOCK"),
+            (level: 37, move: "SCREECH"),
+            (level: 42, move: "THUNDERPUNCH"),
+            (level: 49, move: "LIGHT_SCREEN"),
+            (level: 54, move: "THUNDER")
+        ]
+    ),
+    "ELECTRODE": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 17, move: "SONICBOOM"),
+            (level: 22, move: "SELFDESTRUCT"),
+            (level: 29, move: "LIGHT_SCREEN"),
+            (level: 40, move: "SWIFT"),
+            (level: 50, move: "EXPLOSION")
+        ]
+    ),
+    "EXEGGCUTE": (
+        evolutions: [
+            (method: "item", item: "LEAF_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 25, move: "REFLECT"),
+            (level: 28, move: "LEECH_SEED"),
+            (level: 32, move: "STUN_SPORE"),
+            (level: 37, move: "POISONPOWDER"),
+            (level: 42, move: "SOLARBEAM"),
+            (level: 48, move: "SLEEP_POWDER")
+        ]
+    ),
+    "EXEGGUTOR": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 28, move: "STOMP")
+        ]
+    ),
+    "FARFETCHD": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 7, move: "LEER"),
+            (level: 15, move: "FURY_ATTACK"),
+            (level: 23, move: "SWORDS_DANCE"),
+            (level: 31, move: "AGILITY"),
+            (level: 39, move: "SLASH")
+        ]
+    ),
+    "FEAROW": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 9, move: "LEER"),
+            (level: 15, move: "FURY_ATTACK"),
+            (level: 25, move: "MIRROR_MOVE"),
+            (level: 34, move: "DRILL_PECK"),
+            (level: 43, move: "AGILITY")
+        ]
+    ),
+    "FLAREON": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 27, move: "QUICK_ATTACK"),
+            (level: 31, move: "EMBER"),
+            (level: 37, move: "TAIL_WHIP"),
+            (level: 40, move: "BITE"),
+            (level: 42, move: "LEER"),
+            (level: 44, move: "FIRE_SPIN"),
+            (level: 48, move: "RAGE"),
+            (level: 54, move: "FLAMETHROWER")
+        ]
+    ),
+    "FOSSILAERODACTYL": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "FOSSILKABUTOPS": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "GASTLY": (
+        evolutions: [
+            (method: "level", level: 25, species: "HAUNTER")
+        ],
+        learnset: [
+            (level: 27, move: "HYPNOSIS"),
+            (level: 35, move: "DREAM_EATER")
+        ]
+    ),
+    "GENGAR": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 29, move: "HYPNOSIS"),
+            (level: 38, move: "DREAM_EATER")
+        ]
+    ),
+    "GEODUDE": (
+        evolutions: [
+            (method: "level", level: 25, species: "GRAVELER")
+        ],
+        learnset: [
+            (level: 11, move: "DEFENSE_CURL"),
+            (level: 16, move: "ROCK_THROW"),
+            (level: 21, move: "SELFDESTRUCT"),
+            (level: 26, move: "HARDEN"),
+            (level: 31, move: "EARTHQUAKE"),
+            (level: 36, move: "EXPLOSION")
+        ]
+    ),
+    "GLOOM": (
+        evolutions: [
+            (method: "item", item: "LEAF_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 15, move: "POISONPOWDER"),
+            (level: 17, move: "STUN_SPORE"),
+            (level: 19, move: "SLEEP_POWDER"),
+            (level: 28, move: "ACID"),
+            (level: 38, move: "PETAL_DANCE"),
+            (level: 52, move: "SOLARBEAM")
+        ]
+    ),
+    "GOLBAT": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 10, move: "SUPERSONIC"),
+            (level: 15, move: "BITE"),
+            (level: 21, move: "CONFUSE_RAY"),
+            (level: 32, move: "WING_ATTACK"),
+            (level: 43, move: "HAZE")
+        ]
+    ),
+    "GOLDEEN": (
+        evolutions: [
+            (method: "level", level: 33, species: "SEAKING")
+        ],
+        learnset: [
+            (level: 19, move: "SUPERSONIC"),
+            (level: 24, move: "HORN_ATTACK"),
+            (level: 30, move: "FURY_ATTACK"),
+            (level: 37, move: "WATERFALL"),
+            (level: 45, move: "HORN_DRILL"),
+            (level: 54, move: "AGILITY")
+        ]
+    ),
+    "GOLDUCK": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 28, move: "TAIL_WHIP"),
+            (level: 31, move: "DISABLE"),
+            (level: 39, move: "CONFUSION"),
+            (level: 48, move: "FURY_SWIPES"),
+            (level: 59, move: "HYDRO_PUMP")
+        ]
+    ),
+    "GOLEM": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 11, move: "DEFENSE_CURL"),
+            (level: 16, move: "ROCK_THROW"),
+            (level: 21, move: "SELFDESTRUCT"),
+            (level: 29, move: "HARDEN"),
+            (level: 36, move: "EARTHQUAKE"),
+            (level: 43, move: "EXPLOSION")
+        ]
+    ),
+    "GRAVELER": (
+        evolutions: [
+            (method: "trade", species: "GOLEM")
+        ],
+        learnset: [
+            (level: 11, move: "DEFENSE_CURL"),
+            (level: 16, move: "ROCK_THROW"),
+            (level: 21, move: "SELFDESTRUCT"),
+            (level: 29, move: "HARDEN"),
+            (level: 36, move: "EARTHQUAKE"),
+            (level: 43, move: "EXPLOSION")
+        ]
+    ),
+    "GRIMER": (
+        evolutions: [
+            (method: "level", level: 38, species: "MUK")
+        ],
+        learnset: [
+            (level: 30, move: "POISON_GAS"),
+            (level: 33, move: "MINIMIZE"),
+            (level: 37, move: "SLUDGE"),
+            (level: 42, move: "HARDEN"),
+            (level: 48, move: "SCREECH"),
+            (level: 55, move: "ACID_ARMOR")
+        ]
+    ),
+    "GROWLITHE": (
+        evolutions: [
+            (method: "item", item: "FIRE_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 18, move: "EMBER"),
+            (level: 23, move: "LEER"),
+            (level: 30, move: "TAKE_DOWN"),
+            (level: 39, move: "AGILITY"),
+            (level: 50, move: "FLAMETHROWER")
+        ]
+    ),
+    "GYARADOS": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 20, move: "BITE"),
+            (level: 25, move: "DRAGON_RAGE"),
+            (level: 32, move: "LEER"),
+            (level: 41, move: "HYDRO_PUMP"),
+            (level: 52, move: "HYPER_BEAM")
+        ]
+    ),
+    "HAUNTER": (
+        evolutions: [
+            (method: "trade", species: "GENGAR")
+        ],
+        learnset: [
+            (level: 29, move: "HYPNOSIS"),
+            (level: 38, move: "DREAM_EATER")
+        ]
+    ),
+    "HITMONCHAN": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 33, move: "FIRE_PUNCH"),
+            (level: 38, move: "ICE_PUNCH"),
+            (level: 43, move: "THUNDERPUNCH"),
+            (level: 48, move: "MEGA_PUNCH"),
+            (level: 53, move: "COUNTER")
+        ]
+    ),
+    "HITMONLEE": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 33, move: "ROLLING_KICK"),
+            (level: 38, move: "JUMP_KICK"),
+            (level: 43, move: "FOCUS_ENERGY"),
+            (level: 48, move: "HI_JUMP_KICK"),
+            (level: 53, move: "MEGA_KICK")
+        ]
+    ),
+    "HORSEA": (
+        evolutions: [
+            (method: "level", level: 32, species: "SEADRA")
+        ],
+        learnset: [
+            (level: 19, move: "SMOKESCREEN"),
+            (level: 24, move: "LEER"),
+            (level: 30, move: "WATER_GUN"),
+            (level: 37, move: "AGILITY"),
+            (level: 45, move: "HYDRO_PUMP")
+        ]
+    ),
+    "HYPNO": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 12, move: "DISABLE"),
+            (level: 17, move: "CONFUSION"),
+            (level: 24, move: "HEADBUTT"),
+            (level: 33, move: "POISON_GAS"),
+            (level: 37, move: "PSYCHIC_M"),
+            (level: 43, move: "MEDITATE")
+        ]
+    ),
+    "IVYSAUR": (
+        evolutions: [
+            (method: "level", level: 32, species: "VENUSAUR")
+        ],
+        learnset: [
+            (level: 7, move: "LEECH_SEED"),
+            (level: 13, move: "VINE_WHIP"),
+            (level: 22, move: "POISONPOWDER"),
+            (level: 30, move: "RAZOR_LEAF"),
+            (level: 38, move: "GROWTH"),
+            (level: 46, move: "SLEEP_POWDER"),
+            (level: 54, move: "SOLARBEAM")
+        ]
+    ),
+    "JIGGLYPUFF": (
+        evolutions: [
+            (method: "item", item: "MOON_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 9, move: "POUND"),
+            (level: 14, move: "DISABLE"),
+            (level: 19, move: "DEFENSE_CURL"),
+            (level: 24, move: "DOUBLESLAP"),
+            (level: 29, move: "REST"),
+            (level: 34, move: "BODY_SLAM"),
+            (level: 39, move: "DOUBLE_EDGE")
+        ]
+    ),
+    "JOLTEON": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 27, move: "QUICK_ATTACK"),
+            (level: 31, move: "THUNDERSHOCK"),
+            (level: 37, move: "TAIL_WHIP"),
+            (level: 40, move: "THUNDER_WAVE"),
+            (level: 42, move: "DOUBLE_KICK"),
+            (level: 44, move: "AGILITY"),
+            (level: 48, move: "PIN_MISSILE"),
+            (level: 54, move: "THUNDER")
+        ]
+    ),
+    "JYNX": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 18, move: "LICK"),
+            (level: 23, move: "DOUBLESLAP"),
+            (level: 31, move: "ICE_PUNCH"),
+            (level: 39, move: "BODY_SLAM"),
+            (level: 47, move: "THRASH"),
+            (level: 58, move: "BLIZZARD")
+        ]
+    ),
+    "KABUTO": (
+        evolutions: [
+            (method: "level", level: 40, species: "KABUTOPS")
+        ],
+        learnset: [
+            (level: 34, move: "ABSORB"),
+            (level: 39, move: "SLASH"),
+            (level: 44, move: "LEER"),
+            (level: 49, move: "HYDRO_PUMP")
+        ]
+    ),
+    "KABUTOPS": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 34, move: "ABSORB"),
+            (level: 39, move: "SLASH"),
+            (level: 46, move: "LEER"),
+            (level: 53, move: "HYDRO_PUMP")
+        ]
+    ),
+    "KADABRA": (
+        evolutions: [
+            (method: "trade", species: "ALAKAZAM")
+        ],
+        learnset: [
+            (level: 16, move: "CONFUSION"),
+            (level: 20, move: "DISABLE"),
+            (level: 27, move: "PSYBEAM"),
+            (level: 31, move: "RECOVER"),
+            (level: 38, move: "PSYCHIC_M"),
+            (level: 42, move: "REFLECT")
+        ]
+    ),
+    "KAKUNA": (
+        evolutions: [
+            (method: "level", level: 10, species: "BEEDRILL")
+        ],
+        learnset: [
+        ]
+    ),
+    "KANGASKHAN": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 26, move: "BITE"),
+            (level: 31, move: "TAIL_WHIP"),
+            (level: 36, move: "MEGA_PUNCH"),
+            (level: 41, move: "LEER"),
+            (level: 46, move: "DIZZY_PUNCH")
+        ]
+    ),
+    "KINGLER": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 20, move: "VICEGRIP"),
+            (level: 25, move: "GUILLOTINE"),
+            (level: 34, move: "STOMP"),
+            (level: 42, move: "CRABHAMMER"),
+            (level: 49, move: "HARDEN")
+        ]
+    ),
+    "KOFFING": (
+        evolutions: [
+            (method: "level", level: 35, species: "WEEZING")
+        ],
+        learnset: [
+            (level: 32, move: "SLUDGE"),
+            (level: 37, move: "SMOKESCREEN"),
+            (level: 40, move: "SELFDESTRUCT"),
+            (level: 45, move: "HAZE"),
+            (level: 48, move: "EXPLOSION")
+        ]
+    ),
+    "KRABBY": (
+        evolutions: [
+            (method: "level", level: 28, species: "KINGLER")
+        ],
+        learnset: [
+            (level: 20, move: "VICEGRIP"),
+            (level: 25, move: "GUILLOTINE"),
+            (level: 30, move: "STOMP"),
+            (level: 35, move: "CRABHAMMER"),
+            (level: 40, move: "HARDEN")
+        ]
+    ),
+    "LAPRAS": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 16, move: "SING"),
+            (level: 20, move: "MIST"),
+            (level: 25, move: "BODY_SLAM"),
+            (level: 31, move: "CONFUSE_RAY"),
+            (level: 38, move: "ICE_BEAM"),
+            (level: 46, move: "HYDRO_PUMP")
+        ]
+    ),
+    "LICKITUNG": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 7, move: "STOMP"),
+            (level: 15, move: "DISABLE"),
+            (level: 23, move: "DEFENSE_CURL"),
+            (level: 31, move: "SLAM"),
+            (level: 39, move: "SCREECH")
+        ]
+    ),
+    "MACHAMP": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 20, move: "LOW_KICK"),
+            (level: 25, move: "LEER"),
+            (level: 36, move: "FOCUS_ENERGY"),
+            (level: 44, move: "SEISMIC_TOSS"),
+            (level: 52, move: "SUBMISSION")
+        ]
+    ),
+    "MACHOKE": (
+        evolutions: [
+            (method: "trade", species: "MACHAMP")
+        ],
+        learnset: [
+            (level: 20, move: "LOW_KICK"),
+            (level: 25, move: "LEER"),
+            (level: 36, move: "FOCUS_ENERGY"),
+            (level: 44, move: "SEISMIC_TOSS"),
+            (level: 52, move: "SUBMISSION")
+        ]
+    ),
+    "MACHOP": (
+        evolutions: [
+            (method: "level", level: 28, species: "MACHOKE")
+        ],
+        learnset: [
+            (level: 20, move: "LOW_KICK"),
+            (level: 25, move: "LEER"),
+            (level: 32, move: "FOCUS_ENERGY"),
+            (level: 39, move: "SEISMIC_TOSS"),
+            (level: 46, move: "SUBMISSION")
+        ]
+    ),
+    "MAGIKARP": (
+        evolutions: [
+            (method: "level", level: 20, species: "GYARADOS")
+        ],
+        learnset: [
+            (level: 15, move: "TACKLE")
+        ]
+    ),
+    "MAGMAR": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 36, move: "LEER"),
+            (level: 39, move: "CONFUSE_RAY"),
+            (level: 43, move: "FIRE_PUNCH"),
+            (level: 48, move: "SMOKESCREEN"),
+            (level: 52, move: "SMOG"),
+            (level: 55, move: "FLAMETHROWER")
+        ]
+    ),
+    "MAGNEMITE": (
+        evolutions: [
+            (method: "level", level: 30, species: "MAGNETON")
+        ],
+        learnset: [
+            (level: 21, move: "SONICBOOM"),
+            (level: 25, move: "THUNDERSHOCK"),
+            (level: 29, move: "SUPERSONIC"),
+            (level: 35, move: "THUNDER_WAVE"),
+            (level: 41, move: "SWIFT"),
+            (level: 47, move: "SCREECH")
+        ]
+    ),
+    "MAGNETON": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 21, move: "SONICBOOM"),
+            (level: 25, move: "THUNDERSHOCK"),
+            (level: 29, move: "SUPERSONIC"),
+            (level: 38, move: "THUNDER_WAVE"),
+            (level: 46, move: "SWIFT"),
+            (level: 54, move: "SCREECH")
+        ]
+    ),
+    "MANKEY": (
+        evolutions: [
+            (method: "level", level: 28, species: "PRIMEAPE")
+        ],
+        learnset: [
+            (level: 15, move: "KARATE_CHOP"),
+            (level: 21, move: "FURY_SWIPES"),
+            (level: 27, move: "FOCUS_ENERGY"),
+            (level: 33, move: "SEISMIC_TOSS"),
+            (level: 39, move: "THRASH")
+        ]
+    ),
+    "MAROWAK": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 25, move: "LEER"),
+            (level: 33, move: "FOCUS_ENERGY"),
+            (level: 41, move: "THRASH"),
+            (level: 48, move: "BONEMERANG"),
+            (level: 55, move: "RAGE")
+        ]
+    ),
+    "MEOWTH": (
+        evolutions: [
+            (method: "level", level: 28, species: "PERSIAN")
+        ],
+        learnset: [
+            (level: 12, move: "BITE"),
+            (level: 17, move: "PAY_DAY"),
+            (level: 24, move: "SCREECH"),
+            (level: 33, move: "FURY_SWIPES"),
+            (level: 44, move: "SLASH")
+        ]
+    ),
+    "METAPOD": (
+        evolutions: [
+            (method: "level", level: 10, species: "BUTTERFREE")
+        ],
+        learnset: [
+        ]
+    ),
+    "MEW": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 10, move: "TRANSFORM"),
+            (level: 20, move: "MEGA_PUNCH"),
+            (level: 30, move: "METRONOME"),
+            (level: 40, move: "PSYCHIC_M")
+        ]
+    ),
+    "MEWTWO": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 63, move: "BARRIER"),
+            (level: 66, move: "PSYCHIC_M"),
+            (level: 70, move: "RECOVER"),
+            (level: 75, move: "MIST"),
+            (level: 81, move: "AMNESIA")
+        ]
+    ),
+    "MISSINGNO1F": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO20": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO32": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO34": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO38": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO3D": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO3E": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO3F": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO43": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO44": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO45": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO4F": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO50": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO51": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO56": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO57": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO5E": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO5F": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO73": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO79": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO7A": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO7F": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO86": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO87": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO8A": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO8C": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO92": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO9C": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNO9F": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNOA0": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNOA1": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNOA2": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNOAC": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNOAE": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNOAF": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MISSINGNOB5": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MOLTRES": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 51, move: "LEER"),
+            (level: 55, move: "AGILITY"),
+            (level: 60, move: "SKY_ATTACK")
+        ]
+    ),
+    "MONGHOST": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "MRMIME": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 15, move: "CONFUSION"),
+            (level: 23, move: "LIGHT_SCREEN"),
+            (level: 31, move: "DOUBLESLAP"),
+            (level: 39, move: "MEDITATE"),
+            (level: 47, move: "SUBSTITUTE")
+        ]
+    ),
+    "MUK": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 30, move: "POISON_GAS"),
+            (level: 33, move: "MINIMIZE"),
+            (level: 37, move: "SLUDGE"),
+            (level: 45, move: "HARDEN"),
+            (level: 53, move: "SCREECH"),
+            (level: 60, move: "ACID_ARMOR")
+        ]
+    ),
+    "NIDOKING": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 8, move: "HORN_ATTACK"),
+            (level: 14, move: "POISON_STING"),
+            (level: 23, move: "THRASH")
+        ]
+    ),
+    "NIDOQUEEN": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 8, move: "SCRATCH"),
+            (level: 14, move: "POISON_STING"),
+            (level: 23, move: "BODY_SLAM")
+        ]
+    ),
+    "NIDORANF": (
+        evolutions: [
+            (method: "level", level: 16, species: "NIDORINA")
+        ],
+        learnset: [
+            (level: 8, move: "SCRATCH"),
+            (level: 14, move: "POISON_STING"),
+            (level: 21, move: "TAIL_WHIP"),
+            (level: 29, move: "BITE"),
+            (level: 36, move: "FURY_SWIPES"),
+            (level: 43, move: "DOUBLE_KICK")
+        ]
+    ),
+    "NIDORANM": (
+        evolutions: [
+            (method: "level", level: 16, species: "NIDORINO")
+        ],
+        learnset: [
+            (level: 8, move: "HORN_ATTACK"),
+            (level: 14, move: "POISON_STING"),
+            (level: 21, move: "FOCUS_ENERGY"),
+            (level: 29, move: "FURY_ATTACK"),
+            (level: 36, move: "HORN_DRILL"),
+            (level: 43, move: "DOUBLE_KICK")
+        ]
+    ),
+    "NIDORINA": (
+        evolutions: [
+            (method: "item", item: "MOON_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 8, move: "SCRATCH"),
+            (level: 14, move: "POISON_STING"),
+            (level: 23, move: "TAIL_WHIP"),
+            (level: 32, move: "BITE"),
+            (level: 41, move: "FURY_SWIPES"),
+            (level: 50, move: "DOUBLE_KICK")
+        ]
+    ),
+    "NIDORINO": (
+        evolutions: [
+            (method: "item", item: "MOON_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 8, move: "HORN_ATTACK"),
+            (level: 14, move: "POISON_STING"),
+            (level: 23, move: "FOCUS_ENERGY"),
+            (level: 32, move: "FURY_ATTACK"),
+            (level: 41, move: "HORN_DRILL"),
+            (level: 50, move: "DOUBLE_KICK")
+        ]
+    ),
+    "NINETALES": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "ODDISH": (
+        evolutions: [
+            (method: "level", level: 21, species: "GLOOM")
+        ],
+        learnset: [
+            (level: 15, move: "POISONPOWDER"),
+            (level: 17, move: "STUN_SPORE"),
+            (level: 19, move: "SLEEP_POWDER"),
+            (level: 24, move: "ACID"),
+            (level: 33, move: "PETAL_DANCE"),
+            (level: 46, move: "SOLARBEAM")
+        ]
+    ),
+    "OMANYTE": (
+        evolutions: [
+            (method: "level", level: 40, species: "OMASTAR")
+        ],
+        learnset: [
+            (level: 34, move: "HORN_ATTACK"),
+            (level: 39, move: "LEER"),
+            (level: 46, move: "SPIKE_CANNON"),
+            (level: 53, move: "HYDRO_PUMP")
+        ]
+    ),
+    "OMASTAR": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 34, move: "HORN_ATTACK"),
+            (level: 39, move: "LEER"),
+            (level: 44, move: "SPIKE_CANNON"),
+            (level: 49, move: "HYDRO_PUMP")
+        ]
+    ),
+    "ONIX": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 15, move: "BIND"),
+            (level: 19, move: "ROCK_THROW"),
+            (level: 25, move: "RAGE"),
+            (level: 33, move: "SLAM"),
+            (level: 43, move: "HARDEN")
+        ]
+    ),
+    "PARAS": (
+        evolutions: [
+            (method: "level", level: 24, species: "PARASECT")
+        ],
+        learnset: [
+            (level: 13, move: "STUN_SPORE"),
+            (level: 20, move: "LEECH_LIFE"),
+            (level: 27, move: "SPORE"),
+            (level: 34, move: "SLASH"),
+            (level: 41, move: "GROWTH")
+        ]
+    ),
+    "PARASECT": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 13, move: "STUN_SPORE"),
+            (level: 20, move: "LEECH_LIFE"),
+            (level: 30, move: "SPORE"),
+            (level: 39, move: "SLASH"),
+            (level: 48, move: "GROWTH")
+        ]
+    ),
+    "PERSIAN": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 12, move: "BITE"),
+            (level: 17, move: "PAY_DAY"),
+            (level: 24, move: "SCREECH"),
+            (level: 37, move: "FURY_SWIPES"),
+            (level: 51, move: "SLASH")
+        ]
+    ),
+    "PIDGEOT": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 5, move: "SAND_ATTACK"),
+            (level: 12, move: "QUICK_ATTACK"),
+            (level: 21, move: "WHIRLWIND"),
+            (level: 31, move: "WING_ATTACK"),
+            (level: 44, move: "AGILITY"),
+            (level: 54, move: "MIRROR_MOVE")
+        ]
+    ),
+    "PIDGEOTTO": (
+        evolutions: [
+            (method: "level", level: 36, species: "PIDGEOT")
+        ],
+        learnset: [
+            (level: 5, move: "SAND_ATTACK"),
+            (level: 12, move: "QUICK_ATTACK"),
+            (level: 21, move: "WHIRLWIND"),
+            (level: 31, move: "WING_ATTACK"),
+            (level: 40, move: "AGILITY"),
+            (level: 49, move: "MIRROR_MOVE")
+        ]
+    ),
+    "PIDGEY": (
+        evolutions: [
+            (method: "level", level: 18, species: "PIDGEOTTO")
+        ],
+        learnset: [
+            (level: 5, move: "SAND_ATTACK"),
+            (level: 12, move: "QUICK_ATTACK"),
+            (level: 19, move: "WHIRLWIND"),
+            (level: 28, move: "WING_ATTACK"),
+            (level: 36, move: "AGILITY"),
+            (level: 44, move: "MIRROR_MOVE")
+        ]
+    ),
+    "PIKACHU": (
+        evolutions: [
+            (method: "item", item: "THUNDER_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 9, move: "THUNDER_WAVE"),
+            (level: 16, move: "QUICK_ATTACK"),
+            (level: 26, move: "SWIFT"),
+            (level: 33, move: "AGILITY"),
+            (level: 43, move: "THUNDER")
+        ]
+    ),
+    "PINSIR": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 25, move: "SEISMIC_TOSS"),
+            (level: 30, move: "GUILLOTINE"),
+            (level: 36, move: "FOCUS_ENERGY"),
+            (level: 43, move: "HARDEN"),
+            (level: 49, move: "SLASH"),
+            (level: 54, move: "SWORDS_DANCE")
+        ]
+    ),
+    "POLIWAG": (
+        evolutions: [
+            (method: "level", level: 25, species: "POLIWHIRL")
+        ],
+        learnset: [
+            (level: 16, move: "HYPNOSIS"),
+            (level: 19, move: "WATER_GUN"),
+            (level: 25, move: "DOUBLESLAP"),
+            (level: 31, move: "BODY_SLAM"),
+            (level: 38, move: "AMNESIA"),
+            (level: 45, move: "HYDRO_PUMP")
+        ]
+    ),
+    "POLIWHIRL": (
+        evolutions: [
+            (method: "item", item: "WATER_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 16, move: "HYPNOSIS"),
+            (level: 19, move: "WATER_GUN"),
+            (level: 26, move: "DOUBLESLAP"),
+            (level: 33, move: "BODY_SLAM"),
+            (level: 41, move: "AMNESIA"),
+            (level: 49, move: "HYDRO_PUMP")
+        ]
+    ),
+    "POLIWRATH": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 16, move: "HYPNOSIS"),
+            (level: 19, move: "WATER_GUN")
+        ]
+    ),
+    "PONYTA": (
+        evolutions: [
+            (method: "level", level: 40, species: "RAPIDASH")
+        ],
+        learnset: [
+            (level: 30, move: "TAIL_WHIP"),
+            (level: 32, move: "STOMP"),
+            (level: 35, move: "GROWL"),
+            (level: 39, move: "FIRE_SPIN"),
+            (level: 43, move: "TAKE_DOWN"),
+            (level: 48, move: "AGILITY")
+        ]
+    ),
+    "PORYGON": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 23, move: "PSYBEAM"),
+            (level: 28, move: "RECOVER"),
+            (level: 35, move: "AGILITY"),
+            (level: 42, move: "TRI_ATTACK")
+        ]
+    ),
+    "PRIMEAPE": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 15, move: "KARATE_CHOP"),
+            (level: 21, move: "FURY_SWIPES"),
+            (level: 27, move: "FOCUS_ENERGY"),
+            (level: 37, move: "SEISMIC_TOSS"),
+            (level: 46, move: "THRASH")
+        ]
+    ),
+    "PSYDUCK": (
+        evolutions: [
+            (method: "level", level: 33, species: "GOLDUCK")
+        ],
+        learnset: [
+            (level: 28, move: "TAIL_WHIP"),
+            (level: 31, move: "DISABLE"),
+            (level: 36, move: "CONFUSION"),
+            (level: 43, move: "FURY_SWIPES"),
+            (level: 52, move: "HYDRO_PUMP")
+        ]
+    ),
+    "RAICHU": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "RAPIDASH": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 30, move: "TAIL_WHIP"),
+            (level: 32, move: "STOMP"),
+            (level: 35, move: "GROWL"),
+            (level: 39, move: "FIRE_SPIN"),
+            (level: 47, move: "TAKE_DOWN"),
+            (level: 55, move: "AGILITY")
+        ]
+    ),
+    "RATICATE": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 7, move: "QUICK_ATTACK"),
+            (level: 14, move: "HYPER_FANG"),
+            (level: 27, move: "FOCUS_ENERGY"),
+            (level: 41, move: "SUPER_FANG")
+        ]
+    ),
+    "RATTATA": (
+        evolutions: [
+            (method: "level", level: 20, species: "RATICATE")
+        ],
+        learnset: [
+            (level: 7, move: "QUICK_ATTACK"),
+            (level: 14, move: "HYPER_FANG"),
+            (level: 23, move: "FOCUS_ENERGY"),
+            (level: 34, move: "SUPER_FANG")
+        ]
+    ),
+    "RHYDON": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 30, move: "STOMP"),
+            (level: 35, move: "TAIL_WHIP"),
+            (level: 40, move: "FURY_ATTACK"),
+            (level: 48, move: "HORN_DRILL"),
+            (level: 55, move: "LEER"),
+            (level: 64, move: "TAKE_DOWN")
+        ]
+    ),
+    "RHYHORN": (
+        evolutions: [
+            (method: "level", level: 42, species: "RHYDON")
+        ],
+        learnset: [
+            (level: 30, move: "STOMP"),
+            (level: 35, move: "TAIL_WHIP"),
+            (level: 40, move: "FURY_ATTACK"),
+            (level: 45, move: "HORN_DRILL"),
+            (level: 50, move: "LEER"),
+            (level: 55, move: "TAKE_DOWN")
+        ]
+    ),
+    "SANDSHREW": (
+        evolutions: [
+            (method: "level", level: 22, species: "SANDSLASH")
+        ],
+        learnset: [
+            (level: 10, move: "SAND_ATTACK"),
+            (level: 17, move: "SLASH"),
+            (level: 24, move: "POISON_STING"),
+            (level: 31, move: "SWIFT"),
+            (level: 38, move: "FURY_SWIPES")
+        ]
+    ),
+    "SANDSLASH": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 10, move: "SAND_ATTACK"),
+            (level: 17, move: "SLASH"),
+            (level: 27, move: "POISON_STING"),
+            (level: 36, move: "SWIFT"),
+            (level: 47, move: "FURY_SWIPES")
+        ]
+    ),
+    "SCYTHER": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 17, move: "LEER"),
+            (level: 20, move: "FOCUS_ENERGY"),
+            (level: 24, move: "DOUBLE_TEAM"),
+            (level: 29, move: "SLASH"),
+            (level: 35, move: "SWORDS_DANCE"),
+            (level: 42, move: "AGILITY")
+        ]
+    ),
+    "SEADRA": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 19, move: "SMOKESCREEN"),
+            (level: 24, move: "LEER"),
+            (level: 30, move: "WATER_GUN"),
+            (level: 41, move: "AGILITY"),
+            (level: 52, move: "HYDRO_PUMP")
+        ]
+    ),
+    "SEAKING": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 19, move: "SUPERSONIC"),
+            (level: 24, move: "HORN_ATTACK"),
+            (level: 30, move: "FURY_ATTACK"),
+            (level: 39, move: "WATERFALL"),
+            (level: 48, move: "HORN_DRILL"),
+            (level: 54, move: "AGILITY")
+        ]
+    ),
+    "SEEL": (
+        evolutions: [
+            (method: "level", level: 34, species: "DEWGONG")
+        ],
+        learnset: [
+            (level: 30, move: "GROWL"),
+            (level: 35, move: "AURORA_BEAM"),
+            (level: 40, move: "REST"),
+            (level: 45, move: "TAKE_DOWN"),
+            (level: 50, move: "ICE_BEAM")
+        ]
+    ),
+    "SHELLDER": (
+        evolutions: [
+            (method: "item", item: "WATER_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 18, move: "SUPERSONIC"),
+            (level: 23, move: "CLAMP"),
+            (level: 30, move: "AURORA_BEAM"),
+            (level: 39, move: "LEER"),
+            (level: 50, move: "ICE_BEAM")
+        ]
+    ),
+    "SLOWBRO": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 18, move: "DISABLE"),
+            (level: 22, move: "HEADBUTT"),
+            (level: 27, move: "GROWL"),
+            (level: 33, move: "WATER_GUN"),
+            (level: 37, move: "WITHDRAW"),
+            (level: 44, move: "AMNESIA"),
+            (level: 55, move: "PSYCHIC_M")
+        ]
+    ),
+    "SLOWPOKE": (
+        evolutions: [
+            (method: "level", level: 37, species: "SLOWBRO")
+        ],
+        learnset: [
+            (level: 18, move: "DISABLE"),
+            (level: 22, move: "HEADBUTT"),
+            (level: 27, move: "GROWL"),
+            (level: 33, move: "WATER_GUN"),
+            (level: 40, move: "AMNESIA"),
+            (level: 48, move: "PSYCHIC_M")
+        ]
+    ),
+    "SNORLAX": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 35, move: "BODY_SLAM"),
+            (level: 41, move: "HARDEN"),
+            (level: 48, move: "DOUBLE_EDGE"),
+            (level: 56, move: "HYPER_BEAM")
+        ]
+    ),
+    "SPEAROW": (
+        evolutions: [
+            (method: "level", level: 20, species: "FEAROW")
+        ],
+        learnset: [
+            (level: 9, move: "LEER"),
+            (level: 15, move: "FURY_ATTACK"),
+            (level: 22, move: "MIRROR_MOVE"),
+            (level: 29, move: "DRILL_PECK"),
+            (level: 36, move: "AGILITY")
+        ]
+    ),
+    "SQUIRTLE": (
+        evolutions: [
+            (method: "level", level: 16, species: "WARTORTLE")
+        ],
+        learnset: [
+            (level: 8, move: "BUBBLE"),
+            (level: 15, move: "WATER_GUN"),
+            (level: 22, move: "BITE"),
+            (level: 28, move: "WITHDRAW"),
+            (level: 35, move: "SKULL_BASH"),
+            (level: 42, move: "HYDRO_PUMP")
+        ]
+    ),
+    "STARMIE": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "STARYU": (
+        evolutions: [
+            (method: "item", item: "WATER_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 17, move: "WATER_GUN"),
+            (level: 22, move: "HARDEN"),
+            (level: 27, move: "RECOVER"),
+            (level: 32, move: "SWIFT"),
+            (level: 37, move: "MINIMIZE"),
+            (level: 42, move: "LIGHT_SCREEN"),
+            (level: 47, move: "HYDRO_PUMP")
+        ]
+    ),
+    "TANGELA": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 29, move: "ABSORB"),
+            (level: 32, move: "POISONPOWDER"),
+            (level: 36, move: "STUN_SPORE"),
+            (level: 39, move: "SLEEP_POWDER"),
+            (level: 45, move: "SLAM"),
+            (level: 49, move: "GROWTH")
+        ]
+    ),
+    "TAUROS": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 21, move: "STOMP"),
+            (level: 28, move: "TAIL_WHIP"),
+            (level: 35, move: "LEER"),
+            (level: 44, move: "RAGE"),
+            (level: 51, move: "TAKE_DOWN")
+        ]
+    ),
+    "TENTACOOL": (
+        evolutions: [
+            (method: "level", level: 30, species: "TENTACRUEL")
+        ],
+        learnset: [
+            (level: 7, move: "SUPERSONIC"),
+            (level: 13, move: "WRAP"),
+            (level: 18, move: "POISON_STING"),
+            (level: 22, move: "WATER_GUN"),
+            (level: 27, move: "CONSTRICT"),
+            (level: 33, move: "BARRIER"),
+            (level: 40, move: "SCREECH"),
+            (level: 48, move: "HYDRO_PUMP")
+        ]
+    ),
+    "TENTACRUEL": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 7, move: "SUPERSONIC"),
+            (level: 13, move: "WRAP"),
+            (level: 18, move: "POISON_STING"),
+            (level: 22, move: "WATER_GUN"),
+            (level: 27, move: "CONSTRICT"),
+            (level: 35, move: "BARRIER"),
+            (level: 43, move: "SCREECH"),
+            (level: 50, move: "HYDRO_PUMP")
+        ]
+    ),
+    "VAPOREON": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 27, move: "QUICK_ATTACK"),
+            (level: 31, move: "WATER_GUN"),
+            (level: 37, move: "TAIL_WHIP"),
+            (level: 40, move: "BITE"),
+            (level: 42, move: "ACID_ARMOR"),
+            (level: 44, move: "HAZE"),
+            (level: 48, move: "MIST"),
+            (level: 54, move: "HYDRO_PUMP")
+        ]
+    ),
+    "VENOMOTH": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 24, move: "POISONPOWDER"),
+            (level: 27, move: "LEECH_LIFE"),
+            (level: 30, move: "STUN_SPORE"),
+            (level: 38, move: "PSYBEAM"),
+            (level: 43, move: "SLEEP_POWDER"),
+            (level: 50, move: "PSYCHIC_M")
+        ]
+    ),
+    "VENONAT": (
+        evolutions: [
+            (method: "level", level: 31, species: "VENOMOTH")
+        ],
+        learnset: [
+            (level: 24, move: "POISONPOWDER"),
+            (level: 27, move: "LEECH_LIFE"),
+            (level: 30, move: "STUN_SPORE"),
+            (level: 35, move: "PSYBEAM"),
+            (level: 38, move: "SLEEP_POWDER"),
+            (level: 43, move: "PSYCHIC_M")
+        ]
+    ),
+    "VENUSAUR": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 7, move: "LEECH_SEED"),
+            (level: 13, move: "VINE_WHIP"),
+            (level: 22, move: "POISONPOWDER"),
+            (level: 30, move: "RAZOR_LEAF"),
+            (level: 43, move: "GROWTH"),
+            (level: 55, move: "SLEEP_POWDER"),
+            (level: 65, move: "SOLARBEAM")
+        ]
+    ),
+    "VICTREEBEL": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 13, move: "WRAP"),
+            (level: 15, move: "POISONPOWDER"),
+            (level: 18, move: "SLEEP_POWDER")
+        ]
+    ),
+    "VILEPLUME": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 15, move: "POISONPOWDER"),
+            (level: 17, move: "STUN_SPORE"),
+            (level: 19, move: "SLEEP_POWDER")
+        ]
+    ),
+    "VOLTORB": (
+        evolutions: [
+            (method: "level", level: 30, species: "ELECTRODE")
+        ],
+        learnset: [
+            (level: 17, move: "SONICBOOM"),
+            (level: 22, move: "SELFDESTRUCT"),
+            (level: 29, move: "LIGHT_SCREEN"),
+            (level: 36, move: "SWIFT"),
+            (level: 43, move: "EXPLOSION")
+        ]
+    ),
+    "VULPIX": (
+        evolutions: [
+            (method: "item", item: "FIRE_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 16, move: "QUICK_ATTACK"),
+            (level: 21, move: "ROAR"),
+            (level: 28, move: "CONFUSE_RAY"),
+            (level: 35, move: "FLAMETHROWER"),
+            (level: 42, move: "FIRE_SPIN")
+        ]
+    ),
+    "WARTORTLE": (
+        evolutions: [
+            (method: "level", level: 36, species: "BLASTOISE")
+        ],
+        learnset: [
+            (level: 8, move: "BUBBLE"),
+            (level: 15, move: "WATER_GUN"),
+            (level: 24, move: "BITE"),
+            (level: 31, move: "WITHDRAW"),
+            (level: 39, move: "SKULL_BASH"),
+            (level: 47, move: "HYDRO_PUMP")
+        ]
+    ),
+    "WEEDLE": (
+        evolutions: [
+            (method: "level", level: 7, species: "KAKUNA")
+        ],
+        learnset: [
+        ]
+    ),
+    "WEEPINBELL": (
+        evolutions: [
+            (method: "item", item: "LEAF_STONE", species: "1")
+        ],
+        learnset: [
+            (level: 13, move: "WRAP"),
+            (level: 15, move: "POISONPOWDER"),
+            (level: 18, move: "SLEEP_POWDER"),
+            (level: 23, move: "STUN_SPORE"),
+            (level: 29, move: "ACID"),
+            (level: 38, move: "RAZOR_LEAF"),
+            (level: 49, move: "SLAM")
+        ]
+    ),
+    "WEEZING": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 32, move: "SLUDGE"),
+            (level: 39, move: "SMOKESCREEN"),
+            (level: 43, move: "SELFDESTRUCT"),
+            (level: 49, move: "HAZE"),
+            (level: 53, move: "EXPLOSION")
+        ]
+    ),
+    "WIGGLYTUFF": (
+        evolutions: [
+        ],
+        learnset: [
+        ]
+    ),
+    "ZAPDOS": (
+        evolutions: [
+        ],
+        learnset: [
+            (level: 51, move: "THUNDER"),
+            (level: 55, move: "AGILITY"),
+            (level: 60, move: "LIGHT_SCREEN")
+        ]
+    ),
+    "ZUBAT": (
+        evolutions: [
+            (method: "level", level: 22, species: "GOLBAT")
+        ],
+        learnset: [
+            (level: 10, move: "SUPERSONIC"),
+            (level: 15, move: "BITE"),
+            (level: 21, move: "CONFUSE_RAY"),
+            (level: 28, move: "WING_ATTACK"),
+            (level: 36, move: "HAZE")
+        ]
+    )
+}

@@ -1,0 +1,2265 @@
+{
+    "AgathasRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 2, sprite: "SPRITE_AGATHA", movement: "STAY")
+        ]
+    ),
+    "BikeShop": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 2, sprite: "SPRITE_BIKE_SHOP_CLERK", movement: "STAY"),
+            (x: 5, y: 6, sprite: "SPRITE_MIDDLE_AGED_WOMAN", movement: "WALK"),
+            (x: 1, y: 3, sprite: "SPRITE_YOUNGSTER", movement: "STAY")
+        ]
+    ),
+    "BillsHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 5, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 4, y: 4, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 6, y: 5, sprite: "SPRITE_SUPER_NERD", movement: "STAY")
+        ]
+    ),
+    "BluesHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_DAISY", movement: "STAY"),
+            (x: 6, y: 4, sprite: "SPRITE_DAISY", movement: "WALK"),
+            (x: 3, y: 3, sprite: "SPRITE_POKEDEX", movement: "STAY")
+        ]
+    ),
+    "BrunosRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 2, sprite: "SPRITE_BRUNO", movement: "STAY")
+        ]
+    ),
+    "CeladonChiefHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_GRAMPS", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_ROCKET", movement: "WALK"),
+            (x: 5, y: 6, sprite: "SPRITE_SAILOR", movement: "STAY")
+        ]
+    ),
+    "CeladonCity": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 17, sprite: "SPRITE_LITTLE_GIRL", movement: "WALK"),
+            (x: 11, y: 28, sprite: "SPRITE_GRAMPS", movement: "STAY"),
+            (x: 14, y: 19, sprite: "SPRITE_GIRL", movement: "WALK"),
+            (x: 25, y: 22, sprite: "SPRITE_GRAMPS", movement: "STAY"),
+            (x: 22, y: 16, sprite: "SPRITE_GRAMPS", movement: "STAY"),
+            (x: 32, y: 12, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 30, y: 12, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 32, y: 29, sprite: "SPRITE_ROCKET", movement: "WALK"),
+            (x: 42, y: 14, sprite: "SPRITE_ROCKET", movement: "WALK")
+        ]
+    ),
+    "CeladonDiner": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 5, sprite: "SPRITE_COOK", movement: "WALK"),
+            (x: 7, y: 2, sprite: "SPRITE_MIDDLE_AGED_WOMAN", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY"),
+            (x: 5, y: 3, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 0, y: 1, sprite: "SPRITE_GYM_GUIDE", movement: "STAY")
+        ]
+    ),
+    "CeladonGym": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 3, sprite: "SPRITE_SILPH_WORKER_F", movement: "STAY"),
+            (x: 2, y: 11, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 7, y: 10, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 9, y: 5, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 1, y: 5, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 6, y: 3, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 3, y: 3, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 5, y: 3, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY")
+        ]
+    ),
+    "CeladonHotel": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_GRANNY", movement: "STAY"),
+            (x: 2, y: 4, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 8, y: 4, sprite: "SPRITE_SUPER_NERD", movement: "WALK")
+        ]
+    ),
+    "CeladonMansion1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 1, y: 5, sprite: "SPRITE_GRANNY", movement: "STAY"),
+            (x: 1, y: 8, sprite: "SPRITE_FAIRY", movement: "WALK"),
+            (x: 4, y: 4, sprite: "SPRITE_MONSTER", movement: "WALK")
+        ]
+    ),
+    "CeladonMansion2F": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "CeladonMansion3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 4, sprite: "SPRITE_BIKE_SHOP_CLERK", movement: "STAY"),
+            (x: 3, y: 4, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 0, y: 7, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 2, y: 3, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY")
+        ]
+    ),
+    "CeladonMansionRoof": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "CeladonMansionRoofHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 2, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 4, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "CeladonMart1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 3, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "CeladonMart2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 3, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 6, y: 3, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 19, y: 5, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY"),
+            (x: 14, y: 4, sprite: "SPRITE_GIRL", movement: "WALK")
+        ]
+    ),
+    "CeladonMart3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 16, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 11, y: 6, sprite: "SPRITE_GAMEBOY_KID", movement: "STAY"),
+            (x: 7, y: 2, sprite: "SPRITE_GAMEBOY_KID", movement: "STAY"),
+            (x: 8, y: 2, sprite: "SPRITE_GAMEBOY_KID", movement: "STAY"),
+            (x: 2, y: 5, sprite: "SPRITE_LITTLE_BOY", movement: "STAY")
+        ]
+    ),
+    "CeladonMart4F": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 7, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 15, y: 5, sprite: "SPRITE_SUPER_NERD", movement: "WALK"),
+            (x: 5, y: 2, sprite: "SPRITE_YOUNGSTER", movement: "WALK")
+        ]
+    ),
+    "CeladonMart5F": (
+        warps: [
+        ],
+        objects: [
+            (x: 14, y: 5, sprite: "SPRITE_GENTLEMAN", movement: "WALK"),
+            (x: 2, y: 6, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 5, y: 3, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 6, y: 3, sprite: "SPRITE_CLERK", movement: "STAY")
+        ]
+    ),
+    "CeladonMartElevator": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "CeladonMartRoof": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 4, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 5, y: 5, sprite: "SPRITE_LITTLE_GIRL", movement: "WALK")
+        ]
+    ),
+    "CeladonPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 7, y: 3, sprite: "SPRITE_GENTLEMAN", movement: "WALK"),
+            (x: 10, y: 5, sprite: "SPRITE_BEAUTY", movement: "WALK"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "CeruleanBadgeHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 3, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY")
+        ]
+    ),
+    "CeruleanCave1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 7, y: 13, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 19, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 0, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "CeruleanCave2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 29, y: 9, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 4, y: 15, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 13, y: 6, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "CeruleanCaveB1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 27, y: 13, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 16, y: 9, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 18, y: 1, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "CeruleanCity": (
+        warps: [
+        ],
+        objects: [
+            (x: 20, y: 2, sprite: "SPRITE_BLUE", movement: "STAY"),
+            (x: 30, y: 8, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 31, y: 20, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 15, y: 18, sprite: "SPRITE_SUPER_NERD", movement: "WALK"),
+            (x: 9, y: 21, sprite: "SPRITE_SUPER_NERD", movement: "WALK"),
+            (x: 28, y: 12, sprite: "SPRITE_GUARD", movement: "STAY"),
+            (x: 29, y: 26, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 28, y: 26, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 9, y: 27, sprite: "SPRITE_COOLTRAINER_F", movement: "WALK"),
+            (x: 4, y: 12, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 27, y: 12, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "CeruleanGym": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_BRUNETTE_GIRL", movement: "STAY"),
+            (x: 2, y: 3, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 8, y: 7, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 7, y: 10, sprite: "SPRITE_GYM_GUIDE", movement: "STAY")
+        ]
+    ),
+    "CeruleanMart": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 3, y: 4, sprite: "SPRITE_COOLTRAINER_M", movement: "WALK"),
+            (x: 6, y: 2, sprite: "SPRITE_COOLTRAINER_F", movement: "WALK")
+        ]
+    ),
+    "CeruleanPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 10, y: 5, sprite: "SPRITE_SUPER_NERD", movement: "WALK"),
+            (x: 4, y: 3, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "CeruleanTradeHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 4, sprite: "SPRITE_GRANNY", movement: "STAY"),
+            (x: 1, y: 2, sprite: "SPRITE_GAMBLER", movement: "STAY")
+        ]
+    ),
+    "CeruleanTrashedHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 1, sprite: "SPRITE_FISHING_GURU", movement: "STAY"),
+            (x: 5, y: 6, sprite: "SPRITE_GIRL", movement: "WALK")
+        ]
+    ),
+    "ChampionsRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_BLUE", movement: "STAY"),
+            (x: 3, y: 7, sprite: "SPRITE_OAK", movement: "STAY")
+        ]
+    ),
+    "CinnabarGym": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 3, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY"),
+            (x: 17, y: 2, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 17, y: 8, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 11, y: 4, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 11, y: 8, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 11, y: 14, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 3, y: 14, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 3, y: 8, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 16, y: 13, sprite: "SPRITE_GYM_GUIDE", movement: "STAY")
+        ]
+    ),
+    "CinnabarIsland": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 5, sprite: "SPRITE_GIRL", movement: "WALK"),
+            (x: 14, y: 6, sprite: "SPRITE_GAMBLER", movement: "STAY")
+        ]
+    ),
+    "CinnabarLab": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 3, sprite: "SPRITE_FISHING_GURU", movement: "STAY")
+        ]
+    ),
+    "CinnabarLabFossilRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 2, sprite: "SPRITE_SCIENTIST", movement: "WALK"),
+            (x: 7, y: 6, sprite: "SPRITE_SCIENTIST", movement: "STAY")
+        ]
+    ),
+    "CinnabarLabMetronomeRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 7, y: 2, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 2, y: 3, sprite: "SPRITE_SCIENTIST", movement: "WALK")
+        ]
+    ),
+    "CinnabarLabTradeRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 2, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_GRAMPS", movement: "STAY"),
+            (x: 5, y: 5, sprite: "SPRITE_BEAUTY", movement: "STAY")
+        ]
+    ),
+    "CinnabarMart": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 6, y: 2, sprite: "SPRITE_SILPH_WORKER_F", movement: "STAY"),
+            (x: 3, y: 4, sprite: "SPRITE_SCIENTIST", movement: "STAY")
+        ]
+    ),
+    "CinnabarPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 9, y: 4, sprite: "SPRITE_COOLTRAINER_F", movement: "WALK"),
+            (x: 2, y: 6, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "Colosseum": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 2, sprite: "SPRITE_RED", movement: "STAY")
+        ]
+    ),
+    "CopycatsHouse1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 2, sprite: "SPRITE_MIDDLE_AGED_WOMAN", movement: "STAY"),
+            (x: 5, y: 4, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_FAIRY", movement: "WALK")
+        ]
+    ),
+    "CopycatsHouse2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 3, sprite: "SPRITE_BRUNETTE_GIRL", movement: "WALK"),
+            (x: 4, y: 6, sprite: "SPRITE_BIRD", movement: "WALK"),
+            (x: 5, y: 1, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 2, y: 0, sprite: "SPRITE_BIRD", movement: "STAY"),
+            (x: 1, y: 6, sprite: "SPRITE_FAIRY", movement: "STAY")
+        ]
+    ),
+    "Daycare": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_GENTLEMAN", movement: "STAY")
+        ]
+    ),
+    "DiglettsCave": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "DiglettsCaveRoute11": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_GAMBLER", movement: "STAY")
+        ]
+    ),
+    "DiglettsCaveRoute2": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 3, sprite: "SPRITE_FISHING_GURU", movement: "STAY")
+        ]
+    ),
+    "FightingDojo": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 3, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 3, y: 4, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 3, y: 6, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 5, y: 5, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 5, y: 7, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 4, y: 1, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 1, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "FuchsiaBillsGrandpasHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_MIDDLE_AGED_WOMAN", movement: "STAY"),
+            (x: 7, y: 2, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 5, y: 5, sprite: "SPRITE_YOUNGSTER", movement: "STAY")
+        ]
+    ),
+    "FuchsiaCity": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 12, sprite: "SPRITE_YOUNGSTER", movement: "WALK"),
+            (x: 28, y: 17, sprite: "SPRITE_GAMBLER", movement: "WALK"),
+            (x: 30, y: 14, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 24, y: 8, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 31, y: 5, sprite: "SPRITE_FAIRY", movement: "WALK"),
+            (x: 25, y: 6, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 12, y: 6, sprite: "SPRITE_MONSTER", movement: "WALK"),
+            (x: 30, y: 12, sprite: "SPRITE_MONSTER", movement: "WALK"),
+            (x: 8, y: 17, sprite: "SPRITE_SEEL", movement: "WALK"),
+            (x: 6, y: 5, sprite: "SPRITE_FOSSIL", movement: "STAY")
+        ]
+    ),
+    "FuchsiaGoodRodHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 3, sprite: "SPRITE_FISHING_GURU", movement: "STAY")
+        ]
+    ),
+    "FuchsiaGym": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 10, sprite: "SPRITE_KOGA", movement: "STAY"),
+            (x: 8, y: 13, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 7, y: 8, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 1, y: 12, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 3, y: 5, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 8, y: 2, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 2, y: 7, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 7, y: 15, sprite: "SPRITE_GYM_GUIDE", movement: "STAY")
+        ]
+    ),
+    "FuchsiaMart": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 4, y: 2, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY"),
+            (x: 6, y: 5, sprite: "SPRITE_COOLTRAINER_F", movement: "WALK")
+        ]
+    ),
+    "FuchsiaMeetingRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 1, sprite: "SPRITE_SAFARI_ZONE_WORKER", movement: "STAY"),
+            (x: 0, y: 2, sprite: "SPRITE_SAFARI_ZONE_WORKER", movement: "STAY"),
+            (x: 10, y: 1, sprite: "SPRITE_SAFARI_ZONE_WORKER", movement: "STAY")
+        ]
+    ),
+    "FuchsiaPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 2, y: 3, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 6, y: 5, sprite: "SPRITE_COOLTRAINER_F", movement: "WALK"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "GameCorner": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 6, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 5, y: 6, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 2, y: 10, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY"),
+            (x: 2, y: 13, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 5, y: 11, sprite: "SPRITE_FISHING_GURU", movement: "STAY"),
+            (x: 8, y: 11, sprite: "SPRITE_MIDDLE_AGED_WOMAN", movement: "STAY"),
+            (x: 8, y: 14, sprite: "SPRITE_GYM_GUIDE", movement: "STAY"),
+            (x: 11, y: 15, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 14, y: 11, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 17, y: 13, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 9, y: 5, sprite: "SPRITE_ROCKET", movement: "STAY")
+        ]
+    ),
+    "GameCornerPrizeRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 4, sprite: "SPRITE_BALDING_GUY", movement: "STAY"),
+            (x: 7, y: 3, sprite: "SPRITE_GAMBLER", movement: "WALK")
+        ]
+    ),
+    "HallOfFame": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 2, sprite: "SPRITE_OAK", movement: "STAY")
+        ]
+    ),
+    "IndigoPlateau": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "IndigoPlateauLobby": (
+        warps: [
+        ],
+        objects: [
+            (x: 7, y: 5, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 4, y: 9, sprite: "SPRITE_GYM_GUIDE", movement: "STAY"),
+            (x: 5, y: 1, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 13, y: 6, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "LancesRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 1, sprite: "SPRITE_LANCE", movement: "STAY")
+        ]
+    ),
+    "LavenderCuboneHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 5, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 2, y: 4, sprite: "SPRITE_BRUNETTE_GIRL", movement: "STAY")
+        ]
+    ),
+    "LavenderMart": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 3, y: 4, sprite: "SPRITE_BALDING_GUY", movement: "STAY"),
+            (x: 7, y: 2, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY")
+        ]
+    ),
+    "LavenderPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 5, y: 3, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 2, y: 6, sprite: "SPRITE_LITTLE_GIRL", movement: "WALK"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "LavenderTown": (
+        warps: [
+        ],
+        objects: [
+            (x: 15, y: 9, sprite: "SPRITE_LITTLE_GIRL", movement: "WALK"),
+            (x: 9, y: 10, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 8, y: 7, sprite: "SPRITE_SUPER_NERD", movement: "WALK")
+        ]
+    ),
+    "LoreleisRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 2, sprite: "SPRITE_LORELEI", movement: "STAY")
+        ]
+    ),
+    "MrFujisHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 5, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 6, y: 3, sprite: "SPRITE_LITTLE_GIRL", movement: "STAY"),
+            (x: 6, y: 4, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 1, y: 3, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 3, y: 1, sprite: "SPRITE_MR_FUJI", movement: "STAY"),
+            (x: 3, y: 3, sprite: "SPRITE_POKEDEX", movement: "STAY")
+        ]
+    ),
+    "MrPsychicsHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 3, sprite: "SPRITE_FISHING_GURU", movement: "STAY")
+        ]
+    ),
+    "MtMoon1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 6, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 12, y: 16, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 30, y: 4, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 24, y: 31, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 16, y: 23, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 7, y: 22, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 30, y: 27, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 2, y: 20, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 2, y: 2, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 35, y: 31, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 36, y: 23, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 20, y: 33, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 32, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "MtMoonB1F": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "MtMoonB2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 8, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 11, y: 16, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 15, y: 22, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 29, y: 11, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 29, y: 17, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 12, y: 6, sprite: "SPRITE_FOSSIL", movement: "STAY"),
+            (x: 13, y: 6, sprite: "SPRITE_FOSSIL", movement: "STAY"),
+            (x: 25, y: 21, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 29, y: 5, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "MtMoonPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 4, y: 3, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 7, y: 3, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 10, y: 6, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "WALK"),
+            (x: 7, y: 2, sprite: "SPRITE_CLIPBOARD", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "Museum1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 4, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 15, y: 2, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 17, y: 4, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 16, y: 2, sprite: "SPRITE_OLD_AMBER", movement: "STAY")
+        ]
+    ),
+    "Museum2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 7, sprite: "SPRITE_YOUNGSTER", movement: "WALK"),
+            (x: 0, y: 5, sprite: "SPRITE_GRAMPS", movement: "STAY"),
+            (x: 7, y: 5, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 11, y: 5, sprite: "SPRITE_BRUNETTE_GIRL", movement: "STAY"),
+            (x: 12, y: 5, sprite: "SPRITE_HIKER", movement: "STAY")
+        ]
+    ),
+    "NameRatersHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 3, sprite: "SPRITE_SILPH_PRESIDENT", movement: "STAY")
+        ]
+    ),
+    "OaksLab": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 3, sprite: "SPRITE_BLUE", movement: "STAY"),
+            (x: 6, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 7, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 8, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 2, sprite: "SPRITE_OAK", movement: "STAY"),
+            (x: 2, y: 1, sprite: "SPRITE_POKEDEX", movement: "STAY"),
+            (x: 3, y: 1, sprite: "SPRITE_POKEDEX", movement: "STAY"),
+            (x: 5, y: 10, sprite: "SPRITE_OAK", movement: "STAY"),
+            (x: 1, y: 9, sprite: "SPRITE_GIRL", movement: "WALK"),
+            (x: 2, y: 10, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 8, y: 10, sprite: "SPRITE_SCIENTIST", movement: "STAY")
+        ]
+    ),
+    "PalletTown": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 5, sprite: "SPRITE_OAK", movement: "STAY"),
+            (x: 3, y: 8, sprite: "SPRITE_GIRL", movement: "WALK"),
+            (x: 11, y: 14, sprite: "SPRITE_FISHER", movement: "WALK")
+        ]
+    ),
+    "PewterCity": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 15, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 17, y: 25, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 27, y: 17, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 26, y: 25, sprite: "SPRITE_SUPER_NERD", movement: "WALK"),
+            (x: 35, y: 16, sprite: "SPRITE_YOUNGSTER", movement: "STAY")
+        ]
+    ),
+    "PewterGym": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 1, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 3, y: 6, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 7, y: 10, sprite: "SPRITE_GYM_GUIDE", movement: "STAY")
+        ]
+    ),
+    "PewterMart": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 3, y: 3, sprite: "SPRITE_YOUNGSTER", movement: "WALK"),
+            (x: 5, y: 5, sprite: "SPRITE_SUPER_NERD", movement: "STAY")
+        ]
+    ),
+    "PewterNidoranHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 5, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 3, y: 5, sprite: "SPRITE_LITTLE_BOY", movement: "STAY"),
+            (x: 1, y: 2, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY")
+        ]
+    ),
+    "PewterPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 11, y: 7, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 1, y: 3, sprite: "SPRITE_FAIRY", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "PewterSpeechHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 4, y: 5, sprite: "SPRITE_YOUNGSTER", movement: "STAY")
+        ]
+    ),
+    "PokemonFanClub": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 3, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 1, y: 3, sprite: "SPRITE_GIRL", movement: "STAY"),
+            (x: 6, y: 4, sprite: "SPRITE_FAIRY", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_SEEL", movement: "STAY"),
+            (x: 3, y: 1, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 5, y: 1, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "PokemonMansion1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 17, y: 17, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 14, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 18, y: 21, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "PokemonMansion2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 17, sprite: "SPRITE_SUPER_NERD", movement: "WALK"),
+            (x: 28, y: 7, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 18, y: 2, sprite: "SPRITE_POKEDEX", movement: "STAY"),
+            (x: 3, y: 22, sprite: "SPRITE_POKEDEX", movement: "STAY")
+        ]
+    ),
+    "PokemonMansion3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 11, sprite: "SPRITE_SUPER_NERD", movement: "WALK"),
+            (x: 20, y: 11, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 1, y: 16, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 25, y: 5, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 6, y: 12, sprite: "SPRITE_POKEDEX", movement: "STAY")
+        ]
+    ),
+    "PokemonMansionB1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 16, y: 23, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 27, y: 11, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 10, y: 2, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 1, y: 22, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 19, y: 25, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 4, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 16, y: 20, sprite: "SPRITE_POKEDEX", movement: "STAY"),
+            (x: 5, y: 13, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "PokemonTower1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 15, y: 13, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY"),
+            (x: 6, y: 8, sprite: "SPRITE_MIDDLE_AGED_WOMAN", movement: "STAY"),
+            (x: 8, y: 12, sprite: "SPRITE_BALDING_GUY", movement: "STAY"),
+            (x: 13, y: 7, sprite: "SPRITE_GIRL", movement: "STAY"),
+            (x: 17, y: 7, sprite: "SPRITE_CHANNELER", movement: "STAY")
+        ]
+    ),
+    "PokemonTower2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 14, y: 5, sprite: "SPRITE_BLUE", movement: "STAY"),
+            (x: 3, y: 7, sprite: "SPRITE_CHANNELER", movement: "STAY")
+        ]
+    ),
+    "PokemonTower3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 3, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 9, y: 8, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 10, y: 13, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 12, y: 1, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "PokemonTower4F": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 10, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 15, y: 7, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 14, y: 12, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 12, y: 10, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 9, y: 10, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 12, y: 16, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "PokemonTower5F": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 8, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 17, y: 7, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 14, y: 3, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 6, y: 10, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 9, y: 16, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 6, y: 14, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "PokemonTower6F": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 10, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 9, y: 5, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 16, y: 5, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 6, y: 8, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 14, y: 14, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "PokemonTower7F": (
+        warps: [
+        ],
+        objects: [
+            (x: 9, y: 11, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 12, y: 9, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 9, y: 7, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 10, y: 3, sprite: "SPRITE_MR_FUJI", movement: "STAY")
+        ]
+    ),
+    "PowerPlant": (
+        warps: [
+        ],
+        objects: [
+            (x: 9, y: 20, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 32, y: 18, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 21, y: 25, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 25, y: 18, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 23, y: 34, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 26, y: 28, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 21, y: 14, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 37, y: 32, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 4, y: 9, sprite: "SPRITE_BIRD", movement: "STAY"),
+            (x: 7, y: 25, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 28, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 34, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 26, y: 32, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 20, y: 32, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "RedsHouse1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 4, sprite: "SPRITE_MOM", movement: "STAY")
+        ]
+    ),
+    "RedsHouse2F": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "RockTunnel1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 7, y: 5, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 5, y: 16, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 17, y: 15, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 23, y: 8, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 37, y: 21, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 22, y: 24, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 32, y: 24, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY")
+        ]
+    ),
+    "RockTunnelB1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 11, y: 13, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 6, y: 10, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 3, y: 5, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 20, y: 21, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 30, y: 10, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 14, y: 28, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 33, y: 5, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 26, y: 30, sprite: "SPRITE_SUPER_NERD", movement: "STAY")
+        ]
+    ),
+    "RockTunnelPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 7, y: 3, sprite: "SPRITE_GENTLEMAN", movement: "WALK"),
+            (x: 2, y: 5, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "RocketHideoutB1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 26, y: 8, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 12, y: 6, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 18, y: 17, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 15, y: 25, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 28, y: 18, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 11, y: 14, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 9, y: 17, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "RocketHideoutB2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 20, y: 12, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 1, y: 11, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 16, y: 8, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 6, y: 12, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 3, y: 21, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "RocketHideoutB3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 22, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 26, y: 12, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 26, y: 17, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 20, y: 14, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "RocketHideoutB4F": (
+        warps: [
+        ],
+        objects: [
+            (x: 25, y: 3, sprite: "SPRITE_GIOVANNI", movement: "STAY"),
+            (x: 23, y: 12, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 26, y: 12, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 10, y: 12, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 9, y: 4, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 12, y: 20, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 25, y: 2, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 10, y: 2, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "RocketHideoutElevator": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "Route1": (
+        warps: [
+            (target_map: "2", warp_id: 7)
+        ],
+        objects: [
+            (x: 5, y: 24, sprite: "SPRITE_YOUNGSTER", movement: "WALK"),
+            (x: 15, y: 13, sprite: "SPRITE_YOUNGSTER", movement: "WALK")
+        ]
+    ),
+    "Route10": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 44, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 3, y: 57, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 14, y: 64, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 7, y: 25, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 3, y: 61, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 7, y: 54, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY")
+        ]
+    ),
+    "Route11": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 14, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 26, y: 9, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 13, y: 5, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 36, y: 11, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 22, y: 4, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 45, y: 7, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 33, y: 3, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 43, y: 5, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 45, y: 16, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 22, y: 12, sprite: "SPRITE_YOUNGSTER", movement: "STAY")
+        ]
+    ),
+    "Route11Gate1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 1, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route11Gate2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_YOUNGSTER", movement: "WALK"),
+            (x: 2, y: 6, sprite: "SPRITE_SCIENTIST", movement: "STAY")
+        ]
+    ),
+    "Route12": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 62, sprite: "SPRITE_SNORLAX", movement: "STAY"),
+            (x: 14, y: 31, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 5, y: 39, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 11, y: 92, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 14, y: 76, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 12, y: 40, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 9, y: 52, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 6, y: 87, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 14, y: 35, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 89, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "Route12Gate1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 3, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route12Gate2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 4, sprite: "SPRITE_BRUNETTE_GIRL", movement: "WALK")
+        ]
+    ),
+    "Route12SuperRodHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 4, sprite: "SPRITE_FISHING_GURU", movement: "STAY")
+        ]
+    ),
+    "Route13": (
+        warps: [
+        ],
+        objects: [
+            (x: 49, y: 10, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 48, y: 10, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 27, y: 9, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 23, y: 10, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 50, y: 5, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 12, y: 4, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 33, y: 6, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 32, y: 6, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 10, y: 7, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 7, y: 13, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY")
+        ]
+    ),
+    "Route14": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 4, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 15, y: 6, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 12, y: 11, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 14, y: 15, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 15, y: 31, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 6, y: 49, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 5, y: 39, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 4, y: 30, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 15, y: 30, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 4, y: 31, sprite: "SPRITE_BIKER", movement: "STAY")
+        ]
+    ),
+    "Route15": (
+        warps: [
+        ],
+        objects: [
+            (x: 41, y: 11, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 53, y: 10, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 31, y: 13, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 35, y: 13, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 53, y: 11, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 41, y: 10, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 48, y: 10, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 46, y: 10, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 37, y: 5, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 18, y: 13, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 18, y: 5, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "Route15Gate1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 1, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route15Gate2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_SCIENTIST", movement: "STAY")
+        ]
+    ),
+    "Route16": (
+        warps: [
+        ],
+        objects: [
+            (x: 17, y: 12, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 14, y: 13, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 11, y: 12, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 9, y: 11, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 6, y: 10, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 3, y: 12, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 26, y: 10, sprite: "SPRITE_SNORLAX", movement: "STAY")
+        ]
+    ),
+    "Route16FlyHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_BRUNETTE_GIRL", movement: "STAY"),
+            (x: 6, y: 4, sprite: "SPRITE_BIRD", movement: "WALK")
+        ]
+    ),
+    "Route16Gate1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 5, sprite: "SPRITE_GUARD", movement: "STAY"),
+            (x: 4, y: 3, sprite: "SPRITE_GAMBLER", movement: "STAY")
+        ]
+    ),
+    "Route16Gate2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_LITTLE_BOY", movement: "STAY"),
+            (x: 2, y: 5, sprite: "SPRITE_LITTLE_GIRL", movement: "WALK")
+        ]
+    ),
+    "Route17": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 19, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 11, y: 16, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 4, y: 18, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 7, y: 32, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 14, y: 34, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 17, y: 58, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 2, y: 68, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 14, y: 98, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 5, y: 98, sprite: "SPRITE_BIKER", movement: "STAY"),
+            (x: 10, y: 118, sprite: "SPRITE_BIKER", movement: "STAY")
+        ]
+    ),
+    "Route18": (
+        warps: [
+        ],
+        objects: [
+            (x: 36, y: 11, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 40, y: 15, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 42, y: 13, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY")
+        ]
+    ),
+    "Route18Gate1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 1, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route18Gate2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_YOUNGSTER", movement: "WALK")
+        ]
+    ),
+    "Route19": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 7, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 13, y: 7, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 13, y: 25, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 4, y: 27, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 16, y: 31, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 9, y: 11, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 8, y: 43, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 11, y: 43, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 9, y: 42, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 10, y: 44, sprite: "SPRITE_SWIMMER", movement: "STAY")
+        ]
+    ),
+    "Route2": (
+        warps: [
+            (target_map: "2", warp_id: 7),
+            (target_map: "2", warp_id: 7),
+            (target_map: "2", warp_id: 7),
+            (target_map: "2", warp_id: 7)
+        ],
+        objects: [
+            (x: 13, y: 54, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 13, y: 45, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "Route20": (
+        warps: [
+        ],
+        objects: [
+            (x: 87, y: 8, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 68, y: 11, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 45, y: 10, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 55, y: 14, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 38, y: 13, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 87, y: 13, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 34, y: 9, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 25, y: 7, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 24, y: 12, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 15, y: 8, sprite: "SPRITE_SWIMMER", movement: "STAY")
+        ]
+    ),
+    "Route21": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 24, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 6, y: 25, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 10, y: 31, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 12, y: 30, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 16, y: 63, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 5, y: 71, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 15, y: 71, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 14, y: 56, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 17, y: 57, sprite: "SPRITE_FISHER", movement: "STAY")
+        ]
+    ),
+    "Route22": (
+        warps: [
+        ],
+        objects: [
+            (x: 25, y: 5, sprite: "SPRITE_BLUE", movement: "STAY"),
+            (x: 25, y: 5, sprite: "SPRITE_BLUE", movement: "STAY")
+        ]
+    ),
+    "Route22Gate": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 2, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route23": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 35, sprite: "SPRITE_GUARD", movement: "STAY"),
+            (x: 10, y: 56, sprite: "SPRITE_GUARD", movement: "STAY"),
+            (x: 8, y: 85, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 11, y: 96, sprite: "SPRITE_SWIMMER", movement: "STAY"),
+            (x: 12, y: 105, sprite: "SPRITE_GUARD", movement: "STAY"),
+            (x: 8, y: 119, sprite: "SPRITE_GUARD", movement: "STAY"),
+            (x: 8, y: 136, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route24": (
+        warps: [
+        ],
+        objects: [
+            (x: 11, y: 15, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 5, y: 20, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 11, y: 19, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 10, y: 22, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 11, y: 25, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 10, y: 28, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 11, y: 31, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 10, y: 5, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "Route25": (
+        warps: [
+        ],
+        objects: [
+            (x: 14, y: 2, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 18, y: 5, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 24, y: 4, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 18, y: 8, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 32, y: 3, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 37, y: 4, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 8, y: 4, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 23, y: 9, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 13, y: 7, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 22, y: 2, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "Route2Gate": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 4, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 5, y: 4, sprite: "SPRITE_YOUNGSTER", movement: "WALK")
+        ]
+    ),
+    "Route2TradeHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 4, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 4, y: 1, sprite: "SPRITE_GAMEBOY_KID", movement: "STAY")
+        ]
+    ),
+    "Route3": (
+        warps: [
+        ],
+        objects: [
+            (x: 57, y: 11, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 10, y: 6, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 14, y: 4, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 16, y: 9, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 19, y: 5, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 23, y: 4, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 22, y: 9, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 24, y: 6, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 33, y: 10, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY")
+        ]
+    ),
+    "Route4": (
+        warps: [
+        ],
+        objects: [
+            (x: 9, y: 8, sprite: "SPRITE_COOLTRAINER_F", movement: "WALK"),
+            (x: 63, y: 3, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 57, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "Route5": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "Route5Gate": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 3, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route6": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 21, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 11, y: 21, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 0, y: 15, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 11, y: 31, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 11, y: 30, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 19, y: 26, sprite: "SPRITE_YOUNGSTER", movement: "STAY")
+        ]
+    ),
+    "Route6Gate": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 2, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route7": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "Route7Gate": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route8": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 5, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 13, y: 9, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 42, y: 6, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 26, y: 3, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 26, y: 4, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 26, y: 5, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 26, y: 6, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 46, y: 13, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 51, y: 12, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY")
+        ]
+    ),
+    "Route8Gate": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 1, sprite: "SPRITE_GUARD", movement: "STAY")
+        ]
+    ),
+    "Route9": (
+        warps: [
+        ],
+        objects: [
+            (x: 13, y: 10, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 24, y: 7, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 31, y: 7, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 48, y: 8, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 16, y: 15, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 43, y: 3, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 22, y: 2, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 45, y: 15, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 40, y: 8, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 10, y: 15, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SSAnne1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 6, sprite: "SPRITE_WAITER", movement: "WALK"),
+            (x: 27, y: 5, sprite: "SPRITE_SAILOR", movement: "STAY")
+        ]
+    ),
+    "SSAnne1FRooms": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 11, y: 4, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 11, y: 14, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 13, y: 11, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 22, y: 3, sprite: "SPRITE_GIRL", movement: "WALK"),
+            (x: 0, y: 14, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY"),
+            (x: 2, y: 11, sprite: "SPRITE_LITTLE_GIRL", movement: "STAY"),
+            (x: 3, y: 11, sprite: "SPRITE_FAIRY", movement: "STAY"),
+            (x: 10, y: 13, sprite: "SPRITE_GIRL", movement: "STAY"),
+            (x: 12, y: 15, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 21, y: 13, sprite: "SPRITE_GENTLEMAN", movement: "WALK")
+        ]
+    ),
+    "SSAnne2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 7, sprite: "SPRITE_WAITER", movement: "WALK"),
+            (x: 36, y: 4, sprite: "SPRITE_BLUE", movement: "STAY")
+        ]
+    ),
+    "SSAnne2FRooms": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 2, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 13, y: 4, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 0, y: 14, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 2, y: 11, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 1, y: 2, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 12, y: 1, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 21, y: 2, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 22, y: 1, sprite: "SPRITE_GRAMPS", movement: "STAY"),
+            (x: 0, y: 12, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 12, y: 12, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 11, y: 14, sprite: "SPRITE_LITTLE_BOY", movement: "STAY"),
+            (x: 22, y: 12, sprite: "SPRITE_BRUNETTE_GIRL", movement: "STAY"),
+            (x: 20, y: 12, sprite: "SPRITE_BEAUTY", movement: "STAY")
+        ]
+    ),
+    "SSAnne3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 9, y: 3, sprite: "SPRITE_SAILOR", movement: "WALK")
+        ]
+    ),
+    "SSAnneB1F": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "SSAnneB1FRooms": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 13, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 2, y: 11, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 12, y: 3, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 22, y: 2, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 0, y: 2, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 0, y: 4, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 10, y: 13, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 11, y: 12, sprite: "SPRITE_MONSTER", movement: "STAY"),
+            (x: 20, y: 2, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 10, y: 2, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 12, y: 11, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SSAnneBow": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 2, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 4, y: 9, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 7, y: 11, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 4, y: 4, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 10, y: 8, sprite: "SPRITE_SAILOR", movement: "STAY")
+        ]
+    ),
+    "SSAnneCaptainsRoom": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_CAPTAIN", movement: "STAY")
+        ]
+    ),
+    "SSAnneKitchen": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 8, sprite: "SPRITE_COOK", movement: "WALK"),
+            (x: 5, y: 8, sprite: "SPRITE_COOK", movement: "WALK"),
+            (x: 9, y: 7, sprite: "SPRITE_COOK", movement: "WALK"),
+            (x: 13, y: 6, sprite: "SPRITE_COOK", movement: "STAY"),
+            (x: 13, y: 8, sprite: "SPRITE_COOK", movement: "STAY"),
+            (x: 13, y: 10, sprite: "SPRITE_COOK", movement: "STAY"),
+            (x: 11, y: 13, sprite: "SPRITE_COOK", movement: "STAY")
+        ]
+    ),
+    "SafariZoneCenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 14, y: 10, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SafariZoneCenterRestHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 2, sprite: "SPRITE_GIRL", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_SCIENTIST", movement: "WALK")
+        ]
+    ),
+    "SafariZoneEast": (
+        warps: [
+        ],
+        objects: [
+            (x: 21, y: 10, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 3, y: 7, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 20, y: 13, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 15, y: 12, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SafariZoneEastRestHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 3, sprite: "SPRITE_SCIENTIST", movement: "WALK"),
+            (x: 4, y: 2, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 5, y: 2, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY")
+        ]
+    ),
+    "SafariZoneGate": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 2, sprite: "SPRITE_SAFARI_ZONE_WORKER", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_SAFARI_ZONE_WORKER", movement: "STAY")
+        ]
+    ),
+    "SafariZoneNorth": (
+        warps: [
+        ],
+        objects: [
+            (x: 25, y: 1, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 19, y: 7, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SafariZoneNorthRestHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 3, sprite: "SPRITE_SCIENTIST", movement: "WALK"),
+            (x: 3, y: 4, sprite: "SPRITE_SAFARI_ZONE_WORKER", movement: "STAY"),
+            (x: 1, y: 5, sprite: "SPRITE_GENTLEMAN", movement: "WALK")
+        ]
+    ),
+    "SafariZoneSecretHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 3, sprite: "SPRITE_FISHING_GURU", movement: "STAY")
+        ]
+    ),
+    "SafariZoneWest": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 20, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 9, y: 7, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 18, y: 18, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 19, y: 7, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SafariZoneWestRestHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 4, sprite: "SPRITE_SCIENTIST", movement: "WALK"),
+            (x: 0, y: 2, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 6, y: 2, sprite: "SPRITE_SILPH_WORKER_F", movement: "STAY")
+        ]
+    ),
+    "SaffronCity": (
+        warps: [
+        ],
+        objects: [
+            (x: 7, y: 6, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 20, y: 8, sprite: "SPRITE_ROCKET", movement: "WALK"),
+            (x: 34, y: 4, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 13, y: 12, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 11, y: 25, sprite: "SPRITE_ROCKET", movement: "WALK"),
+            (x: 32, y: 13, sprite: "SPRITE_ROCKET", movement: "WALK"),
+            (x: 18, y: 30, sprite: "SPRITE_ROCKET", movement: "WALK"),
+            (x: 8, y: 14, sprite: "SPRITE_SCIENTIST", movement: "WALK"),
+            (x: 23, y: 23, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 17, y: 30, sprite: "SPRITE_SILPH_WORKER_F", movement: "WALK"),
+            (x: 30, y: 12, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 31, y: 12, sprite: "SPRITE_BIRD", movement: "STAY"),
+            (x: 18, y: 8, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 18, y: 22, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 19, y: 22, sprite: "SPRITE_ROCKET", movement: "STAY")
+        ]
+    ),
+    "SaffronGym": (
+        warps: [
+        ],
+        objects: [
+            (x: 9, y: 8, sprite: "SPRITE_GIRL", movement: "STAY"),
+            (x: 10, y: 1, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 17, y: 1, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 3, y: 7, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 17, y: 7, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 3, y: 13, sprite: "SPRITE_CHANNELER", movement: "STAY"),
+            (x: 17, y: 13, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 3, y: 1, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 10, y: 15, sprite: "SPRITE_GYM_GUIDE", movement: "STAY")
+        ]
+    ),
+    "SaffronMart": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 4, y: 2, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 6, y: 5, sprite: "SPRITE_COOLTRAINER_F", movement: "WALK")
+        ]
+    ),
+    "SaffronPidgeyHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_BRUNETTE_GIRL", movement: "STAY"),
+            (x: 0, y: 4, sprite: "SPRITE_BIRD", movement: "WALK"),
+            (x: 4, y: 1, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 3, y: 3, sprite: "SPRITE_PAPER", movement: "STAY")
+        ]
+    ),
+    "SaffronPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 5, y: 5, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 8, y: 3, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "SeafoamIslands1F": (
+        warps: [
+            (target_map: "17", warp_id: 6),
+            (target_map: "24", warp_id: 6)
+        ],
+        objects: [
+            (x: 18, y: 10, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 26, y: 7, sprite: "SPRITE_BOULDER", movement: "STAY")
+        ]
+    ),
+    "SeafoamIslandsB1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 17, y: 6, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 22, y: 6, sprite: "SPRITE_BOULDER", movement: "STAY")
+        ]
+    ),
+    "SeafoamIslandsB2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 18, y: 6, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 23, y: 6, sprite: "SPRITE_BOULDER", movement: "STAY")
+        ]
+    ),
+    "SeafoamIslandsB3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 14, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 3, y: 15, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 8, y: 14, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 9, y: 14, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 18, y: 6, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 19, y: 6, sprite: "SPRITE_BOULDER", movement: "STAY")
+        ]
+    ),
+    "SeafoamIslandsB4F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 15, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 5, y: 15, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 6, y: 1, sprite: "SPRITE_BIRD", movement: "STAY")
+        ]
+    ),
+    "SilphCo10F": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 9, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 10, y: 2, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 9, y: 15, sprite: "SPRITE_SILPH_WORKER_F", movement: "WALK"),
+            (x: 2, y: 12, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 4, y: 14, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 11, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SilphCo11F": (
+        warps: [
+        ],
+        objects: [
+            (x: 7, y: 5, sprite: "SPRITE_SILPH_PRESIDENT", movement: "STAY"),
+            (x: 10, y: 5, sprite: "SPRITE_BEAUTY", movement: "STAY"),
+            (x: 6, y: 9, sprite: "SPRITE_GIOVANNI", movement: "STAY"),
+            (x: 3, y: 16, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 15, y: 9, sprite: "SPRITE_ROCKET", movement: "STAY")
+        ]
+    ),
+    "SilphCo1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "SilphCo2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 1, sprite: "SPRITE_SILPH_WORKER_F", movement: "STAY"),
+            (x: 5, y: 12, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 24, y: 13, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 16, y: 11, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 24, y: 7, sprite: "SPRITE_ROCKET", movement: "STAY")
+        ]
+    ),
+    "SilphCo3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 24, y: 8, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 20, y: 7, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 7, y: 9, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 8, y: 5, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SilphCo4F": (
+        warps: [
+        ],
+        objects: [
+            (x: 6, y: 2, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 9, y: 14, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 14, y: 6, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 26, y: 10, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 3, y: 9, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 4, y: 7, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 8, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SilphCo5F": (
+        warps: [
+        ],
+        objects: [
+            (x: 13, y: 9, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 8, y: 16, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 8, y: 3, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 18, y: 10, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 28, y: 4, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 2, y: 13, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 4, y: 6, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 21, y: 16, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 22, y: 12, sprite: "SPRITE_CLIPBOARD", movement: "STAY"),
+            (x: 25, y: 10, sprite: "SPRITE_CLIPBOARD", movement: "STAY"),
+            (x: 24, y: 6, sprite: "SPRITE_CLIPBOARD", movement: "STAY")
+        ]
+    ),
+    "SilphCo6F": (
+        warps: [
+        ],
+        objects: [
+            (x: 10, y: 6, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 20, y: 6, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 21, y: 6, sprite: "SPRITE_SILPH_WORKER_F", movement: "STAY"),
+            (x: 11, y: 10, sprite: "SPRITE_SILPH_WORKER_F", movement: "STAY"),
+            (x: 18, y: 13, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 17, y: 3, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 7, y: 8, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 14, y: 15, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 3, y: 12, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 2, y: 15, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SilphCo7F": (
+        warps: [
+        ],
+        objects: [
+            (x: 1, y: 5, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 13, y: 13, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 7, y: 10, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 10, y: 8, sprite: "SPRITE_SILPH_WORKER_F", movement: "STAY"),
+            (x: 13, y: 1, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 2, y: 13, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 20, y: 2, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 19, y: 14, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 3, y: 7, sprite: "SPRITE_BLUE", movement: "STAY"),
+            (x: 1, y: 9, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 24, y: 11, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "SilphCo8F": (
+        warps: [
+        ],
+        objects: [
+            (x: 4, y: 2, sprite: "SPRITE_SILPH_WORKER_M", movement: "STAY"),
+            (x: 19, y: 2, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 10, y: 2, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 12, y: 15, sprite: "SPRITE_ROCKET", movement: "STAY")
+        ]
+    ),
+    "SilphCo9F": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 14, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 2, y: 4, sprite: "SPRITE_ROCKET", movement: "STAY"),
+            (x: 21, y: 13, sprite: "SPRITE_SCIENTIST", movement: "STAY"),
+            (x: 13, y: 16, sprite: "SPRITE_ROCKET", movement: "STAY")
+        ]
+    ),
+    "SilphCoElevator": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "TradeCenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 2, sprite: "SPRITE_RED", movement: "STAY")
+        ]
+    ),
+    "UndergroundPathNorthSouth": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "UndergroundPathRoute5": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_LITTLE_GIRL", movement: "STAY")
+        ]
+    ),
+    "UndergroundPathRoute6": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_GIRL", movement: "STAY")
+        ]
+    ),
+    "UndergroundPathRoute7": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 4, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY")
+        ]
+    ),
+    "UndergroundPathRoute7Copy": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 2, sprite: "SPRITE_GIRL", movement: "STAY"),
+            (x: 2, y: 4, sprite: "SPRITE_MIDDLE_AGED_MAN", movement: "STAY")
+        ]
+    ),
+    "UndergroundPathRoute8": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 4, sprite: "SPRITE_GIRL", movement: "STAY")
+        ]
+    ),
+    "UndergroundPathWestEast": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "VermilionCity": (
+        warps: [
+        ],
+        objects: [
+            (x: 19, y: 7, sprite: "SPRITE_BEAUTY", movement: "WALK"),
+            (x: 14, y: 6, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 19, y: 30, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 30, y: 7, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 29, y: 9, sprite: "SPRITE_MONSTER", movement: "WALK"),
+            (x: 25, y: 27, sprite: "SPRITE_SAILOR", movement: "WALK")
+        ]
+    ),
+    "VermilionDock": (
+        warps: [
+        ],
+        objects: [
+        ]
+    ),
+    "VermilionGym": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 1, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 9, y: 6, sprite: "SPRITE_GENTLEMAN", movement: "STAY"),
+            (x: 3, y: 8, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 0, y: 10, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 4, y: 14, sprite: "SPRITE_GYM_GUIDE", movement: "STAY")
+        ]
+    ),
+    "VermilionMart": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 5, y: 6, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 3, y: 3, sprite: "SPRITE_COOLTRAINER_F", movement: "WALK")
+        ]
+    ),
+    "VermilionOldRodHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 4, sprite: "SPRITE_FISHING_GURU", movement: "STAY")
+        ]
+    ),
+    "VermilionPidgeyHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 3, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 3, y: 5, sprite: "SPRITE_BIRD", movement: "WALK"),
+            (x: 4, y: 3, sprite: "SPRITE_PAPER", movement: "STAY")
+        ]
+    ),
+    "VermilionPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 10, y: 5, sprite: "SPRITE_FISHING_GURU", movement: "STAY"),
+            (x: 5, y: 4, sprite: "SPRITE_SAILOR", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "VermilionTradeHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 5, sprite: "SPRITE_LITTLE_GIRL", movement: "STAY")
+        ]
+    ),
+    "VictoryRoad1F": (
+        warps: [
+        ],
+        objects: [
+            (x: 7, y: 5, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 3, y: 2, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 11, y: 0, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 9, y: 2, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 5, y: 15, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 14, y: 2, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 2, y: 10, sprite: "SPRITE_BOULDER", movement: "STAY")
+        ]
+    ),
+    "VictoryRoad2F": (
+        warps: [
+        ],
+        objects: [
+            (x: 12, y: 9, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 21, y: 13, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 19, y: 8, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 4, y: 2, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 26, y: 3, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 11, y: 5, sprite: "SPRITE_BIRD", movement: "STAY"),
+            (x: 27, y: 5, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 18, y: 9, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 9, y: 11, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 11, y: 0, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 4, y: 14, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 5, y: 5, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 23, y: 16, sprite: "SPRITE_BOULDER", movement: "STAY")
+        ]
+    ),
+    "VictoryRoad3F": (
+        warps: [
+        ],
+        objects: [
+            (x: 28, y: 5, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 7, y: 13, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 6, y: 14, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 13, y: 3, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY"),
+            (x: 26, y: 5, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 7, y: 7, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 22, y: 3, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 13, y: 12, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 24, y: 10, sprite: "SPRITE_BOULDER", movement: "STAY"),
+            (x: 22, y: 15, sprite: "SPRITE_BOULDER", movement: "STAY")
+        ]
+    ),
+    "ViridianCity": (
+        warps: [
+        ],
+        objects: [
+            (x: 13, y: 20, sprite: "SPRITE_YOUNGSTER", movement: "WALK"),
+            (x: 30, y: 8, sprite: "SPRITE_GAMBLER", movement: "STAY"),
+            (x: 30, y: 25, sprite: "SPRITE_YOUNGSTER", movement: "WALK"),
+            (x: 17, y: 9, sprite: "SPRITE_GIRL", movement: "STAY"),
+            (x: 18, y: 9, sprite: "SPRITE_GAMBLER_ASLEEP", movement: "STAY"),
+            (x: 6, y: 23, sprite: "SPRITE_FISHER", movement: "STAY"),
+            (x: 17, y: 5, sprite: "SPRITE_GAMBLER", movement: "WALK")
+        ]
+    ),
+    "ViridianForest": (
+        warps: [
+        ],
+        objects: [
+            (x: 16, y: 43, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 30, y: 33, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 30, y: 19, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 2, y: 18, sprite: "SPRITE_YOUNGSTER", movement: "STAY"),
+            (x: 25, y: 11, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 12, y: 29, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 1, y: 31, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 27, y: 40, sprite: "SPRITE_YOUNGSTER", movement: "STAY")
+        ]
+    ),
+    "ViridianForestNorthGate": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 2, sprite: "SPRITE_SUPER_NERD", movement: "STAY"),
+            (x: 2, y: 5, sprite: "SPRITE_GRAMPS", movement: "STAY")
+        ]
+    ),
+    "ViridianForestSouthGate": (
+        warps: [
+        ],
+        objects: [
+            (x: 8, y: 4, sprite: "SPRITE_GIRL", movement: "STAY"),
+            (x: 2, y: 4, sprite: "SPRITE_LITTLE_GIRL", movement: "WALK")
+        ]
+    ),
+    "ViridianGym": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 1, sprite: "SPRITE_GIOVANNI", movement: "STAY"),
+            (x: 12, y: 7, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 11, y: 11, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 10, y: 7, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 3, y: 7, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 13, y: 5, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 10, y: 1, sprite: "SPRITE_HIKER", movement: "STAY"),
+            (x: 2, y: 16, sprite: "SPRITE_ROCKER", movement: "STAY"),
+            (x: 6, y: 5, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 16, y: 15, sprite: "SPRITE_GYM_GUIDE", movement: "STAY"),
+            (x: 16, y: 9, sprite: "SPRITE_POKE_BALL", movement: "STAY")
+        ]
+    ),
+    "ViridianMart": (
+        warps: [
+        ],
+        objects: [
+            (x: 0, y: 5, sprite: "SPRITE_CLERK", movement: "STAY"),
+            (x: 5, y: 5, sprite: "SPRITE_YOUNGSTER", movement: "WALK"),
+            (x: 3, y: 3, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY")
+        ]
+    ),
+    "ViridianNicknameHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 5, y: 3, sprite: "SPRITE_BALDING_GUY", movement: "STAY"),
+            (x: 1, y: 4, sprite: "SPRITE_LITTLE_GIRL", movement: "WALK"),
+            (x: 5, y: 5, sprite: "SPRITE_BIRD", movement: "WALK"),
+            (x: 4, y: 0, sprite: "SPRITE_CLIPBOARD", movement: "STAY")
+        ]
+    ),
+    "ViridianPokecenter": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 1, sprite: "SPRITE_NURSE", movement: "STAY"),
+            (x: 10, y: 5, sprite: "SPRITE_GENTLEMAN", movement: "WALK"),
+            (x: 4, y: 3, sprite: "SPRITE_COOLTRAINER_M", movement: "STAY"),
+            (x: 11, y: 2, sprite: "SPRITE_LINK_RECEPTIONIST", movement: "STAY")
+        ]
+    ),
+    "ViridianSchoolHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 3, y: 5, sprite: "SPRITE_BRUNETTE_GIRL", movement: "STAY"),
+            (x: 4, y: 1, sprite: "SPRITE_COOLTRAINER_F", movement: "STAY")
+        ]
+    ),
+    "WardensHouse": (
+        warps: [
+        ],
+        objects: [
+            (x: 2, y: 3, sprite: "SPRITE_WARDEN", movement: "STAY"),
+            (x: 8, y: 3, sprite: "SPRITE_POKE_BALL", movement: "STAY"),
+            (x: 8, y: 4, sprite: "SPRITE_BOULDER", movement: "STAY")
+        ]
+    )
+}

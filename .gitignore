@@ -1,2 +1,22 @@
 /target
 savegame.txt
+.claude/
+CLAUDE.md
+
+# Local pokered checkout copy (do not commit)
+audio/
+constants/
+gfx/
+maps/
+scripts/
+text/
+data/events/
+data/items/
+data/maps/
+data/moves/
+data/pokemon/
+data/sprites/
+data/text/
+data/tilesets/
+data/trainers/
+data/wild/

@@ -1,0 +1,384 @@
+{
+    "BikeShop": [
+        (x: 1, y: 0),
+        (x: 2, y: 1),
+        (x: 1, y: 2),
+        (x: 3, y: 2),
+        (x: 0, y: 4),
+        (x: 1, y: 5)
+    ],
+    "BillsHouse": [
+        (x: 1, y: 4)
+    ],
+    "BluesHouse": [
+        (x: 0, y: 1),
+        (x: 1, y: 1),
+        (x: 7, y: 1)
+    ],
+    "CeladonCity": [
+        (x: 48, y: 15)
+    ],
+    "CeladonGym": [
+        (x: 3, y: 15),
+        (x: 6, y: 15)
+    ],
+    "CeladonHotel": [
+        (x: 13, y: 3),
+        (x: 0, y: 4)
+    ],
+    "CeladonMansion2": [
+        (x: 0, y: 5)
+    ],
+    "CeladonMansion5": [
+    ],
+    "CeladonPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "CeruleanCave1": [
+        (x: 14, y: 11)
+    ],
+    "CeruleanCave3": [
+        (x: 27, y: 3)
+    ],
+    "CeruleanCity": [
+        (x: 15, y: 8)
+    ],
+    "CeruleanGym": [
+        (x: 3, y: 11),
+        (x: 6, y: 11)
+    ],
+    "CeruleanMart": [
+    ],
+    "CeruleanPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "CinnabarGym": [
+        (x: 17, y: 13),
+        (x: 15, y: 7),
+        (x: 10, y: 1),
+        (x: 9, y: 7),
+        (x: 9, y: 13),
+        (x: 1, y: 13),
+        (x: 1, y: 7)
+    ],
+    "CinnabarLab4": [
+        (x: 0, y: 4),
+        (x: 2, y: 4)
+    ],
+    "CinnabarPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "Colosseum": [
+        (x: 5, y: 4),
+        (x: 4, y: 4)
+    ],
+    "CopycatsHouse2F": [
+        (x: 1, y: 1)
+    ],
+    "FightingDojo": [
+        (x: 3, y: 9),
+        (x: 6, y: 9),
+        (x: 4, y: 0),
+        (x: 5, y: 0)
+    ],
+    "FuchsiaGym": [
+        (x: 3, y: 15),
+        (x: 6, y: 15)
+    ],
+    "FuchsiaPokecenter": [
+        (x: 13, y: 3),
+        (x: 0, y: 4)
+    ],
+    "GameCorner": [
+        (x: 18, y: 15),
+        (x: 18, y: 14),
+        (x: 18, y: 13),
+        (x: 18, y: 12),
+        (x: 18, y: 11),
+        (x: 18, y: 10),
+        (x: 13, y: 10),
+        (x: 13, y: 11),
+        (x: 13, y: 12),
+        (x: 13, y: 13),
+        (x: 13, y: 14),
+        (x: 13, y: 15),
+        (x: 12, y: 15),
+        (x: 12, y: 14),
+        (x: 12, y: 13),
+        (x: 12, y: 12),
+        (x: 12, y: 11),
+        (x: 12, y: 10),
+        (x: 7, y: 10),
+        (x: 7, y: 11),
+        (x: 7, y: 12),
+        (x: 7, y: 13),
+        (x: 7, y: 14),
+        (x: 7, y: 15),
+        (x: 6, y: 15),
+        (x: 6, y: 14),
+        (x: 6, y: 13),
+        (x: 6, y: 12),
+        (x: 6, y: 11),
+        (x: 6, y: 10),
+        (x: 1, y: 10),
+        (x: 1, y: 11),
+        (x: 1, y: 12),
+        (x: 1, y: 13),
+        (x: 1, y: 14),
+        (x: 1, y: 15),
+        (x: 0, y: 8),
+        (x: 1, y: 16),
+        (x: 3, y: 11),
+        (x: 3, y: 14),
+        (x: 4, y: 12),
+        (x: 9, y: 12),
+        (x: 9, y: 15),
+        (x: 16, y: 14),
+        (x: 10, y: 16),
+        (x: 11, y: 7),
+        (x: 15, y: 8),
+        (x: 12, y: 15)
+    ],
+    "IndigoPlateau": [
+        (x: 8, y: 13),
+        (x: 11, y: 13)
+    ],
+    "IndigoPlateauLobby": [
+        (x: 15, y: 7)
+    ],
+    "LavenderHouse1": [
+        (x: 0, y: 1),
+        (x: 1, y: 1),
+        (x: 7, y: 1)
+    ],
+    "LavenderPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "Mansion1": [
+        (x: 8, y: 16),
+        (x: 2, y: 5)
+    ],
+    "Mansion2": [
+        (x: 2, y: 11)
+    ],
+    "Mansion3": [
+        (x: 1, y: 9),
+        (x: 10, y: 5)
+    ],
+    "Mansion4": [
+        (x: 1, y: 9),
+        (x: 20, y: 3),
+        (x: 18, y: 25)
+    ],
+    "MtMoon3": [
+        (x: 18, y: 12),
+        (x: 33, y: 9)
+    ],
+    "MtMoonPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "Museum1F": [
+        (x: 2, y: 3),
+        (x: 2, y: 6)
+    ],
+    "OaksLab": [
+        (x: 4, y: 0),
+        (x: 5, y: 0),
+        (x: 0, y: 1),
+        (x: 1, y: 1)
+    ],
+    "PewterGym": [
+        (x: 3, y: 10),
+        (x: 6, y: 10)
+    ],
+    "PewterMart": [
+    ],
+    "PewterPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "PokemonTower5": [
+        (x: 4, y: 12)
+    ],
+    "PowerPlant": [
+        (x: 17, y: 16),
+        (x: 12, y: 1)
+    ],
+    "RedsHouse2F": [
+        (x: 0, y: 1),
+        (x: 3, y: 5)
+    ],
+    "RockTunnelPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "RocketHideout1": [
+        (x: 21, y: 15)
+    ],
+    "RocketHideout3": [
+        (x: 27, y: 17)
+    ],
+    "RocketHideout4": [
+        (x: 25, y: 1)
+    ],
+    "Route10": [
+        (x: 9, y: 17),
+        (x: 16, y: 53)
+    ],
+    "Route11": [
+        (x: 48, y: 5)
+    ],
+    "Route12": [
+        (x: 2, y: 63)
+    ],
+    "Route13": [
+        (x: 1, y: 14),
+        (x: 16, y: 13)
+    ],
+    "Route15GateUpstairs": [
+        (x: 1, y: 2)
+    ],
+    "Route17": [
+        (x: 15, y: 14),
+        (x: 8, y: 45),
+        (x: 17, y: 72),
+        (x: 4, y: 91),
+        (x: 8, y: 121)
+    ],
+    "Route23": [
+        (x: 9, y: 44),
+        (x: 19, y: 70),
+        (x: 8, y: 90)
+    ],
+    "Route25": [
+        (x: 38, y: 3),
+        (x: 10, y: 1)
+    ],
+    "Route4": [
+        (x: 40, y: 3)
+    ],
+    "Route9": [
+        (x: 14, y: 7)
+    ],
+    "SSAnne10": [
+        (x: 3, y: 1)
+    ],
+    "SSAnne6": [
+        (x: 13, y: 5),
+        (x: 13, y: 7),
+        (x: 13, y: 9)
+    ],
+    "SafariZoneEntrance": [
+        (x: 10, y: 1)
+    ],
+    "SafariZoneRestHouse2": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "SafariZoneRestHouse3": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "SafariZoneRestHouse4": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "SafariZoneWest": [
+        (x: 6, y: 5)
+    ],
+    "SaffronGym": [
+        (x: 9, y: 15)
+    ],
+    "SaffronPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "SeafoamIslands3": [
+        (x: 15, y: 15)
+    ],
+    "SeafoamIslands4": [
+        (x: 9, y: 16)
+    ],
+    "SeafoamIslands5": [
+        (x: 25, y: 17)
+    ],
+    "SilphCo11F": [
+        (x: 10, y: 12)
+    ],
+    "SilphCo5F": [
+        (x: 12, y: 3)
+    ],
+    "SilphCo9F": [
+        (x: 2, y: 15)
+    ],
+    "TradeCenter": [
+        (x: 5, y: 4),
+        (x: 4, y: 4)
+    ],
+    "UndergroundPathNs": [
+        (x: 3, y: 4),
+        (x: 4, y: 34)
+    ],
+    "UndergroundPathWe": [
+        (x: 12, y: 2),
+        (x: 21, y: 5)
+    ],
+    "Unused6F": [
+        (x: 14, y: 11)
+    ],
+    "VermilionCity": [
+        (x: 14, y: 11)
+    ],
+    "VermilionGym": [
+        (x: 3, y: 14),
+        (x: 6, y: 14),
+        (x: 6, y: 1),
+        (x: 1, y: 7),
+        (x: 1, y: 9),
+        (x: 1, y: 11),
+        (x: 3, y: 7),
+        (x: 3, y: 9),
+        (x: 3, y: 11),
+        (x: 5, y: 7),
+        (x: 5, y: 9),
+        (x: 5, y: 11),
+        (x: 7, y: 7),
+        (x: 7, y: 9),
+        (x: 7, y: 11),
+        (x: 9, y: 7),
+        (x: 9, y: 9),
+        (x: 9, y: 11)
+    ],
+    "VermilionPokecenter": [
+        (x: 13, y: 3),
+        (x: 0, y: 4)
+    ],
+    "VictoryRoad2": [
+        (x: 5, y: 2),
+        (x: 26, y: 7)
+    ],
+    "ViridianCity": [
+        (x: 14, y: 4)
+    ],
+    "ViridianForest": [
+        (x: 1, y: 18),
+        (x: 16, y: 42)
+    ],
+    "ViridianGym": [
+        (x: 15, y: 15),
+        (x: 18, y: 15)
+    ],
+    "ViridianMart": [
+    ],
+    "ViridianPokecenter": [
+        (x: 0, y: 4),
+        (x: 13, y: 3)
+    ],
+    "ViridianSchool": [
+    ]
+}
