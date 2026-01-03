@@ -143,15 +143,17 @@ def generate_tileset_headers_ron(data_dir: Path) -> None:
     write_ron_map(data_dir / "tileset_headers.ron", entries)
 
 
-def generate_sprite_mapping_ron(root: Path, data_dir: Path) -> None:
-    sprite_consts = parse_sprite_constants_rs(root / "src" / "data" / "sprite_constants.rs")
+def generate_sprite_mapping_ron(pokerust_root: Path, pokered_root: Path, data_dir: Path) -> None:
+    sprite_consts = parse_sprite_constants_rs(
+        pokerust_root / "src" / "data" / "sprite_constants.rs"
+    )
 
     entries: list[tuple[int, str]] = []
     for const_name, sprite_id in sorted(sprite_consts.items(), key=lambda kv: kv[1]):
         if sprite_id == 0:
             continue
-        png_path = sprite_png_for_const(root, const_name)
-        rel = png_path.relative_to(root).as_posix()
+        png_path = sprite_png_for_const(pokered_root, const_name)
+        rel = png_path.relative_to(pokered_root).as_posix()
         entries.append((sprite_id, f'"{ron_escape(rel)}"'))
 
     lines = ["{"]
@@ -181,8 +183,8 @@ def parse_moves_asm(path: Path) -> dict[str, dict[str, Any]]:
     return move_db
 
 
-def generate_moves_ron(root: Path, data_dir: Path) -> None:
-    move_db = parse_moves_asm(root / "data" / "moves" / "moves.asm")
+def generate_moves_ron(pokered_root: Path, data_dir: Path) -> None:
+    move_db = parse_moves_asm(pokered_root / "data" / "moves" / "moves.asm")
 
     lines: list[str] = ["{"]
     for move_id in sorted(move_db.keys()):
@@ -391,11 +393,15 @@ def parse_map_object_file(
     return warp_events, bg_events, object_events
 
 
-def generate_map_events_ron(root: Path, data_dir: Path) -> None:
-    sprite_consts = parse_sprite_constants_rs(root / "src" / "data" / "sprite_constants.rs")
-    hidden_by_map = parse_hidden_objects(root / "data" / "events" / "hidden_objects.asm")
+def generate_map_events_ron(pokered_root: Path, pokerust_root: Path, data_dir: Path) -> None:
+    sprite_consts = parse_sprite_constants_rs(
+        pokerust_root / "src" / "data" / "sprite_constants.rs"
+    )
+    hidden_by_map = parse_hidden_objects(
+        pokered_root / "data" / "events" / "hidden_objects.asm"
+    )
 
-    objects_dir = root / "data" / "maps" / "objects"
+    objects_dir = pokered_root / "data" / "maps" / "objects"
     entries: list[str] = ["{"]
 
     asm_files = sorted(p for p in objects_dir.iterdir() if p.suffix == ".asm")
@@ -456,19 +462,35 @@ def write_empty_map(path: Path) -> None:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Generate Rust-owned RON data from bundled sources.")
-    ap.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
+    ap = argparse.ArgumentParser(
+        description="Generate Rust-owned RON data for pokerust from a pokered checkout."
+    )
+    default_out_root = Path(__file__).resolve().parents[1]
+    default_pokered_root = default_out_root.joinpath("../pokered")
+    ap.add_argument(
+        "--pokered-root",
+        type=Path,
+        default=default_pokered_root,
+        help="Path to the pokered disassembly checkout (input).",
+    )
+    ap.add_argument(
+        "--out-root",
+        type=Path,
+        default=default_out_root,
+        help="Path to the pokerust repo root (output).",
+    )
     args = ap.parse_args()
 
-    root: Path = args.root
-    data_dir = root / "data"
+    pokered_root: Path = args.pokered_root
+    pokerust_root: Path = args.out_root
+    data_dir = pokerust_root / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
 
     generate_tilesets_ron(data_dir)
     generate_tileset_headers_ron(data_dir)
-    generate_sprite_mapping_ron(root, data_dir)
-    generate_moves_ron(root, data_dir)
-    generate_map_events_ron(root, data_dir)
+    generate_sprite_mapping_ron(pokerust_root, pokered_root, data_dir)
+    generate_moves_ron(pokered_root, data_dir)
+    generate_map_events_ron(pokered_root, pokerust_root, data_dir)
 
     # Ensure these files parse as the types expected by the Rust runtime.
     write_empty_map(data_dir / "item_names.ron")
@@ -480,4 +502,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
