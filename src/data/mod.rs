@@ -18,8 +18,10 @@ use std::path::Path;
 
 /// Load and deserialize a RON file into the specified type.
 pub fn load_ron<T: DeserializeOwned>(path: &Path) -> Result<T, Box<dyn Error>> {
-    let contents = fs::read_to_string(path)?;
-    let data: T = ron::from_str(&contents)?;
+    let contents = fs::read_to_string(path)
+        .map_err(|e| format!("Failed to read `{}`: {e}", path.display()))?;
+    let data: T = ron::from_str(&contents)
+        .map_err(|e| format!("Failed to parse `{}`: {e}", path.display()))?;
     Ok(data)
 }
 
@@ -42,4 +44,3 @@ pub fn load_u8_map(path: &Path) -> Result<HashMap<String, u8>, Box<dyn Error>> {
 pub fn load_vec<T: DeserializeOwned>(path: &Path) -> Result<Vec<T>, Box<dyn Error>> {
     load_ron(path)
 }
-

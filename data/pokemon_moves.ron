@@ -1,7 +1,7 @@
 {
     "ABRA": (
         evolutions: [
-            (method: "level", level: 16, species: "KADABRA")
+            (method: "level", level: Some(16), species: "KADABRA")
         ],
         learnset: [
         ]
@@ -68,7 +68,7 @@
     ),
     "BELLSPROUT": (
         evolutions: [
-            (method: "level", level: 21, species: "WEEPINBELL")
+            (method: "level", level: Some(21), species: "WEEPINBELL")
         ],
         learnset: [
             (level: 13, move: "WRAP"),
@@ -94,7 +94,7 @@
     ),
     "BULBASAUR": (
         evolutions: [
-            (method: "level", level: 16, species: "IVYSAUR")
+            (method: "level", level: Some(16), species: "IVYSAUR")
         ],
         learnset: [
             (level: 7, move: "LEECH_SEED"),
@@ -121,7 +121,7 @@
     ),
     "CATERPIE": (
         evolutions: [
-            (method: "level", level: 7, species: "METAPOD")
+            (method: "level", level: Some(7), species: "METAPOD")
         ],
         learnset: [
         ]
@@ -152,7 +152,7 @@
     ),
     "CHARMANDER": (
         evolutions: [
-            (method: "level", level: 16, species: "CHARMELEON")
+            (method: "level", level: Some(16), species: "CHARMELEON")
         ],
         learnset: [
             (level: 9, move: "EMBER"),
@@ -165,7 +165,7 @@
     ),
     "CHARMELEON": (
         evolutions: [
-            (method: "level", level: 36, species: "CHARIZARD")
+            (method: "level", level: Some(36), species: "CHARIZARD")
         ],
         learnset: [
             (level: 9, move: "EMBER"),
@@ -184,7 +184,7 @@
     ),
     "CLEFAIRY": (
         evolutions: [
-            (method: "item", item: "MOON_STONE", species: "1")
+            (method: "item", item: Some("MOON_STONE"), species: "1")
         ],
         learnset: [
             (level: 13, move: "SING"),
@@ -204,7 +204,7 @@
     ),
     "CUBONE": (
         evolutions: [
-            (method: "level", level: 28, species: "MAROWAK")
+            (method: "level", level: Some(28), species: "MAROWAK")
         ],
         learnset: [
             (level: 25, move: "LEER"),
@@ -227,7 +227,7 @@
     ),
     "DIGLETT": (
         evolutions: [
-            (method: "level", level: 26, species: "DUGTRIO")
+            (method: "level", level: Some(26), species: "DUGTRIO")
         ],
         learnset: [
             (level: 15, move: "GROWL"),
@@ -257,7 +257,7 @@
     ),
     "DODUO": (
         evolutions: [
-            (method: "level", level: 31, species: "DODRIO")
+            (method: "level", level: Some(31), species: "DODRIO")
         ],
         learnset: [
             (level: 20, move: "GROWL"),
@@ -270,7 +270,7 @@
     ),
     "DRAGONAIR": (
         evolutions: [
-            (method: "level", level: 55, species: "DRAGONITE")
+            (method: "level", level: Some(55), species: "DRAGONITE")
         ],
         learnset: [
             (level: 10, move: "THUNDER_WAVE"),
@@ -293,7 +293,7 @@
     ),
     "DRATINI": (
         evolutions: [
-            (method: "level", level: 30, species: "DRAGONAIR")
+            (method: "level", level: Some(30), species: "DRAGONAIR")
         ],
         learnset: [
             (level: 10, move: "THUNDER_WAVE"),
@@ -305,7 +305,7 @@
     ),
     "DROWZEE": (
         evolutions: [
-            (method: "level", level: 26, species: "HYPNO")
+            (method: "level", level: Some(26), species: "HYPNO")
         ],
         learnset: [
             (level: 12, move: "DISABLE"),
@@ -329,9 +329,9 @@
     ),
     "EEVEE": (
         evolutions: [
-            (method: "item", item: "FIRE_STONE", species: "1"),
-            (method: "item", item: "THUNDER_STONE", species: "1"),
-            (method: "item", item: "WATER_STONE", species: "1")
+            (method: "item", item: Some("FIRE_STONE"), species: "1"),
+            (method: "item", item: Some("THUNDER_STONE"), species: "1"),
+            (method: "item", item: Some("WATER_STONE"), species: "1")
         ],
         learnset: [
             (level: 27, move: "QUICK_ATTACK"),
@@ -342,7 +342,7 @@
     ),
     "EKANS": (
         evolutions: [
-            (method: "level", level: 22, species: "ARBOK")
+            (method: "level", level: Some(22), species: "ARBOK")
         ],
         learnset: [
             (level: 10, move: "POISON_STING"),
@@ -376,7 +376,7 @@
     ),
     "EXEGGCUTE": (
         evolutions: [
-            (method: "item", item: "LEAF_STONE", species: "1")
+            (method: "item", item: Some("LEAF_STONE"), species: "1")
         ],
         learnset: [
             (level: 25, move: "REFLECT"),
@@ -444,7 +444,7 @@
     ),
     "GASTLY": (
         evolutions: [
-            (method: "level", level: 25, species: "HAUNTER")
+            (method: "level", level: Some(25), species: "HAUNTER")
         ],
         learnset: [
             (level: 27, move: "HYPNOSIS"),
@@ -461,7 +461,7 @@
     ),
     "GEODUDE": (
         evolutions: [
-            (method: "level", level: 25, species: "GRAVELER")
+            (method: "level", level: Some(25), species: "GRAVELER")
         ],
         learnset: [
             (level: 11, move: "DEFENSE_CURL"),
@@ -474,7 +474,7 @@
     ),
     "GLOOM": (
         evolutions: [
-            (method: "item", item: "LEAF_STONE", species: "1")
+            (method: "item", item: Some("LEAF_STONE"), species: "1")
         ],
         learnset: [
             (level: 15, move: "POISONPOWDER"),
@@ -498,7 +498,7 @@
     ),
     "GOLDEEN": (
         evolutions: [
-            (method: "level", level: 33, species: "SEAKING")
+            (method: "level", level: Some(33), species: "SEAKING")
         ],
         learnset: [
             (level: 19, move: "SUPERSONIC"),
@@ -547,7 +547,7 @@
     ),
     "GRIMER": (
         evolutions: [
-            (method: "level", level: 38, species: "MUK")
+            (method: "level", level: Some(38), species: "MUK")
         ],
         learnset: [
             (level: 30, move: "POISON_GAS"),
@@ -560,7 +560,7 @@
     ),
     "GROWLITHE": (
         evolutions: [
-            (method: "item", item: "FIRE_STONE", species: "1")
+            (method: "item", item: Some("FIRE_STONE"), species: "1")
         ],
         learnset: [
             (level: 18, move: "EMBER"),
@@ -614,7 +614,7 @@
     ),
     "HORSEA": (
         evolutions: [
-            (method: "level", level: 32, species: "SEADRA")
+            (method: "level", level: Some(32), species: "SEADRA")
         ],
         learnset: [
             (level: 19, move: "SMOKESCREEN"),
@@ -638,7 +638,7 @@
     ),
     "IVYSAUR": (
         evolutions: [
-            (method: "level", level: 32, species: "VENUSAUR")
+            (method: "level", level: Some(32), species: "VENUSAUR")
         ],
         learnset: [
             (level: 7, move: "LEECH_SEED"),
@@ -652,7 +652,7 @@
     ),
     "JIGGLYPUFF": (
         evolutions: [
-            (method: "item", item: "MOON_STONE", species: "1")
+            (method: "item", item: Some("MOON_STONE"), species: "1")
         ],
         learnset: [
             (level: 9, move: "POUND"),
@@ -692,7 +692,7 @@
     ),
     "KABUTO": (
         evolutions: [
-            (method: "level", level: 40, species: "KABUTOPS")
+            (method: "level", level: Some(40), species: "KABUTOPS")
         ],
         learnset: [
             (level: 34, move: "ABSORB"),
@@ -726,7 +726,7 @@
     ),
     "KAKUNA": (
         evolutions: [
-            (method: "level", level: 10, species: "BEEDRILL")
+            (method: "level", level: Some(10), species: "BEEDRILL")
         ],
         learnset: [
         ]
@@ -755,7 +755,7 @@
     ),
     "KOFFING": (
         evolutions: [
-            (method: "level", level: 35, species: "WEEZING")
+            (method: "level", level: Some(35), species: "WEEZING")
         ],
         learnset: [
             (level: 32, move: "SLUDGE"),
@@ -767,7 +767,7 @@
     ),
     "KRABBY": (
         evolutions: [
-            (method: "level", level: 28, species: "KINGLER")
+            (method: "level", level: Some(28), species: "KINGLER")
         ],
         learnset: [
             (level: 20, move: "VICEGRIP"),
@@ -825,7 +825,7 @@
     ),
     "MACHOP": (
         evolutions: [
-            (method: "level", level: 28, species: "MACHOKE")
+            (method: "level", level: Some(28), species: "MACHOKE")
         ],
         learnset: [
             (level: 20, move: "LOW_KICK"),
@@ -837,7 +837,7 @@
     ),
     "MAGIKARP": (
         evolutions: [
-            (method: "level", level: 20, species: "GYARADOS")
+            (method: "level", level: Some(20), species: "GYARADOS")
         ],
         learnset: [
             (level: 15, move: "TACKLE")
@@ -857,7 +857,7 @@
     ),
     "MAGNEMITE": (
         evolutions: [
-            (method: "level", level: 30, species: "MAGNETON")
+            (method: "level", level: Some(30), species: "MAGNETON")
         ],
         learnset: [
             (level: 21, move: "SONICBOOM"),
@@ -882,7 +882,7 @@
     ),
     "MANKEY": (
         evolutions: [
-            (method: "level", level: 28, species: "PRIMEAPE")
+            (method: "level", level: Some(28), species: "PRIMEAPE")
         ],
         learnset: [
             (level: 15, move: "KARATE_CHOP"),
@@ -905,7 +905,7 @@
     ),
     "MEOWTH": (
         evolutions: [
-            (method: "level", level: 28, species: "PERSIAN")
+            (method: "level", level: Some(28), species: "PERSIAN")
         ],
         learnset: [
             (level: 12, move: "BITE"),
@@ -917,7 +917,7 @@
     ),
     "METAPOD": (
         evolutions: [
-            (method: "level", level: 10, species: "BUTTERFREE")
+            (method: "level", level: Some(10), species: "BUTTERFREE")
         ],
         learnset: [
         ]
@@ -1217,7 +1217,7 @@
     ),
     "NIDORANF": (
         evolutions: [
-            (method: "level", level: 16, species: "NIDORINA")
+            (method: "level", level: Some(16), species: "NIDORINA")
         ],
         learnset: [
             (level: 8, move: "SCRATCH"),
@@ -1230,7 +1230,7 @@
     ),
     "NIDORANM": (
         evolutions: [
-            (method: "level", level: 16, species: "NIDORINO")
+            (method: "level", level: Some(16), species: "NIDORINO")
         ],
         learnset: [
             (level: 8, move: "HORN_ATTACK"),
@@ -1243,7 +1243,7 @@
     ),
     "NIDORINA": (
         evolutions: [
-            (method: "item", item: "MOON_STONE", species: "1")
+            (method: "item", item: Some("MOON_STONE"), species: "1")
         ],
         learnset: [
             (level: 8, move: "SCRATCH"),
@@ -1256,7 +1256,7 @@
     ),
     "NIDORINO": (
         evolutions: [
-            (method: "item", item: "MOON_STONE", species: "1")
+            (method: "item", item: Some("MOON_STONE"), species: "1")
         ],
         learnset: [
             (level: 8, move: "HORN_ATTACK"),
@@ -1275,7 +1275,7 @@
     ),
     "ODDISH": (
         evolutions: [
-            (method: "level", level: 21, species: "GLOOM")
+            (method: "level", level: Some(21), species: "GLOOM")
         ],
         learnset: [
             (level: 15, move: "POISONPOWDER"),
@@ -1288,7 +1288,7 @@
     ),
     "OMANYTE": (
         evolutions: [
-            (method: "level", level: 40, species: "OMASTAR")
+            (method: "level", level: Some(40), species: "OMASTAR")
         ],
         learnset: [
             (level: 34, move: "HORN_ATTACK"),
@@ -1320,7 +1320,7 @@
     ),
     "PARAS": (
         evolutions: [
-            (method: "level", level: 24, species: "PARASECT")
+            (method: "level", level: Some(24), species: "PARASECT")
         ],
         learnset: [
             (level: 13, move: "STUN_SPORE"),
@@ -1366,7 +1366,7 @@
     ),
     "PIDGEOTTO": (
         evolutions: [
-            (method: "level", level: 36, species: "PIDGEOT")
+            (method: "level", level: Some(36), species: "PIDGEOT")
         ],
         learnset: [
             (level: 5, move: "SAND_ATTACK"),
@@ -1379,7 +1379,7 @@
     ),
     "PIDGEY": (
         evolutions: [
-            (method: "level", level: 18, species: "PIDGEOTTO")
+            (method: "level", level: Some(18), species: "PIDGEOTTO")
         ],
         learnset: [
             (level: 5, move: "SAND_ATTACK"),
@@ -1392,7 +1392,7 @@
     ),
     "PIKACHU": (
         evolutions: [
-            (method: "item", item: "THUNDER_STONE", species: "1")
+            (method: "item", item: Some("THUNDER_STONE"), species: "1")
         ],
         learnset: [
             (level: 9, move: "THUNDER_WAVE"),
@@ -1416,7 +1416,7 @@
     ),
     "POLIWAG": (
         evolutions: [
-            (method: "level", level: 25, species: "POLIWHIRL")
+            (method: "level", level: Some(25), species: "POLIWHIRL")
         ],
         learnset: [
             (level: 16, move: "HYPNOSIS"),
@@ -1429,7 +1429,7 @@
     ),
     "POLIWHIRL": (
         evolutions: [
-            (method: "item", item: "WATER_STONE", species: "1")
+            (method: "item", item: Some("WATER_STONE"), species: "1")
         ],
         learnset: [
             (level: 16, move: "HYPNOSIS"),
@@ -1450,7 +1450,7 @@
     ),
     "PONYTA": (
         evolutions: [
-            (method: "level", level: 40, species: "RAPIDASH")
+            (method: "level", level: Some(40), species: "RAPIDASH")
         ],
         learnset: [
             (level: 30, move: "TAIL_WHIP"),
@@ -1484,7 +1484,7 @@
     ),
     "PSYDUCK": (
         evolutions: [
-            (method: "level", level: 33, species: "GOLDUCK")
+            (method: "level", level: Some(33), species: "GOLDUCK")
         ],
         learnset: [
             (level: 28, move: "TAIL_WHIP"),
@@ -1524,7 +1524,7 @@
     ),
     "RATTATA": (
         evolutions: [
-            (method: "level", level: 20, species: "RATICATE")
+            (method: "level", level: Some(20), species: "RATICATE")
         ],
         learnset: [
             (level: 7, move: "QUICK_ATTACK"),
@@ -1547,7 +1547,7 @@
     ),
     "RHYHORN": (
         evolutions: [
-            (method: "level", level: 42, species: "RHYDON")
+            (method: "level", level: Some(42), species: "RHYDON")
         ],
         learnset: [
             (level: 30, move: "STOMP"),
@@ -1560,7 +1560,7 @@
     ),
     "SANDSHREW": (
         evolutions: [
-            (method: "level", level: 22, species: "SANDSLASH")
+            (method: "level", level: Some(22), species: "SANDSLASH")
         ],
         learnset: [
             (level: 10, move: "SAND_ATTACK"),
@@ -1618,7 +1618,7 @@
     ),
     "SEEL": (
         evolutions: [
-            (method: "level", level: 34, species: "DEWGONG")
+            (method: "level", level: Some(34), species: "DEWGONG")
         ],
         learnset: [
             (level: 30, move: "GROWL"),
@@ -1630,7 +1630,7 @@
     ),
     "SHELLDER": (
         evolutions: [
-            (method: "item", item: "WATER_STONE", species: "1")
+            (method: "item", item: Some("WATER_STONE"), species: "1")
         ],
         learnset: [
             (level: 18, move: "SUPERSONIC"),
@@ -1655,7 +1655,7 @@
     ),
     "SLOWPOKE": (
         evolutions: [
-            (method: "level", level: 37, species: "SLOWBRO")
+            (method: "level", level: Some(37), species: "SLOWBRO")
         ],
         learnset: [
             (level: 18, move: "DISABLE"),
@@ -1678,7 +1678,7 @@
     ),
     "SPEAROW": (
         evolutions: [
-            (method: "level", level: 20, species: "FEAROW")
+            (method: "level", level: Some(20), species: "FEAROW")
         ],
         learnset: [
             (level: 9, move: "LEER"),
@@ -1690,7 +1690,7 @@
     ),
     "SQUIRTLE": (
         evolutions: [
-            (method: "level", level: 16, species: "WARTORTLE")
+            (method: "level", level: Some(16), species: "WARTORTLE")
         ],
         learnset: [
             (level: 8, move: "BUBBLE"),
@@ -1709,7 +1709,7 @@
     ),
     "STARYU": (
         evolutions: [
-            (method: "item", item: "WATER_STONE", species: "1")
+            (method: "item", item: Some("WATER_STONE"), species: "1")
         ],
         learnset: [
             (level: 17, move: "WATER_GUN"),
@@ -1746,7 +1746,7 @@
     ),
     "TENTACOOL": (
         evolutions: [
-            (method: "level", level: 30, species: "TENTACRUEL")
+            (method: "level", level: Some(30), species: "TENTACRUEL")
         ],
         learnset: [
             (level: 7, move: "SUPERSONIC"),
@@ -1801,7 +1801,7 @@
     ),
     "VENONAT": (
         evolutions: [
-            (method: "level", level: 31, species: "VENOMOTH")
+            (method: "level", level: Some(31), species: "VENOMOTH")
         ],
         learnset: [
             (level: 24, move: "POISONPOWDER"),
@@ -1845,7 +1845,7 @@
     ),
     "VOLTORB": (
         evolutions: [
-            (method: "level", level: 30, species: "ELECTRODE")
+            (method: "level", level: Some(30), species: "ELECTRODE")
         ],
         learnset: [
             (level: 17, move: "SONICBOOM"),
@@ -1857,7 +1857,7 @@
     ),
     "VULPIX": (
         evolutions: [
-            (method: "item", item: "FIRE_STONE", species: "1")
+            (method: "item", item: Some("FIRE_STONE"), species: "1")
         ],
         learnset: [
             (level: 16, move: "QUICK_ATTACK"),
@@ -1869,7 +1869,7 @@
     ),
     "WARTORTLE": (
         evolutions: [
-            (method: "level", level: 36, species: "BLASTOISE")
+            (method: "level", level: Some(36), species: "BLASTOISE")
         ],
         learnset: [
             (level: 8, move: "BUBBLE"),
@@ -1882,14 +1882,14 @@
     ),
     "WEEDLE": (
         evolutions: [
-            (method: "level", level: 7, species: "KAKUNA")
+            (method: "level", level: Some(7), species: "KAKUNA")
         ],
         learnset: [
         ]
     ),
     "WEEPINBELL": (
         evolutions: [
-            (method: "item", item: "LEAF_STONE", species: "1")
+            (method: "item", item: Some("LEAF_STONE"), species: "1")
         ],
         learnset: [
             (level: 13, move: "WRAP"),
@@ -1929,7 +1929,7 @@
     ),
     "ZUBAT": (
         evolutions: [
-            (method: "level", level: 22, species: "GOLBAT")
+            (method: "level", level: Some(22), species: "GOLBAT")
         ],
         learnset: [
             (level: 10, move: "SUPERSONIC"),
