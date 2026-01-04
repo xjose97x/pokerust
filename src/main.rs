@@ -46,8 +46,39 @@ const CAMERA_MARGIN_TILES_Y: i32 = 4;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum Mode {
     Title,
+    Intro,
     Map,
     Battle,
+}
+
+#[derive(Clone, Debug)]
+enum IntroStage {
+    Welcome,              // Oak's welcome message
+    WorldOfPokemon,       // "This world is inhabited..."
+    ShowNidorino,         // Nidorino sprite appears
+    IntroduceOak,         // "My name is OAK!"
+    ShowPlayer,           // Player sprite appears
+    AskPlayerName,        // "First, what is your name?"
+    PlayerNameEntry,      // Name entry grid
+    ConfirmPlayerName,    // "Right! So your name is..."
+    ShowRival,            // Rival sprite appears
+    IntroduceRival,       // "This is my grandson..."
+    AskRivalName,         // "...Er, what is his name again?"
+    RivalNameEntry,       // Name entry grid
+    ConfirmRivalName,     // "That's right! I remember now!"
+    FinalMessage,         // "Your very own POKéMON legend is about to unfold!"
+    FadeOut,              // Fade to bedroom
+}
+
+#[derive(Clone, Debug)]
+struct IntroState {
+    stage: IntroStage,
+    text_scroll: usize,   // For text animations
+    sprite_visible: bool, // For sprite fades
+    name_entry_cursor_x: usize,
+    name_entry_cursor_y: usize,
+    player_name: String,
+    rival_name: String,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -124,6 +155,7 @@ enum PokedexMode {
     List,
     SideMenu { side_cursor: usize },
     Data,
+    Area,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -1191,6 +1223,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut needs_redraw = true;
     let mut gb_frame = vec![dmg_palette_color(0); (GB_WIDTH * GB_HEIGHT) as usize];
     let mut battle_state: Option<BattleState> = None;
+    let mut intro_state: Option<IntroState> = None;
 
     event_loop.run(move |event, elwt| match event {
         Event::WindowEvent { event, .. } => match event {
@@ -1283,6 +1316,159 @@ fn main() -> Result<(), Box<dyn Error>> {
                             }
                             mode = Mode::Map;
                             input = InputState::default();
+                        }
+                        needs_redraw = true;
+                    }
+                    Key::Character(s)
+                        if pressed && s.eq_ignore_ascii_case("z") && mode == Mode::Intro =>
+                    {
+                        // Handle A button in intro
+                        let mut should_exit_intro = false;
+                        if let Some(intro) = intro_state.as_mut() {
+                            const NAME_ENTRY_CHARS: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'():-,.!?";
+                            const NAME_ENTRY_WIDTH: usize = 13;
+
+                            match &intro.stage {
+                                IntroStage::PlayerNameEntry | IntroStage::RivalNameEntry => {
+                                    // Select character from grid
+                                    let idx = intro.name_entry_cursor_y * NAME_ENTRY_WIDTH + intro.name_entry_cursor_x;
+                                    if let Some(ch) = NAME_ENTRY_CHARS.chars().nth(idx) {
+                                        if matches!(intro.stage, IntroStage::PlayerNameEntry) {
+                                            if intro.player_name.len() < 7 {
+                                                intro.player_name.push(ch);
+                                            }
+                                        } else {
+                                            if intro.rival_name.len() < 7 {
+                                                intro.rival_name.push(ch);
+                                            }
+                                        }
+                                    }
+                                }
+                                IntroStage::FadeOut => {
+                                    // Mark to transition to map
+                                    should_exit_intro = true;
+                                }
+                                _ => {
+                                    // Advance to next stage
+                                    intro.stage = match &intro.stage {
+                                        IntroStage::Welcome => IntroStage::WorldOfPokemon,
+                                        IntroStage::WorldOfPokemon => IntroStage::ShowNidorino,
+                                        IntroStage::ShowNidorino => IntroStage::IntroduceOak,
+                                        IntroStage::IntroduceOak => IntroStage::ShowPlayer,
+                                        IntroStage::ShowPlayer => IntroStage::AskPlayerName,
+                                        IntroStage::AskPlayerName => IntroStage::PlayerNameEntry,
+                                        IntroStage::ConfirmPlayerName => IntroStage::ShowRival,
+                                        IntroStage::ShowRival => IntroStage::IntroduceRival,
+                                        IntroStage::IntroduceRival => IntroStage::AskRivalName,
+                                        IntroStage::AskRivalName => IntroStage::RivalNameEntry,
+                                        IntroStage::ConfirmRivalName => IntroStage::FinalMessage,
+                                        IntroStage::FinalMessage => IntroStage::FadeOut,
+                                        _ => intro.stage.clone(),
+                                    };
+                                }
+                            }
+                        }
+                        if should_exit_intro {
+                            if let Some(intro) = intro_state.take() {
+                                mode = Mode::Map;
+                                map_view.player_name = if intro.player_name.is_empty() {
+                                    "RED".to_string()
+                                } else {
+                                    intro.player_name
+                                };
+                                map_view.rival_name = if intro.rival_name.is_empty() {
+                                    "BLUE".to_string()
+                                } else {
+                                    intro.rival_name
+                                };
+                                recenter_camera_on_player(
+                                    &map_view.map,
+                                    &mut map_view.camera_tx,
+                                    &mut map_view.camera_ty,
+                                    map_view.player.tx,
+                                    map_view.player.ty,
+                                );
+                            }
+                        }
+                        needs_redraw = true;
+                    }
+                    Key::Named(NamedKey::Enter) if pressed && mode == Mode::Intro => {
+                        // START key - confirm name entry
+                        if let Some(intro) = intro_state.as_mut() {
+                            match &intro.stage {
+                                IntroStage::PlayerNameEntry => {
+                                    intro.stage = IntroStage::ConfirmPlayerName;
+                                    intro.name_entry_cursor_x = 0;
+                                    intro.name_entry_cursor_y = 0;
+                                }
+                                IntroStage::RivalNameEntry => {
+                                    intro.stage = IntroStage::ConfirmRivalName;
+                                    intro.name_entry_cursor_x = 0;
+                                    intro.name_entry_cursor_y = 0;
+                                }
+                                _ => {}
+                            }
+                        }
+                        needs_redraw = true;
+                    }
+                    Key::Character(s)
+                        if pressed && s.eq_ignore_ascii_case("x") && mode == Mode::Intro =>
+                    {
+                        // B button - delete character in name entry
+                        if let Some(intro) = intro_state.as_mut() {
+                            match &intro.stage {
+                                IntroStage::PlayerNameEntry => {
+                                    intro.player_name.pop();
+                                }
+                                IntroStage::RivalNameEntry => {
+                                    intro.rival_name.pop();
+                                }
+                                _ => {}
+                            }
+                        }
+                        needs_redraw = true;
+                    }
+                    Key::Named(NamedKey::ArrowUp) if pressed && mode == Mode::Intro => {
+                        if let Some(intro) = intro_state.as_mut() {
+                            if matches!(intro.stage, IntroStage::PlayerNameEntry | IntroStage::RivalNameEntry) {
+                                if intro.name_entry_cursor_y > 0 {
+                                    intro.name_entry_cursor_y -= 1;
+                                }
+                            }
+                        }
+                        needs_redraw = true;
+                    }
+                    Key::Named(NamedKey::ArrowDown) if pressed && mode == Mode::Intro => {
+                        if let Some(intro) = intro_state.as_mut() {
+                            if matches!(intro.stage, IntroStage::PlayerNameEntry | IntroStage::RivalNameEntry) {
+                                const NAME_ENTRY_CHARS: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'():-,.!?";
+                                const NAME_ENTRY_WIDTH: usize = 13;
+                                let max_row = (NAME_ENTRY_CHARS.len() - 1) / NAME_ENTRY_WIDTH;
+                                if intro.name_entry_cursor_y < max_row {
+                                    intro.name_entry_cursor_y += 1;
+                                }
+                            }
+                        }
+                        needs_redraw = true;
+                    }
+                    Key::Named(NamedKey::ArrowLeft) if pressed && mode == Mode::Intro => {
+                        if let Some(intro) = intro_state.as_mut() {
+                            if matches!(intro.stage, IntroStage::PlayerNameEntry | IntroStage::RivalNameEntry) {
+                                if intro.name_entry_cursor_x > 0 {
+                                    intro.name_entry_cursor_x -= 1;
+                                }
+                            }
+                        }
+                        needs_redraw = true;
+                    }
+                    Key::Named(NamedKey::ArrowRight) if pressed && mode == Mode::Intro => {
+                        if let Some(intro) = intro_state.as_mut() {
+                            if matches!(intro.stage, IntroStage::PlayerNameEntry | IntroStage::RivalNameEntry) {
+                                const NAME_ENTRY_WIDTH: usize = 13;
+                                if intro.name_entry_cursor_x < NAME_ENTRY_WIDTH - 1 {
+                                    intro.name_entry_cursor_x += 1;
+                                }
+                            }
                         }
                         needs_redraw = true;
                     }
@@ -1444,22 +1630,18 @@ fn main() -> Result<(), Box<dyn Error>> {
                         needs_redraw = true;
                     }
                     Key::Named(NamedKey::Enter) if pressed && mode == Mode::Title => {
-                        mode = Mode::Map;
+                        // Start intro sequence
+                        mode = Mode::Intro;
+                        intro_state = Some(IntroState {
+                            stage: IntroStage::Welcome,
+                            text_scroll: 0,
+                            sprite_visible: false,
+                            name_entry_cursor_x: 0,
+                            name_entry_cursor_y: 0,
+                            player_name: String::new(),
+                            rival_name: String::new(),
+                        });
                         input = InputState::default();
-                        map_view.player.move_anim = None;
-                        map_view.dialog = None;
-                        map_view.menu = None;
-                        map_view.shop = None;
-                        map_view.choice = None;
-                        map_view.pc = None;
-                        battle_state = None;
-                        recenter_camera_on_player(
-                            &map_view.map,
-                            &mut map_view.camera_tx,
-                            &mut map_view.camera_ty,
-                            map_view.player.tx,
-                            map_view.player.ty,
-                        );
                         next_tick = Instant::now();
                         needs_redraw = true;
                     }
@@ -1519,6 +1701,13 @@ fn main() -> Result<(), Box<dyn Error>> {
                             &blue_version
                         },
                     ),
+                    Mode::Intro => {
+                        if let Some(intro) = &intro_state {
+                            render_intro_frame(&mut gb_frame, &font, intro);
+                        } else {
+                            gb_frame.fill(dmg_palette_color(0));
+                        }
+                    }
                     Mode::Map => render_map_frame(
                         &mut gb_frame,
                         &map_view,
@@ -1527,6 +1716,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                         &data.pokemon_display_names,
                         &data.pokemon_stats,
                         &data.move_display_names,
+                        &data.wild_encounters,
                     ),
                     Mode::Battle => {
                         if let Some(battle) = &battle_state {
@@ -1636,6 +1826,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
             let desired_music: Option<&str> = match mode {
                 Mode::Title => Some("MUSIC_TITLE_SCREEN"),
+                Mode::Intro => Some("MUSIC_INTRO_BATTLE"), // Use intro battle music for Oak intro
                 Mode::Map => data
                     .map_music_constants
                     .get(&map_view.map_id)
@@ -1762,6 +1953,8 @@ struct MapView {
     options: GameOptions,
     pokedex_seen: HashSet<String>,
     pokedex_caught: HashSet<String>,
+    player_name: String,
+    rival_name: String,
 }
 
 struct MapHeaderInfo {
@@ -1805,6 +1998,167 @@ fn render_title_frame(
     blit_grayscale_to_gb(gb_frame, GB_WIDTH, GB_HEIGHT, gamefreak, gf_x, gf_y);
 }
 
+fn render_intro_frame(
+    gb_frame: &mut [u32],
+    font: &GrayscaleImage,
+    intro: &IntroState,
+) {
+    gb_frame.fill(dmg_palette_color(0));
+
+    const NAME_ENTRY_CHARS: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'():-,.!?";
+    const NAME_ENTRY_WIDTH: usize = 13; // Characters per row
+
+    match &intro.stage {
+        IntroStage::Welcome => {
+            // Oak's welcome message
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Hello there!", 20, 40);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Welcome to the world", 20, 60);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "of POKeMON!", 20, 72);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::WorldOfPokemon => {
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "This world is", 20, 30);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "inhabited by", 20, 42);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "creatures called", 20, 54);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "POKeMON!", 20, 66);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::ShowNidorino => {
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "[Nidorino sprite]", 40, 60);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::IntroduceOak => {
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "My name is OAK!", 20, 40);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "People call me the", 20, 60);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "POKeMON PROF!", 20, 72);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::ShowPlayer => {
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "[Player sprite]", 48, 60);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::AskPlayerName => {
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "First, what is", 20, 40);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "your name?", 20, 52);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::PlayerNameEntry => {
+            // Name entry grid
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "YOUR NAME?", 20, 10);
+
+            // Show current name
+            let display_name = if intro.player_name.is_empty() {
+                "_"
+            } else {
+                &intro.player_name
+            };
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, display_name, 20, 24);
+
+            // Character grid
+            let grid_x = 8;
+            let grid_y = 44;
+
+            for (i, ch) in NAME_ENTRY_CHARS.chars().enumerate() {
+                let row = i / NAME_ENTRY_WIDTH;
+                let col = i % NAME_ENTRY_WIDTH;
+                let x = grid_x + (col as i32 * 11);
+                let y = grid_y + (row as i32 * 14);
+
+                let ch_str = ch.to_string();
+                if row == intro.name_entry_cursor_y && col == intro.name_entry_cursor_x {
+                    // Highlight cursor
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, ">", x - 8, y);
+                }
+                draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &ch_str, x, y);
+            }
+
+            // Instructions
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "START=OK DEL=Back", 8, 128);
+        }
+        IntroStage::ConfirmPlayerName => {
+            let name = if intro.player_name.is_empty() {
+                "RED"
+            } else {
+                &intro.player_name
+            };
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Right! So your", 20, 40);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("name is {}!", name), 20, 52);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::ShowRival => {
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "[Rival sprite]", 48, 60);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::IntroduceRival => {
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "This is my grandson.", 10, 30);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "He's been your rival", 10, 42);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "since you were a baby.", 10, 54);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::AskRivalName => {
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "...Er, what is his", 20, 40);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "name again?", 20, 52);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::RivalNameEntry => {
+            // Name entry grid (same as player)
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "RIVAL'S NAME?", 20, 10);
+
+            let display_name = if intro.rival_name.is_empty() {
+                "_"
+            } else {
+                &intro.rival_name
+            };
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, display_name, 20, 24);
+
+            let grid_x = 8;
+            let grid_y = 44;
+
+            for (i, ch) in NAME_ENTRY_CHARS.chars().enumerate() {
+                let row = i / NAME_ENTRY_WIDTH;
+                let col = i % NAME_ENTRY_WIDTH;
+                let x = grid_x + (col as i32 * 11);
+                let y = grid_y + (row as i32 * 14);
+
+                let ch_str = ch.to_string();
+                if row == intro.name_entry_cursor_y && col == intro.name_entry_cursor_x {
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, ">", x - 8, y);
+                }
+                draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &ch_str, x, y);
+            }
+
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "START=OK DEL=Back", 8, 128);
+        }
+        IntroStage::ConfirmRivalName => {
+            let name = if intro.rival_name.is_empty() {
+                "BLUE"
+            } else {
+                &intro.rival_name
+            };
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "That's right!", 20, 30);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "I remember now!", 20, 42);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("His name is {}!", name), 20, 54);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to continue", 20, 110);
+        }
+        IntroStage::FinalMessage => {
+            let player_name = if intro.player_name.is_empty() {
+                "RED"
+            } else {
+                &intro.player_name
+            };
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, player_name, 20, 30);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Your very own POKeMON", 10, 50);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "legend is about to", 10, 62);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "unfold!", 10, 74);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press A to begin", 20, 110);
+        }
+        IntroStage::FadeOut => {
+            // Fade effect - just black for now
+            gb_frame.fill(dmg_palette_color(3));
+        }
+    }
+}
+
 fn render_map_frame(
     gb_frame: &mut [u32],
     view: &MapView,
@@ -1813,6 +2167,7 @@ fn render_map_frame(
     pokemon_display_names: &HashMap<String, String>,
     pokemon_stats: &HashMap<String, BaseStats>,
     move_display_names: &HashMap<String, String>,
+    wild_encounters: &HashMap<String, WildEncounterTable>,
 ) {
     gb_frame.fill(dmg_palette_color(0));
 
@@ -1877,6 +2232,7 @@ fn render_map_frame(
             pokemon_display_names,
             pokemon_stats,
             move_display_names,
+            wild_encounters,
         );
     }
     if let Some(dialog) = &view.dialog {
@@ -2142,6 +2498,7 @@ fn draw_menu(
     pokemon_display_names: &HashMap<String, String>,
     pokemon_stats: &HashMap<String, BaseStats>,
     _move_display_names: &HashMap<String, String>,
+    wild_encounters: &HashMap<String, WildEncounterTable>,
 ) {
     let Some(menu) = &view.menu else {
         return;
@@ -2685,6 +3042,67 @@ fn draw_menu(
 
                     // Instruction text
                     draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press B to return", data_x + 8, data_y + data_h - 16);
+                }
+                PokedexMode::Area => {
+                    // Pokemon area/habitat screen
+                    let species = POKEDEX_SPECIES[cursor];
+                    let display_name = pokemon_display_names.get(species)
+                        .map(|s| s.as_str())
+                        .unwrap_or(species);
+
+                    // Draw box
+                    let area_x = 4;
+                    let area_y = 4;
+                    let area_w = GB_WIDTH as i32 - 8;
+                    let area_h = GB_HEIGHT as i32 - 8;
+
+                    fill_rect(gb_frame, GB_WIDTH, GB_HEIGHT, area_x, area_y, area_w, area_h, dmg_palette_color(3));
+                    fill_rect(gb_frame, GB_WIDTH, GB_HEIGHT, area_x + 2, area_y + 2, area_w - 4, area_h - 4, dmg_palette_color(0));
+
+                    // Title
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, display_name, area_x + 8, area_y + 8);
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "AREA", area_x + 8, area_y + 20);
+
+                    // Find all locations where this Pokemon appears
+                    let mut locations = Vec::new();
+                    for (map_name, table) in wild_encounters.iter() {
+                        let mut found = false;
+                        for slot in &table.grass {
+                            if slot.species == species {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if !found {
+                            for slot in &table.water {
+                                if slot.species == species {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if found {
+                            locations.push(map_name.as_str());
+                        }
+                    }
+
+                    // Display locations
+                    let mut y_pos = area_y + 36;
+                    if locations.is_empty() {
+                        draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "No wild encounters", area_x + 8, y_pos);
+                    } else {
+                        // Show up to 8 locations
+                        for (_i, loc) in locations.iter().take(8).enumerate() {
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, loc, area_x + 8, y_pos);
+                            y_pos += 12;
+                        }
+                        if locations.len() > 8 {
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "...", area_x + 8, y_pos);
+                        }
+                    }
+
+                    // Instruction text
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press B to return", area_x + 8, area_y + area_h - 16);
                 }
             }
         }
@@ -4130,6 +4548,8 @@ fn load_map_view(
         options: GameOptions::default(),
         pokedex_seen: HashSet::new(),
         pokedex_caught: HashSet::new(),
+        player_name: "RED".to_string(),
+        rival_name: "BLUE".to_string(),
     })
 }
 
@@ -8017,6 +8437,10 @@ fn menu_nav(view: &mut MapView, delta: i32) {
                 // No navigation in data view
                 return;
             }
+            PokedexMode::Area => {
+                // No navigation in area view
+                return;
+            }
         }
     }
 
@@ -8206,6 +8630,11 @@ fn handle_b_button(view: &mut MapView) {
                 }
                 PokedexMode::Data => {
                     // B from data view returns to list
+                    menu.screen = MenuScreen::Pokedex { cursor, scroll, mode: PokedexMode::List };
+                    view.menu = Some(menu);
+                }
+                PokedexMode::Area => {
+                    // B from area view returns to list
                     menu.screen = MenuScreen::Pokedex { cursor, scroll, mode: PokedexMode::List };
                     view.menu = Some(menu);
                 }
@@ -8945,11 +9374,21 @@ fn handle_menu_a_button(
                             view.menu = Some(menu);
                         }
                         1 => {
-                            // CRY - play Pokemon cry (not implemented yet)
+                            // CRY - play Pokemon cry
+                            // Audio system doesn't support sound effects yet, show message
+                            let species = POKEDEX_SPECIES[cursor];
+                            let display_name = pokemon_display_names.get(species)
+                                .map(|s| s.as_str())
+                                .unwrap_or(species);
                             view.menu = Some(menu);
+                            open_dialog_from_lines(view, vec![
+                                format!("{} cried!", display_name),
+                                "(Sound not yet implemented)".to_string(),
+                            ]);
                         }
                         2 => {
-                            // AREA - show Pokemon habitat (not implemented yet)
+                            // AREA - show Pokemon habitat
+                            menu.screen = MenuScreen::Pokedex { cursor, scroll, mode: PokedexMode::Area };
                             view.menu = Some(menu);
                         }
                         3 => {
@@ -8964,6 +9403,10 @@ fn handle_menu_a_button(
                 }
                 PokedexMode::Data => {
                     // No action on A in data view
+                    view.menu = Some(menu);
+                }
+                PokedexMode::Area => {
+                    // No action on A in area view
                     view.menu = Some(menu);
                 }
             }
