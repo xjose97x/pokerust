@@ -1,13 +1,4854 @@
 {
-    "Rival1Data": [
+    "Youngster": [
         [
-            (level: 5, species: "SQUIRTLE"),
+            (
+                level: 11,
+                species: "RATTATA",
+            ),
+            (
+                level: 11,
+                species: "EKANS",
+            ),
         ],
         [
-            (level: 5, species: "BULBASAUR"),
+            (
+                level: 14,
+                species: "SPEAROW",
+            ),
         ],
         [
-            (level: 5, species: "CHARMANDER"),
+            (
+                level: 10,
+                species: "RATTATA",
+            ),
+            (
+                level: 10,
+                species: "RATTATA",
+            ),
+            (
+                level: 10,
+                species: "ZUBAT",
+            ),
         ],
-    ]
+        [
+            (
+                level: 14,
+                species: "RATTATA",
+            ),
+            (
+                level: 14,
+                species: "EKANS",
+            ),
+            (
+                level: 14,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 15,
+                species: "RATTATA",
+            ),
+            (
+                level: 15,
+                species: "SPEAROW",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "SLOWPOKE",
+            ),
+        ],
+        [
+            (
+                level: 14,
+                species: "EKANS",
+            ),
+            (
+                level: 14,
+                species: "SANDSHREW",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "NIDORAN_M",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "EKANS",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "SANDSHREW",
+            ),
+            (
+                level: 19,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "RATTATA",
+            ),
+            (
+                level: 17,
+                species: "RATTATA",
+            ),
+            (
+                level: 17,
+                species: "RATICATE",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "NIDORAN_M",
+            ),
+            (
+                level: 18,
+                species: "NIDORINO",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "SPEAROW",
+            ),
+            (
+                level: 17,
+                species: "RATTATA",
+            ),
+            (
+                level: 17,
+                species: "RATTATA",
+            ),
+            (
+                level: 17,
+                species: "SPEAROW",
+            ),
+        ],
+    ],
+    "BugCatcher": [
+        [
+            (
+                level: 6,
+                species: "WEEDLE",
+            ),
+            (
+                level: 6,
+                species: "CATERPIE",
+            ),
+        ],
+        [
+            (
+                level: 7,
+                species: "WEEDLE",
+            ),
+            (
+                level: 7,
+                species: "KAKUNA",
+            ),
+            (
+                level: 7,
+                species: "WEEDLE",
+            ),
+        ],
+        [
+            (
+                level: 9,
+                species: "WEEDLE",
+            ),
+        ],
+        [
+            (
+                level: 10,
+                species: "CATERPIE",
+            ),
+            (
+                level: 10,
+                species: "WEEDLE",
+            ),
+            (
+                level: 10,
+                species: "CATERPIE",
+            ),
+        ],
+        [
+            (
+                level: 9,
+                species: "WEEDLE",
+            ),
+            (
+                level: 9,
+                species: "KAKUNA",
+            ),
+            (
+                level: 9,
+                species: "CATERPIE",
+            ),
+            (
+                level: 9,
+                species: "METAPOD",
+            ),
+        ],
+        [
+            (
+                level: 11,
+                species: "CATERPIE",
+            ),
+            (
+                level: 11,
+                species: "METAPOD",
+            ),
+        ],
+        [
+            (
+                level: 11,
+                species: "WEEDLE",
+            ),
+            (
+                level: 11,
+                species: "KAKUNA",
+            ),
+        ],
+        [
+            (
+                level: 10,
+                species: "CATERPIE",
+            ),
+            (
+                level: 10,
+                species: "METAPOD",
+            ),
+            (
+                level: 10,
+                species: "CATERPIE",
+            ),
+        ],
+        [
+            (
+                level: 14,
+                species: "CATERPIE",
+            ),
+            (
+                level: 14,
+                species: "WEEDLE",
+            ),
+        ],
+        [
+            (
+                level: 16,
+                species: "WEEDLE",
+            ),
+            (
+                level: 16,
+                species: "CATERPIE",
+            ),
+            (
+                level: 16,
+                species: "WEEDLE",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "BUTTERFREE",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "METAPOD",
+            ),
+            (
+                level: 18,
+                species: "CATERPIE",
+            ),
+            (
+                level: 18,
+                species: "VENONAT",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "BEEDRILL",
+            ),
+            (
+                level: 19,
+                species: "BEEDRILL",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "CATERPIE",
+            ),
+            (
+                level: 20,
+                species: "WEEDLE",
+            ),
+            (
+                level: 20,
+                species: "VENONAT",
+            ),
+        ],
+    ],
+    "Lass": [
+        [
+            (
+                level: 9,
+                species: "PIDGEY",
+            ),
+            (
+                level: 9,
+                species: "PIDGEY",
+            ),
+        ],
+        [
+            (
+                level: 10,
+                species: "RATTATA",
+            ),
+            (
+                level: 10,
+                species: "NIDORAN_M",
+            ),
+        ],
+        [
+            (
+                level: 14,
+                species: "JIGGLYPUFF",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "PARAS",
+            ),
+            (
+                level: 31,
+                species: "PARAS",
+            ),
+            (
+                level: 31,
+                species: "PARASECT",
+            ),
+        ],
+        [
+            (
+                level: 11,
+                species: "ODDISH",
+            ),
+            (
+                level: 11,
+                species: "BELLSPROUT",
+            ),
+        ],
+        [
+            (
+                level: 14,
+                species: "CLEFAIRY",
+            ),
+        ],
+        [
+            (
+                level: 16,
+                species: "PIDGEY",
+            ),
+            (
+                level: 16,
+                species: "NIDORAN_F",
+            ),
+        ],
+        [
+            (
+                level: 14,
+                species: "PIDGEY",
+            ),
+            (
+                level: 14,
+                species: "NIDORAN_F",
+            ),
+        ],
+        [
+            (
+                level: 15,
+                species: "NIDORAN_M",
+            ),
+            (
+                level: 15,
+                species: "NIDORAN_F",
+            ),
+        ],
+        [
+            (
+                level: 13,
+                species: "ODDISH",
+            ),
+            (
+                level: 13,
+                species: "PIDGEY",
+            ),
+            (
+                level: 13,
+                species: "ODDISH",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "PIDGEY",
+            ),
+            (
+                level: 18,
+                species: "NIDORAN_F",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "RATTATA",
+            ),
+            (
+                level: 18,
+                species: "PIKACHU",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "NIDORAN_F",
+            ),
+            (
+                level: 23,
+                species: "NIDORINA",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "MEOWTH",
+            ),
+            (
+                level: 24,
+                species: "MEOWTH",
+            ),
+            (
+                level: 24,
+                species: "MEOWTH",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "PIDGEY",
+            ),
+            (
+                level: 19,
+                species: "RATTATA",
+            ),
+            (
+                level: 19,
+                species: "NIDORAN_M",
+            ),
+            (
+                level: 19,
+                species: "MEOWTH",
+            ),
+            (
+                level: 19,
+                species: "PIKACHU",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "CLEFAIRY",
+            ),
+            (
+                level: 22,
+                species: "CLEFAIRY",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 23,
+                species: "WEEPINBELL",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "ODDISH",
+            ),
+            (
+                level: 23,
+                species: "GLOOM",
+            ),
+        ],
+    ],
+    "Sailor": [
+        [
+            (
+                level: 18,
+                species: "MACHOP",
+            ),
+            (
+                level: 18,
+                species: "SHELLDER",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "MACHOP",
+            ),
+            (
+                level: 17,
+                species: "TENTACOOL",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "SHELLDER",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "HORSEA",
+            ),
+            (
+                level: 17,
+                species: "SHELLDER",
+            ),
+            (
+                level: 17,
+                species: "TENTACOOL",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 18,
+                species: "STARYU",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "HORSEA",
+            ),
+            (
+                level: 17,
+                species: "HORSEA",
+            ),
+            (
+                level: 17,
+                species: "HORSEA",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "MACHOP",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "PIKACHU",
+            ),
+            (
+                level: 21,
+                species: "PIKACHU",
+            ),
+        ],
+    ],
+    "JrTrainerM": [
+        [
+            (
+                level: 11,
+                species: "DIGLETT",
+            ),
+            (
+                level: 11,
+                species: "SANDSHREW",
+            ),
+        ],
+        [
+            (
+                level: 14,
+                species: "RATTATA",
+            ),
+            (
+                level: 14,
+                species: "EKANS",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "MANKEY",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "SQUIRTLE",
+            ),
+        ],
+        [
+            (
+                level: 16,
+                species: "SPEAROW",
+            ),
+            (
+                level: 16,
+                species: "RATICATE",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "DIGLETT",
+            ),
+            (
+                level: 18,
+                species: "DIGLETT",
+            ),
+            (
+                level: 18,
+                species: "SANDSHREW",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 21,
+                species: "CHARMANDER",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "RATTATA",
+            ),
+            (
+                level: 19,
+                species: "DIGLETT",
+            ),
+            (
+                level: 19,
+                species: "EKANS",
+            ),
+            (
+                level: 19,
+                species: "SANDSHREW",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "NIDORAN_M",
+            ),
+            (
+                level: 29,
+                species: "NIDORINO",
+            ),
+        ],
+    ],
+    "JrTrainerF": [
+        [
+            (
+                level: 19,
+                species: "GOLDEEN",
+            ),
+        ],
+        [
+            (
+                level: 16,
+                species: "RATTATA",
+            ),
+            (
+                level: 16,
+                species: "PIKACHU",
+            ),
+        ],
+        [
+            (
+                level: 16,
+                species: "PIDGEY",
+            ),
+            (
+                level: 16,
+                species: "PIDGEY",
+            ),
+            (
+                level: 16,
+                species: "PIDGEY",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "BULBASAUR",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "ODDISH",
+            ),
+            (
+                level: 18,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 18,
+                species: "ODDISH",
+            ),
+            (
+                level: 18,
+                species: "BELLSPROUT",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "MEOWTH",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "PIKACHU",
+            ),
+            (
+                level: 20,
+                species: "CLEFAIRY",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "PIDGEY",
+            ),
+            (
+                level: 21,
+                species: "PIDGEOTTO",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "JIGGLYPUFF",
+            ),
+            (
+                level: 21,
+                species: "PIDGEY",
+            ),
+            (
+                level: 21,
+                species: "MEOWTH",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "ODDISH",
+            ),
+            (
+                level: 22,
+                species: "BULBASAUR",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "BULBASAUR",
+            ),
+            (
+                level: 24,
+                species: "IVYSAUR",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "PIDGEY",
+            ),
+            (
+                level: 24,
+                species: "MEOWTH",
+            ),
+            (
+                level: 24,
+                species: "RATTATA",
+            ),
+            (
+                level: 24,
+                species: "PIKACHU",
+            ),
+            (
+                level: 24,
+                species: "MEOWTH",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "POLIWAG",
+            ),
+            (
+                level: 30,
+                species: "POLIWAG",
+            ),
+        ],
+        [
+            (
+                level: 27,
+                species: "PIDGEY",
+            ),
+            (
+                level: 27,
+                species: "MEOWTH",
+            ),
+            (
+                level: 27,
+                species: "PIDGEY",
+            ),
+            (
+                level: 27,
+                species: "PIDGEOTTO",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 28,
+                species: "POLIWAG",
+            ),
+            (
+                level: 28,
+                species: "HORSEA",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 31,
+                species: "SEAKING",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 22,
+                species: "CLEFAIRY",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "MEOWTH",
+            ),
+            (
+                level: 20,
+                species: "ODDISH",
+            ),
+            (
+                level: 20,
+                species: "PIDGEY",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "PIDGEY",
+            ),
+            (
+                level: 19,
+                species: "RATTATA",
+            ),
+            (
+                level: 19,
+                species: "RATTATA",
+            ),
+            (
+                level: 19,
+                species: "BELLSPROUT",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "GLOOM",
+            ),
+            (
+                level: 28,
+                species: "ODDISH",
+            ),
+            (
+                level: 28,
+                species: "ODDISH",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "PIKACHU",
+            ),
+            (
+                level: 29,
+                species: "RAICHU",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "CLEFAIRY",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 29,
+                species: "ODDISH",
+            ),
+            (
+                level: 29,
+                species: "TANGELA",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 30,
+                species: "HORSEA",
+            ),
+            (
+                level: 30,
+                species: "SEEL",
+            ),
+        ],
+    ],
+    "Pokemaniac": [
+        [
+            (
+                level: 30,
+                species: "RHYHORN",
+            ),
+            (
+                level: 30,
+                species: "LICKITUNG",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "CUBONE",
+            ),
+            (
+                level: 20,
+                species: "SLOWPOKE",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "SLOWPOKE",
+            ),
+            (
+                level: 20,
+                species: "SLOWPOKE",
+            ),
+            (
+                level: 20,
+                species: "SLOWPOKE",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "CHARMANDER",
+            ),
+            (
+                level: 22,
+                species: "CUBONE",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "SLOWPOKE",
+            ),
+        ],
+        [
+            (
+                level: 40,
+                species: "CHARMELEON",
+            ),
+            (
+                level: 40,
+                species: "LAPRAS",
+            ),
+            (
+                level: 40,
+                species: "LICKITUNG",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "CUBONE",
+            ),
+            (
+                level: 23,
+                species: "SLOWPOKE",
+            ),
+        ],
+    ],
+    "SuperNerd": [
+        [
+            (
+                level: 11,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 11,
+                species: "VOLTORB",
+            ),
+        ],
+        [
+            (
+                level: 12,
+                species: "GRIMER",
+            ),
+            (
+                level: 12,
+                species: "VOLTORB",
+            ),
+            (
+                level: 12,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "VOLTORB",
+            ),
+            (
+                level: 20,
+                species: "KOFFING",
+            ),
+            (
+                level: 20,
+                species: "VOLTORB",
+            ),
+            (
+                level: 20,
+                species: "MAGNEMITE",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "GRIMER",
+            ),
+            (
+                level: 22,
+                species: "MUK",
+            ),
+            (
+                level: 22,
+                species: "GRIMER",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "KOFFING",
+            ),
+            (
+                level: 22,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 22,
+                species: "WEEZING",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 20,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 20,
+                species: "KOFFING",
+            ),
+            (
+                level: 20,
+                species: "MAGNEMITE",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 24,
+                species: "VOLTORB",
+            ),
+        ],
+        [
+            (
+                level: 36,
+                species: "VULPIX",
+            ),
+            (
+                level: 36,
+                species: "VULPIX",
+            ),
+            (
+                level: 36,
+                species: "NINETALES",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "PONYTA",
+            ),
+            (
+                level: 34,
+                species: "CHARMANDER",
+            ),
+            (
+                level: 34,
+                species: "VULPIX",
+            ),
+            (
+                level: 34,
+                species: "GROWLITHE",
+            ),
+        ],
+        [
+            (
+                level: 41,
+                species: "RAPIDASH",
+            ),
+        ],
+        [
+            (
+                level: 37,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 37,
+                species: "VULPIX",
+            ),
+        ],
+    ],
+    "Hiker": [
+        [
+            (
+                level: 10,
+                species: "GEODUDE",
+            ),
+            (
+                level: 10,
+                species: "GEODUDE",
+            ),
+            (
+                level: 10,
+                species: "ONIX",
+            ),
+        ],
+        [
+            (
+                level: 15,
+                species: "MACHOP",
+            ),
+            (
+                level: 15,
+                species: "GEODUDE",
+            ),
+        ],
+        [
+            (
+                level: 13,
+                species: "GEODUDE",
+            ),
+            (
+                level: 13,
+                species: "GEODUDE",
+            ),
+            (
+                level: 13,
+                species: "MACHOP",
+            ),
+            (
+                level: 13,
+                species: "GEODUDE",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "ONIX",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "GEODUDE",
+            ),
+            (
+                level: 21,
+                species: "ONIX",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "GEODUDE",
+            ),
+            (
+                level: 20,
+                species: "MACHOP",
+            ),
+            (
+                level: 20,
+                species: "GEODUDE",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "GEODUDE",
+            ),
+            (
+                level: 21,
+                species: "ONIX",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "ONIX",
+            ),
+            (
+                level: 19,
+                species: "GRAVELER",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "GEODUDE",
+            ),
+            (
+                level: 21,
+                species: "GEODUDE",
+            ),
+            (
+                level: 21,
+                species: "GRAVELER",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "GEODUDE",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "MACHOP",
+            ),
+            (
+                level: 20,
+                species: "ONIX",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "GEODUDE",
+            ),
+            (
+                level: 19,
+                species: "MACHOP",
+            ),
+            (
+                level: 19,
+                species: "GEODUDE",
+            ),
+            (
+                level: 19,
+                species: "GEODUDE",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "ONIX",
+            ),
+            (
+                level: 20,
+                species: "ONIX",
+            ),
+            (
+                level: 20,
+                species: "GEODUDE",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "GEODUDE",
+            ),
+            (
+                level: 21,
+                species: "GRAVELER",
+            ),
+        ],
+    ],
+    "Biker": [
+        [
+            (
+                level: 28,
+                species: "KOFFING",
+            ),
+            (
+                level: 28,
+                species: "KOFFING",
+            ),
+            (
+                level: 28,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "KOFFING",
+            ),
+            (
+                level: 29,
+                species: "GRIMER",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "KOFFING",
+            ),
+            (
+                level: 25,
+                species: "KOFFING",
+            ),
+            (
+                level: 25,
+                species: "WEEZING",
+            ),
+            (
+                level: 25,
+                species: "KOFFING",
+            ),
+            (
+                level: 25,
+                species: "GRIMER",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "KOFFING",
+            ),
+            (
+                level: 28,
+                species: "GRIMER",
+            ),
+            (
+                level: 28,
+                species: "WEEZING",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "GRIMER",
+            ),
+            (
+                level: 29,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "WEEZING",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "GRIMER",
+            ),
+            (
+                level: 26,
+                species: "GRIMER",
+            ),
+            (
+                level: 26,
+                species: "GRIMER",
+            ),
+            (
+                level: 26,
+                species: "GRIMER",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "WEEZING",
+            ),
+            (
+                level: 28,
+                species: "KOFFING",
+            ),
+            (
+                level: 28,
+                species: "WEEZING",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "MUK",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "VOLTORB",
+            ),
+            (
+                level: 29,
+                species: "VOLTORB",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "WEEZING",
+            ),
+            (
+                level: 29,
+                species: "MUK",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "KOFFING",
+            ),
+            (
+                level: 25,
+                species: "WEEZING",
+            ),
+            (
+                level: 25,
+                species: "KOFFING",
+            ),
+            (
+                level: 25,
+                species: "KOFFING",
+            ),
+            (
+                level: 25,
+                species: "WEEZING",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+            (
+                level: 26,
+                species: "GRIMER",
+            ),
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "GRIMER",
+            ),
+            (
+                level: 28,
+                species: "GRIMER",
+            ),
+            (
+                level: 28,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "KOFFING",
+            ),
+            (
+                level: 29,
+                species: "MUK",
+            ),
+        ],
+    ],
+    "Burglar": [
+        [
+            (
+                level: 29,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 29,
+                species: "VULPIX",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "GROWLITHE",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "VULPIX",
+            ),
+            (
+                level: 28,
+                species: "CHARMANDER",
+            ),
+            (
+                level: 28,
+                species: "PONYTA",
+            ),
+        ],
+        [
+            (
+                level: 36,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 36,
+                species: "VULPIX",
+            ),
+            (
+                level: 36,
+                species: "NINETALES",
+            ),
+        ],
+        [
+            (
+                level: 41,
+                species: "PONYTA",
+            ),
+        ],
+        [
+            (
+                level: 37,
+                species: "VULPIX",
+            ),
+            (
+                level: 37,
+                species: "GROWLITHE",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "CHARMANDER",
+            ),
+            (
+                level: 34,
+                species: "CHARMELEON",
+            ),
+        ],
+        [
+            (
+                level: 38,
+                species: "NINETALES",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 34,
+                species: "PONYTA",
+            ),
+        ],
+    ],
+    "Engineer": [
+        [
+            (
+                level: 21,
+                species: "VOLTORB",
+            ),
+            (
+                level: 21,
+                species: "MAGNEMITE",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "MAGNEMITE",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 18,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 18,
+                species: "MAGNETON",
+            ),
+        ],
+    ],
+    "UnusedJuggler": [
+    ],
+    "Fisher": [
+        [
+            (
+                level: 17,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 17,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 17,
+                species: "GOLDEEN",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 17,
+                species: "STARYU",
+            ),
+            (
+                level: 17,
+                species: "SHELLDER",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 22,
+                species: "POLIWAG",
+            ),
+            (
+                level: 22,
+                species: "GOLDEEN",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 24,
+                species: "GOLDEEN",
+            ),
+        ],
+        [
+            (
+                level: 27,
+                species: "GOLDEEN",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "POLIWAG",
+            ),
+            (
+                level: 21,
+                species: "SHELLDER",
+            ),
+            (
+                level: 21,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 21,
+                species: "HORSEA",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "SEAKING",
+            ),
+            (
+                level: 28,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 28,
+                species: "SEAKING",
+            ),
+            (
+                level: 28,
+                species: "SEAKING",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "SHELLDER",
+            ),
+            (
+                level: 31,
+                species: "CLOYSTER",
+            ),
+        ],
+        [
+            (
+                level: 27,
+                species: "MAGIKARP",
+            ),
+            (
+                level: 27,
+                species: "MAGIKARP",
+            ),
+            (
+                level: 27,
+                species: "MAGIKARP",
+            ),
+            (
+                level: 27,
+                species: "MAGIKARP",
+            ),
+            (
+                level: 27,
+                species: "MAGIKARP",
+            ),
+            (
+                level: 27,
+                species: "MAGIKARP",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "SEAKING",
+            ),
+            (
+                level: 33,
+                species: "GOLDEEN",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "MAGIKARP",
+            ),
+            (
+                level: 24,
+                species: "MAGIKARP",
+            ),
+        ],
+    ],
+    "Swimmer": [
+        [
+            (
+                level: 16,
+                species: "HORSEA",
+            ),
+            (
+                level: 16,
+                species: "SHELLDER",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 30,
+                species: "SHELLDER",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 29,
+                species: "HORSEA",
+            ),
+            (
+                level: 29,
+                species: "STARYU",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "POLIWAG",
+            ),
+            (
+                level: 30,
+                species: "POLIWHIRL",
+            ),
+        ],
+        [
+            (
+                level: 27,
+                species: "HORSEA",
+            ),
+            (
+                level: 27,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 27,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 27,
+                species: "GOLDEEN",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 29,
+                species: "SHELLDER",
+            ),
+            (
+                level: 29,
+                species: "SEAKING",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "HORSEA",
+            ),
+            (
+                level: 30,
+                species: "HORSEA",
+            ),
+        ],
+        [
+            (
+                level: 27,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 27,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 27,
+                species: "STARYU",
+            ),
+            (
+                level: 27,
+                species: "HORSEA",
+            ),
+            (
+                level: 27,
+                species: "TENTACRUEL",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "SHELLDER",
+            ),
+            (
+                level: 31,
+                species: "CLOYSTER",
+            ),
+        ],
+        [
+            (
+                level: 35,
+                species: "STARYU",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "HORSEA",
+            ),
+            (
+                level: 28,
+                species: "HORSEA",
+            ),
+            (
+                level: 28,
+                species: "SEADRA",
+            ),
+            (
+                level: 28,
+                species: "HORSEA",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "SEADRA",
+            ),
+            (
+                level: 33,
+                species: "TENTACRUEL",
+            ),
+        ],
+        [
+            (
+                level: 37,
+                species: "STARMIE",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "STARYU",
+            ),
+            (
+                level: 33,
+                species: "WARTORTLE",
+            ),
+        ],
+        [
+            (
+                level: 32,
+                species: "POLIWHIRL",
+            ),
+            (
+                level: 32,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 32,
+                species: "SEADRA",
+            ),
+        ],
+    ],
+    "CueBall": [
+        [
+            (
+                level: 28,
+                species: "MACHOP",
+            ),
+            (
+                level: 28,
+                species: "MANKEY",
+            ),
+            (
+                level: 28,
+                species: "MACHOP",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "MANKEY",
+            ),
+            (
+                level: 29,
+                species: "MACHOP",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "MACHOP",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "MANKEY",
+            ),
+            (
+                level: 29,
+                species: "PRIMEAPE",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "MACHOP",
+            ),
+            (
+                level: 29,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "MANKEY",
+            ),
+            (
+                level: 26,
+                species: "MANKEY",
+            ),
+            (
+                level: 26,
+                species: "MACHOKE",
+            ),
+            (
+                level: 26,
+                species: "MACHOP",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "PRIMEAPE",
+            ),
+            (
+                level: 29,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 31,
+                species: "TENTACOOL",
+            ),
+            (
+                level: 31,
+                species: "TENTACRUEL",
+            ),
+        ],
+    ],
+    "Gambler": [
+        [
+            (
+                level: 18,
+                species: "POLIWAG",
+            ),
+            (
+                level: 18,
+                species: "HORSEA",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 18,
+                species: "ODDISH",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "VOLTORB",
+            ),
+            (
+                level: 18,
+                species: "MAGNEMITE",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 18,
+                species: "VULPIX",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "POLIWAG",
+            ),
+            (
+                level: 22,
+                species: "POLIWAG",
+            ),
+            (
+                level: 22,
+                species: "POLIWHIRL",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "ONIX",
+            ),
+            (
+                level: 22,
+                species: "GEODUDE",
+            ),
+            (
+                level: 22,
+                species: "GRAVELER",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 24,
+                species: "VULPIX",
+            ),
+        ],
+    ],
+    "Beauty": [
+        [
+            (
+                level: 21,
+                species: "ODDISH",
+            ),
+            (
+                level: 21,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 21,
+                species: "ODDISH",
+            ),
+            (
+                level: 21,
+                species: "BELLSPROUT",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 24,
+                species: "BELLSPROUT",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "EXEGGCUTE",
+            ),
+        ],
+        [
+            (
+                level: 27,
+                species: "RATTATA",
+            ),
+            (
+                level: 27,
+                species: "PIKACHU",
+            ),
+            (
+                level: 27,
+                species: "RATTATA",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "CLEFAIRY",
+            ),
+            (
+                level: 29,
+                species: "MEOWTH",
+            ),
+        ],
+        [
+            (
+                level: 35,
+                species: "SEAKING",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "SHELLDER",
+            ),
+            (
+                level: 30,
+                species: "SHELLDER",
+            ),
+            (
+                level: 30,
+                species: "CLOYSTER",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "POLIWAG",
+            ),
+            (
+                level: 31,
+                species: "SEAKING",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 29,
+                species: "WIGGLYTUFF",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "BULBASAUR",
+            ),
+            (
+                level: 29,
+                species: "IVYSAUR",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "WEEPINBELL",
+            ),
+            (
+                level: 33,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 33,
+                species: "WEEPINBELL",
+            ),
+        ],
+        [
+            (
+                level: 27,
+                species: "POLIWAG",
+            ),
+            (
+                level: 27,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 27,
+                species: "SEAKING",
+            ),
+            (
+                level: 27,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 27,
+                species: "POLIWAG",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "GOLDEEN",
+            ),
+            (
+                level: 30,
+                species: "SEAKING",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "STARYU",
+            ),
+            (
+                level: 29,
+                species: "STARYU",
+            ),
+            (
+                level: 29,
+                species: "STARYU",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "SEADRA",
+            ),
+            (
+                level: 30,
+                species: "HORSEA",
+            ),
+            (
+                level: 30,
+                species: "SEADRA",
+            ),
+        ],
+    ],
+    "Psychic": [
+        [
+            (
+                level: 31,
+                species: "KADABRA",
+            ),
+            (
+                level: 31,
+                species: "SLOWPOKE",
+            ),
+            (
+                level: 31,
+                species: "MR_MIME",
+            ),
+            (
+                level: 31,
+                species: "KADABRA",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "MR_MIME",
+            ),
+            (
+                level: 34,
+                species: "KADABRA",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "SLOWPOKE",
+            ),
+            (
+                level: 33,
+                species: "SLOWPOKE",
+            ),
+            (
+                level: 33,
+                species: "SLOWBRO",
+            ),
+        ],
+        [
+            (
+                level: 38,
+                species: "SLOWBRO",
+            ),
+        ],
+    ],
+    "Rocker": [
+        [
+            (
+                level: 20,
+                species: "VOLTORB",
+            ),
+            (
+                level: 20,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 20,
+                species: "VOLTORB",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "VOLTORB",
+            ),
+            (
+                level: 29,
+                species: "ELECTRODE",
+            ),
+        ],
+    ],
+    "Juggler": [
+        [
+            (
+                level: 29,
+                species: "KADABRA",
+            ),
+            (
+                level: 29,
+                species: "MR_MIME",
+            ),
+        ],
+        [
+            (
+                level: 41,
+                species: "DROWZEE",
+            ),
+            (
+                level: 41,
+                species: "HYPNO",
+            ),
+            (
+                level: 41,
+                species: "KADABRA",
+            ),
+            (
+                level: 41,
+                species: "KADABRA",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "DROWZEE",
+            ),
+            (
+                level: 31,
+                species: "DROWZEE",
+            ),
+            (
+                level: 31,
+                species: "KADABRA",
+            ),
+            (
+                level: 31,
+                species: "DROWZEE",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "DROWZEE",
+            ),
+            (
+                level: 34,
+                species: "HYPNO",
+            ),
+        ],
+        [
+            (
+                level: 48,
+                species: "MR_MIME",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "HYPNO",
+            ),
+        ],
+        [
+            (
+                level: 38,
+                species: "HYPNO",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "DROWZEE",
+            ),
+            (
+                level: 34,
+                species: "KADABRA",
+            ),
+        ],
+    ],
+    "Tamer": [
+        [
+            (
+                level: 34,
+                species: "SANDSLASH",
+            ),
+            (
+                level: 34,
+                species: "ARBOK",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "ARBOK",
+            ),
+            (
+                level: 33,
+                species: "SANDSLASH",
+            ),
+            (
+                level: 33,
+                species: "ARBOK",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "RHYHORN",
+            ),
+        ],
+        [
+            (
+                level: 39,
+                species: "ARBOK",
+            ),
+            (
+                level: 39,
+                species: "TAUROS",
+            ),
+        ],
+        [
+            (
+                level: 44,
+                species: "PERSIAN",
+            ),
+            (
+                level: 44,
+                species: "GOLDUCK",
+            ),
+        ],
+        [
+            (
+                level: 42,
+                species: "RHYHORN",
+            ),
+            (
+                level: 42,
+                species: "PRIMEAPE",
+            ),
+            (
+                level: 42,
+                species: "ARBOK",
+            ),
+            (
+                level: 42,
+                species: "TAUROS",
+            ),
+        ],
+    ],
+    "BirdKeeper": [
+        [
+            (
+                level: 29,
+                species: "PIDGEY",
+            ),
+            (
+                level: 29,
+                species: "PIDGEOTTO",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "SPEAROW",
+            ),
+            (
+                level: 25,
+                species: "PIDGEY",
+            ),
+            (
+                level: 25,
+                species: "PIDGEY",
+            ),
+            (
+                level: 25,
+                species: "SPEAROW",
+            ),
+            (
+                level: 25,
+                species: "SPEAROW",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "PIDGEY",
+            ),
+            (
+                level: 26,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 26,
+                species: "SPEAROW",
+            ),
+            (
+                level: 26,
+                species: "FEAROW",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "FARFETCHD",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "SPEAROW",
+            ),
+            (
+                level: 29,
+                species: "FEAROW",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 26,
+                species: "FARFETCHD",
+            ),
+            (
+                level: 26,
+                species: "DODUO",
+            ),
+            (
+                level: 26,
+                species: "PIDGEY",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "DODRIO",
+            ),
+            (
+                level: 28,
+                species: "DODUO",
+            ),
+            (
+                level: 28,
+                species: "DODUO",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "SPEAROW",
+            ),
+            (
+                level: 29,
+                species: "FEAROW",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "DODRIO",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "SPEAROW",
+            ),
+            (
+                level: 26,
+                species: "SPEAROW",
+            ),
+            (
+                level: 26,
+                species: "FEAROW",
+            ),
+            (
+                level: 26,
+                species: "SPEAROW",
+            ),
+        ],
+        [
+            (
+                level: 30,
+                species: "FEAROW",
+            ),
+            (
+                level: 30,
+                species: "FEAROW",
+            ),
+            (
+                level: 30,
+                species: "PIDGEOTTO",
+            ),
+        ],
+        [
+            (
+                level: 39,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 39,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 39,
+                species: "PIDGEY",
+            ),
+            (
+                level: 39,
+                species: "PIDGEOTTO",
+            ),
+        ],
+        [
+            (
+                level: 42,
+                species: "FARFETCHD",
+            ),
+            (
+                level: 42,
+                species: "FEAROW",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "PIDGEY",
+            ),
+            (
+                level: 28,
+                species: "DODUO",
+            ),
+            (
+                level: 28,
+                species: "PIDGEOTTO",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "PIDGEY",
+            ),
+            (
+                level: 26,
+                species: "SPEAROW",
+            ),
+            (
+                level: 26,
+                species: "PIDGEY",
+            ),
+            (
+                level: 26,
+                species: "FEAROW",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 29,
+                species: "FEAROW",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "SPEAROW",
+            ),
+            (
+                level: 28,
+                species: "DODUO",
+            ),
+            (
+                level: 28,
+                species: "FEAROW",
+            ),
+        ],
+    ],
+    "Blackbelt": [
+        [
+            (
+                level: 37,
+                species: "HITMONLEE",
+            ),
+            (
+                level: 37,
+                species: "HITMONCHAN",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "MANKEY",
+            ),
+            (
+                level: 31,
+                species: "MANKEY",
+            ),
+            (
+                level: 31,
+                species: "PRIMEAPE",
+            ),
+        ],
+        [
+            (
+                level: 32,
+                species: "MACHOP",
+            ),
+            (
+                level: 32,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 36,
+                species: "PRIMEAPE",
+            ),
+        ],
+        [
+            (
+                level: 31,
+                species: "MACHOP",
+            ),
+            (
+                level: 31,
+                species: "MANKEY",
+            ),
+            (
+                level: 31,
+                species: "PRIMEAPE",
+            ),
+        ],
+        [
+            (
+                level: 40,
+                species: "MACHOP",
+            ),
+            (
+                level: 40,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 38,
+                species: "MACHOKE",
+            ),
+            (
+                level: 38,
+                species: "MACHOP",
+            ),
+            (
+                level: 38,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "MACHOKE",
+            ),
+            (
+                level: 43,
+                species: "MACHOP",
+            ),
+            (
+                level: 43,
+                species: "MACHOKE",
+            ),
+        ],
+    ],
+    "Rival1": [
+        [
+            (
+                level: 5,
+                species: "SQUIRTLE",
+            ),
+        ],
+        [
+            (
+                level: 5,
+                species: "BULBASAUR",
+            ),
+        ],
+        [
+            (
+                level: 5,
+                species: "CHARMANDER",
+            ),
+        ],
+        [
+            (
+                level: 9,
+                species: "PIDGEY",
+            ),
+            (
+                level: 8,
+                species: "SQUIRTLE",
+            ),
+        ],
+        [
+            (
+                level: 9,
+                species: "PIDGEY",
+            ),
+            (
+                level: 8,
+                species: "BULBASAUR",
+            ),
+        ],
+        [
+            (
+                level: 9,
+                species: "PIDGEY",
+            ),
+            (
+                level: 8,
+                species: "CHARMANDER",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 15,
+                species: "ABRA",
+            ),
+            (
+                level: 15,
+                species: "RATTATA",
+            ),
+            (
+                level: 17,
+                species: "SQUIRTLE",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 15,
+                species: "ABRA",
+            ),
+            (
+                level: 15,
+                species: "RATTATA",
+            ),
+            (
+                level: 17,
+                species: "BULBASAUR",
+            ),
+        ],
+        [
+            (
+                level: 18,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 15,
+                species: "ABRA",
+            ),
+            (
+                level: 15,
+                species: "RATTATA",
+            ),
+            (
+                level: 17,
+                species: "CHARMANDER",
+            ),
+        ],
+    ],
+    "ProfOak": [
+        [
+            (
+                level: 66,
+                species: "TAUROS",
+            ),
+            (
+                level: 67,
+                species: "EXEGGUTOR",
+            ),
+            (
+                level: 68,
+                species: "ARCANINE",
+            ),
+            (
+                level: 69,
+                species: "BLASTOISE",
+            ),
+            (
+                level: 70,
+                species: "GYARADOS",
+            ),
+        ],
+        [
+            (
+                level: 66,
+                species: "TAUROS",
+            ),
+            (
+                level: 67,
+                species: "EXEGGUTOR",
+            ),
+            (
+                level: 68,
+                species: "ARCANINE",
+            ),
+            (
+                level: 69,
+                species: "VENUSAUR",
+            ),
+            (
+                level: 70,
+                species: "GYARADOS",
+            ),
+        ],
+        [
+            (
+                level: 66,
+                species: "TAUROS",
+            ),
+            (
+                level: 67,
+                species: "EXEGGUTOR",
+            ),
+            (
+                level: 68,
+                species: "ARCANINE",
+            ),
+            (
+                level: 69,
+                species: "CHARIZARD",
+            ),
+            (
+                level: 70,
+                species: "GYARADOS",
+            ),
+        ],
+    ],
+    "Chief": [
+    ],
+    "Scientist": [
+        [
+            (
+                level: 34,
+                species: "KOFFING",
+            ),
+            (
+                level: 34,
+                species: "VOLTORB",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "GRIMER",
+            ),
+            (
+                level: 26,
+                species: "WEEZING",
+            ),
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+            (
+                level: 26,
+                species: "WEEZING",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 28,
+                species: "VOLTORB",
+            ),
+            (
+                level: 28,
+                species: "MAGNETON",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "ELECTRODE",
+            ),
+            (
+                level: 29,
+                species: "WEEZING",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "ELECTRODE",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "MAGNETON",
+            ),
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+            (
+                level: 26,
+                species: "WEEZING",
+            ),
+            (
+                level: 26,
+                species: "MAGNEMITE",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "VOLTORB",
+            ),
+            (
+                level: 25,
+                species: "KOFFING",
+            ),
+            (
+                level: 25,
+                species: "MAGNETON",
+            ),
+            (
+                level: 25,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 25,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "ELECTRODE",
+            ),
+            (
+                level: 29,
+                species: "MUK",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "GRIMER",
+            ),
+            (
+                level: 29,
+                species: "ELECTRODE",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "VOLTORB",
+            ),
+            (
+                level: 28,
+                species: "KOFFING",
+            ),
+            (
+                level: 28,
+                species: "MAGNETON",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 29,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 33,
+                species: "MAGNETON",
+            ),
+            (
+                level: 33,
+                species: "VOLTORB",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "MAGNEMITE",
+            ),
+            (
+                level: 34,
+                species: "ELECTRODE",
+            ),
+        ],
+    ],
+    "Giovanni": [
+        [
+            (
+                level: 25,
+                species: "ONIX",
+            ),
+            (
+                level: 24,
+                species: "RHYHORN",
+            ),
+            (
+                level: 29,
+                species: "KANGASKHAN",
+            ),
+        ],
+        [
+            (
+                level: 37,
+                species: "NIDORINO",
+            ),
+            (
+                level: 35,
+                species: "KANGASKHAN",
+            ),
+            (
+                level: 37,
+                species: "RHYHORN",
+            ),
+            (
+                level: 41,
+                species: "NIDOQUEEN",
+            ),
+        ],
+        [
+            (
+                level: 45,
+                species: "RHYHORN",
+            ),
+            (
+                level: 42,
+                species: "DUGTRIO",
+            ),
+            (
+                level: 44,
+                species: "NIDOQUEEN",
+            ),
+            (
+                level: 45,
+                species: "NIDOKING",
+            ),
+            (
+                level: 50,
+                species: "RHYDON",
+            ),
+        ],
+    ],
+    "Rocket": [
+        [
+            (
+                level: 13,
+                species: "RATTATA",
+            ),
+            (
+                level: 13,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 11,
+                species: "SANDSHREW",
+            ),
+            (
+                level: 11,
+                species: "RATTATA",
+            ),
+            (
+                level: 11,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 12,
+                species: "ZUBAT",
+            ),
+            (
+                level: 12,
+                species: "EKANS",
+            ),
+        ],
+        [
+            (
+                level: 16,
+                species: "RATICATE",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "MACHOP",
+            ),
+            (
+                level: 17,
+                species: "DROWZEE",
+            ),
+        ],
+        [
+            (
+                level: 15,
+                species: "EKANS",
+            ),
+            (
+                level: 15,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "RATICATE",
+            ),
+            (
+                level: 20,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "DROWZEE",
+            ),
+            (
+                level: 21,
+                species: "MACHOP",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "RATICATE",
+            ),
+            (
+                level: 21,
+                species: "RATICATE",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "GRIMER",
+            ),
+            (
+                level: 20,
+                species: "KOFFING",
+            ),
+            (
+                level: 20,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "RATTATA",
+            ),
+            (
+                level: 19,
+                species: "RATICATE",
+            ),
+            (
+                level: 19,
+                species: "RATICATE",
+            ),
+            (
+                level: 19,
+                species: "RATTATA",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "GRIMER",
+            ),
+            (
+                level: 22,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "ZUBAT",
+            ),
+            (
+                level: 17,
+                species: "KOFFING",
+            ),
+            (
+                level: 17,
+                species: "GRIMER",
+            ),
+            (
+                level: 17,
+                species: "ZUBAT",
+            ),
+            (
+                level: 17,
+                species: "RATICATE",
+            ),
+        ],
+        [
+            (
+                level: 20,
+                species: "RATTATA",
+            ),
+            (
+                level: 20,
+                species: "RATICATE",
+            ),
+            (
+                level: 20,
+                species: "DROWZEE",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "MACHOP",
+            ),
+            (
+                level: 21,
+                species: "MACHOP",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "SANDSHREW",
+            ),
+            (
+                level: 23,
+                species: "EKANS",
+            ),
+            (
+                level: 23,
+                species: "SANDSLASH",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "EKANS",
+            ),
+            (
+                level: 23,
+                species: "SANDSHREW",
+            ),
+            (
+                level: 23,
+                species: "ARBOK",
+            ),
+        ],
+        [
+            (
+                level: 21,
+                species: "KOFFING",
+            ),
+            (
+                level: 21,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "ZUBAT",
+            ),
+            (
+                level: 25,
+                species: "ZUBAT",
+            ),
+            (
+                level: 25,
+                species: "GOLBAT",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+            (
+                level: 26,
+                species: "DROWZEE",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "ZUBAT",
+            ),
+            (
+                level: 23,
+                species: "RATTATA",
+            ),
+            (
+                level: 23,
+                species: "RATICATE",
+            ),
+            (
+                level: 23,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "DROWZEE",
+            ),
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "CUBONE",
+            ),
+            (
+                level: 29,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "GOLBAT",
+            ),
+            (
+                level: 25,
+                species: "ZUBAT",
+            ),
+            (
+                level: 25,
+                species: "ZUBAT",
+            ),
+            (
+                level: 25,
+                species: "RATICATE",
+            ),
+            (
+                level: 25,
+                species: "ZUBAT",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "RATICATE",
+            ),
+            (
+                level: 28,
+                species: "HYPNO",
+            ),
+            (
+                level: 28,
+                species: "RATICATE",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "MACHOP",
+            ),
+            (
+                level: 29,
+                species: "DROWZEE",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "EKANS",
+            ),
+            (
+                level: 28,
+                species: "ZUBAT",
+            ),
+            (
+                level: 28,
+                species: "CUBONE",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "ARBOK",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "HYPNO",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "MACHOP",
+            ),
+            (
+                level: 29,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "ZUBAT",
+            ),
+            (
+                level: 28,
+                species: "ZUBAT",
+            ),
+            (
+                level: 28,
+                species: "GOLBAT",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "RATICATE",
+            ),
+            (
+                level: 26,
+                species: "ARBOK",
+            ),
+            (
+                level: 26,
+                species: "KOFFING",
+            ),
+            (
+                level: 26,
+                species: "GOLBAT",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "CUBONE",
+            ),
+            (
+                level: 29,
+                species: "CUBONE",
+            ),
+        ],
+        [
+            (
+                level: 29,
+                species: "SANDSHREW",
+            ),
+            (
+                level: 29,
+                species: "SANDSLASH",
+            ),
+        ],
+        [
+            (
+                level: 26,
+                species: "RATICATE",
+            ),
+            (
+                level: 26,
+                species: "ZUBAT",
+            ),
+            (
+                level: 26,
+                species: "GOLBAT",
+            ),
+            (
+                level: 26,
+                species: "RATTATA",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "WEEZING",
+            ),
+            (
+                level: 28,
+                species: "GOLBAT",
+            ),
+            (
+                level: 28,
+                species: "KOFFING",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "DROWZEE",
+            ),
+            (
+                level: 28,
+                species: "GRIMER",
+            ),
+            (
+                level: 28,
+                species: "MACHOP",
+            ),
+        ],
+        [
+            (
+                level: 28,
+                species: "GOLBAT",
+            ),
+            (
+                level: 28,
+                species: "DROWZEE",
+            ),
+            (
+                level: 28,
+                species: "HYPNO",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "MACHOKE",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "RATTATA",
+            ),
+            (
+                level: 25,
+                species: "RATTATA",
+            ),
+            (
+                level: 25,
+                species: "ZUBAT",
+            ),
+            (
+                level: 25,
+                species: "RATTATA",
+            ),
+            (
+                level: 25,
+                species: "EKANS",
+            ),
+        ],
+        [
+            (
+                level: 32,
+                species: "CUBONE",
+            ),
+            (
+                level: 32,
+                species: "DROWZEE",
+            ),
+            (
+                level: 32,
+                species: "MAROWAK",
+            ),
+        ],
+    ],
+    "CooltrainerM": [
+        [
+            (
+                level: 39,
+                species: "NIDORINO",
+            ),
+            (
+                level: 39,
+                species: "NIDOKING",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "EXEGGUTOR",
+            ),
+            (
+                level: 43,
+                species: "CLOYSTER",
+            ),
+            (
+                level: 43,
+                species: "ARCANINE",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "KINGLER",
+            ),
+            (
+                level: 43,
+                species: "TENTACRUEL",
+            ),
+            (
+                level: 43,
+                species: "BLASTOISE",
+            ),
+        ],
+        [
+            (
+                level: 45,
+                species: "KINGLER",
+            ),
+            (
+                level: 45,
+                species: "STARMIE",
+            ),
+        ],
+        [
+            (
+                level: 42,
+                species: "IVYSAUR",
+            ),
+            (
+                level: 42,
+                species: "WARTORTLE",
+            ),
+            (
+                level: 42,
+                species: "CHARMELEON",
+            ),
+            (
+                level: 42,
+                species: "CHARIZARD",
+            ),
+        ],
+        [
+            (
+                level: 44,
+                species: "IVYSAUR",
+            ),
+            (
+                level: 44,
+                species: "WARTORTLE",
+            ),
+            (
+                level: 44,
+                species: "CHARMELEON",
+            ),
+        ],
+        [
+            (
+                level: 49,
+                species: "NIDOKING",
+            ),
+        ],
+        [
+            (
+                level: 44,
+                species: "KINGLER",
+            ),
+            (
+                level: 44,
+                species: "CLOYSTER",
+            ),
+        ],
+        [
+            (
+                level: 39,
+                species: "SANDSLASH",
+            ),
+            (
+                level: 39,
+                species: "DUGTRIO",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "RHYHORN",
+            ),
+        ],
+    ],
+    "CooltrainerF": [
+        [
+            (
+                level: 24,
+                species: "WEEPINBELL",
+            ),
+            (
+                level: 24,
+                species: "GLOOM",
+            ),
+            (
+                level: 24,
+                species: "IVYSAUR",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "BELLSPROUT",
+            ),
+            (
+                level: 43,
+                species: "WEEPINBELL",
+            ),
+            (
+                level: 43,
+                species: "VICTREEBEL",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "PARASECT",
+            ),
+            (
+                level: 43,
+                species: "DEWGONG",
+            ),
+            (
+                level: 43,
+                species: "CHANSEY",
+            ),
+        ],
+        [
+            (
+                level: 46,
+                species: "VILEPLUME",
+            ),
+            (
+                level: 46,
+                species: "BUTTERFREE",
+            ),
+        ],
+        [
+            (
+                level: 44,
+                species: "PERSIAN",
+            ),
+            (
+                level: 44,
+                species: "NINETALES",
+            ),
+        ],
+        [
+            (
+                level: 45,
+                species: "IVYSAUR",
+            ),
+            (
+                level: 45,
+                species: "VENUSAUR",
+            ),
+        ],
+        [
+            (
+                level: 45,
+                species: "NIDORINA",
+            ),
+            (
+                level: 45,
+                species: "NIDOQUEEN",
+            ),
+        ],
+        [
+            (
+                level: 43,
+                species: "PERSIAN",
+            ),
+            (
+                level: 43,
+                species: "NINETALES",
+            ),
+            (
+                level: 43,
+                species: "RAICHU",
+            ),
+        ],
+    ],
+    "Bruno": [
+        [
+            (
+                level: 53,
+                species: "ONIX",
+            ),
+            (
+                level: 55,
+                species: "HITMONCHAN",
+            ),
+            (
+                level: 55,
+                species: "HITMONLEE",
+            ),
+            (
+                level: 56,
+                species: "ONIX",
+            ),
+            (
+                level: 58,
+                species: "MACHAMP",
+            ),
+        ],
+    ],
+    "Brock": [
+        [
+            (
+                level: 12,
+                species: "GEODUDE",
+            ),
+            (
+                level: 14,
+                species: "ONIX",
+            ),
+        ],
+    ],
+    "Misty": [
+        [
+            (
+                level: 18,
+                species: "STARYU",
+            ),
+            (
+                level: 21,
+                species: "STARMIE",
+            ),
+        ],
+    ],
+    "LtSurge": [
+        [
+            (
+                level: 21,
+                species: "VOLTORB",
+            ),
+            (
+                level: 18,
+                species: "PIKACHU",
+            ),
+            (
+                level: 24,
+                species: "RAICHU",
+            ),
+        ],
+    ],
+    "Erika": [
+        [
+            (
+                level: 29,
+                species: "VICTREEBEL",
+            ),
+            (
+                level: 24,
+                species: "TANGELA",
+            ),
+            (
+                level: 29,
+                species: "VILEPLUME",
+            ),
+        ],
+    ],
+    "Koga": [
+        [
+            (
+                level: 37,
+                species: "KOFFING",
+            ),
+            (
+                level: 39,
+                species: "MUK",
+            ),
+            (
+                level: 37,
+                species: "KOFFING",
+            ),
+            (
+                level: 43,
+                species: "WEEZING",
+            ),
+        ],
+    ],
+    "Blaine": [
+        [
+            (
+                level: 42,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 40,
+                species: "PONYTA",
+            ),
+            (
+                level: 42,
+                species: "RAPIDASH",
+            ),
+            (
+                level: 47,
+                species: "ARCANINE",
+            ),
+        ],
+    ],
+    "Sabrina": [
+        [
+            (
+                level: 38,
+                species: "KADABRA",
+            ),
+            (
+                level: 37,
+                species: "MR_MIME",
+            ),
+            (
+                level: 38,
+                species: "VENOMOTH",
+            ),
+            (
+                level: 43,
+                species: "ALAKAZAM",
+            ),
+        ],
+    ],
+    "Gentleman": [
+        [
+            (
+                level: 18,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 18,
+                species: "GROWLITHE",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "NIDORAN_M",
+            ),
+            (
+                level: 19,
+                species: "NIDORAN_F",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "PIKACHU",
+            ),
+        ],
+        [
+            (
+                level: 48,
+                species: "PRIMEAPE",
+            ),
+        ],
+        [
+            (
+                level: 17,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 17,
+                species: "PONYTA",
+            ),
+        ],
+    ],
+    "Rival2": [
+        [
+            (
+                level: 19,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 16,
+                species: "RATICATE",
+            ),
+            (
+                level: 18,
+                species: "KADABRA",
+            ),
+            (
+                level: 20,
+                species: "WARTORTLE",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 16,
+                species: "RATICATE",
+            ),
+            (
+                level: 18,
+                species: "KADABRA",
+            ),
+            (
+                level: 20,
+                species: "IVYSAUR",
+            ),
+        ],
+        [
+            (
+                level: 19,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 16,
+                species: "RATICATE",
+            ),
+            (
+                level: 18,
+                species: "KADABRA",
+            ),
+            (
+                level: 20,
+                species: "CHARMELEON",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 23,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 22,
+                species: "EXEGGCUTE",
+            ),
+            (
+                level: 20,
+                species: "KADABRA",
+            ),
+            (
+                level: 25,
+                species: "WARTORTLE",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 23,
+                species: "GYARADOS",
+            ),
+            (
+                level: 22,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 20,
+                species: "KADABRA",
+            ),
+            (
+                level: 25,
+                species: "IVYSAUR",
+            ),
+        ],
+        [
+            (
+                level: 25,
+                species: "PIDGEOTTO",
+            ),
+            (
+                level: 23,
+                species: "EXEGGCUTE",
+            ),
+            (
+                level: 22,
+                species: "GYARADOS",
+            ),
+            (
+                level: 20,
+                species: "KADABRA",
+            ),
+            (
+                level: 25,
+                species: "CHARMELEON",
+            ),
+        ],
+        [
+            (
+                level: 37,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 38,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 35,
+                species: "EXEGGCUTE",
+            ),
+            (
+                level: 35,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 40,
+                species: "BLASTOISE",
+            ),
+        ],
+        [
+            (
+                level: 37,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 38,
+                species: "GYARADOS",
+            ),
+            (
+                level: 35,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 35,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 40,
+                species: "VENUSAUR",
+            ),
+        ],
+        [
+            (
+                level: 37,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 38,
+                species: "EXEGGCUTE",
+            ),
+            (
+                level: 35,
+                species: "GYARADOS",
+            ),
+            (
+                level: 35,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 40,
+                species: "CHARIZARD",
+            ),
+        ],
+        [
+            (
+                level: 47,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 45,
+                species: "RHYHORN",
+            ),
+            (
+                level: 45,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 47,
+                species: "EXEGGCUTE",
+            ),
+            (
+                level: 50,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 53,
+                species: "BLASTOISE",
+            ),
+        ],
+        [
+            (
+                level: 47,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 45,
+                species: "RHYHORN",
+            ),
+            (
+                level: 45,
+                species: "GYARADOS",
+            ),
+            (
+                level: 47,
+                species: "GROWLITHE",
+            ),
+            (
+                level: 50,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 53,
+                species: "VENUSAUR",
+            ),
+        ],
+        [
+            (
+                level: 47,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 45,
+                species: "RHYHORN",
+            ),
+            (
+                level: 45,
+                species: "EXEGGCUTE",
+            ),
+            (
+                level: 47,
+                species: "GYARADOS",
+            ),
+            (
+                level: 50,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 53,
+                species: "CHARIZARD",
+            ),
+        ],
+    ],
+    "Rival3": [
+        [
+            (
+                level: 61,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 59,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 61,
+                species: "RHYDON",
+            ),
+            (
+                level: 61,
+                species: "ARCANINE",
+            ),
+            (
+                level: 63,
+                species: "EXEGGUTOR",
+            ),
+            (
+                level: 65,
+                species: "BLASTOISE",
+            ),
+        ],
+        [
+            (
+                level: 61,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 59,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 61,
+                species: "RHYDON",
+            ),
+            (
+                level: 61,
+                species: "GYARADOS",
+            ),
+            (
+                level: 63,
+                species: "ARCANINE",
+            ),
+            (
+                level: 65,
+                species: "VENUSAUR",
+            ),
+        ],
+        [
+            (
+                level: 61,
+                species: "PIDGEOT",
+            ),
+            (
+                level: 59,
+                species: "ALAKAZAM",
+            ),
+            (
+                level: 61,
+                species: "RHYDON",
+            ),
+            (
+                level: 61,
+                species: "EXEGGUTOR",
+            ),
+            (
+                level: 63,
+                species: "GYARADOS",
+            ),
+            (
+                level: 65,
+                species: "CHARIZARD",
+            ),
+        ],
+    ],
+    "Lorelei": [
+        [
+            (
+                level: 54,
+                species: "DEWGONG",
+            ),
+            (
+                level: 53,
+                species: "CLOYSTER",
+            ),
+            (
+                level: 54,
+                species: "SLOWBRO",
+            ),
+            (
+                level: 56,
+                species: "JYNX",
+            ),
+            (
+                level: 56,
+                species: "LAPRAS",
+            ),
+        ],
+    ],
+    "Channeler": [
+        [
+            (
+                level: 22,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "GASTLY",
+            ),
+            (
+                level: 23,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "HAUNTER",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "GASTLY",
+            ),
+            (
+                level: 23,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 23,
+                species: "HAUNTER",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "HAUNTER",
+            ),
+        ],
+        [
+            (
+                level: 22,
+                species: "GASTLY",
+            ),
+            (
+                level: 22,
+                species: "GASTLY",
+            ),
+            (
+                level: 22,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 24,
+                species: "GASTLY",
+            ),
+        ],
+        [
+            (
+                level: 34,
+                species: "GASTLY",
+            ),
+            (
+                level: 34,
+                species: "HAUNTER",
+            ),
+        ],
+        [
+            (
+                level: 38,
+                species: "HAUNTER",
+            ),
+        ],
+        [
+            (
+                level: 33,
+                species: "GASTLY",
+            ),
+            (
+                level: 33,
+                species: "GASTLY",
+            ),
+            (
+                level: 33,
+                species: "HAUNTER",
+            ),
+        ],
+    ],
+    "Agatha": [
+        [
+            (
+                level: 56,
+                species: "GENGAR",
+            ),
+            (
+                level: 56,
+                species: "GOLBAT",
+            ),
+            (
+                level: 55,
+                species: "HAUNTER",
+            ),
+            (
+                level: 58,
+                species: "ARBOK",
+            ),
+            (
+                level: 60,
+                species: "GENGAR",
+            ),
+        ],
+    ],
+    "Lance": [
+        [
+            (
+                level: 58,
+                species: "GYARADOS",
+            ),
+            (
+                level: 56,
+                species: "DRAGONAIR",
+            ),
+            (
+                level: 56,
+                species: "DRAGONAIR",
+            ),
+            (
+                level: 60,
+                species: "AERODACTYL",
+            ),
+            (
+                level: 62,
+                species: "DRAGONITE",
+            ),
+        ],
+    ],
 }

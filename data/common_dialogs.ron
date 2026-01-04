@@ -1,0 +1,55 @@
+{
+    // Pokemon Center
+    "POKECENTER_WELCOME": "Welcome to our POKéMON CENTER!",
+    "POKECENTER_HEAL_QUERY": "We restore your tired POKéMON to full health!$Would you like to rest your POKéMON?",
+    "POKECENTER_HEALING": "OK. We'll need your POKéMON.",
+    "POKECENTER_WAIT": "...$...$...$...",
+    "POKECENTER_HEALED": "Thank you!$Your POKéMON are fighting fit!$We hope to see you again!",
+    "POKECENTER_GOODBYE": "We hope to see you again!",
+
+    // Mart
+    "MART_WELCOME": "Hi there!$May I help you?",
+    "MART_COME_AGAIN": "Thank you!$Please come again!",
+
+    // Battle
+    "BATTLE_WILD_APPEARED": "Wild %s appeared!",
+    "BATTLE_TRAINER_WANTS": "%s wants to fight!",
+    "BATTLE_TRAINER_SENT": "%s sent out %s!",
+    "BATTLE_GO": "Go! %s!",
+    "BATTLE_ENOUGH": "%s, enough!$Come back!",
+    "BATTLE_SWITCHOUT": "Come back, %s!",
+    "BATTLE_USED_MOVE": "%s used %s!",
+    "BATTLE_EFFECTIVE_SUPER": "It's super effective!",
+    "BATTLE_EFFECTIVE_NOT": "It's not very effective...",
+    "BATTLE_CRITICAL": "A critical hit!",
+    "BATTLE_FAINTED": "%s fainted!",
+    "BATTLE_GAINED_EXP": "%s gained %d EXP. Points!",
+    "BATTLE_LEVELED_UP": "%s grew to level %d!",
+    "BATTLE_WILD_RAN": "Got away safely!",
+
+    // Capture
+    "CAPTURE_GOTCHA": "Gotcha!$%s was caught!",
+    "CAPTURE_BROKE_FREE": "The POKéMON broke free!",
+    "CAPTURE_ESCAPED": "It escaped!",
+    "CAPTURE_MISSED": "Missed the POKéMON!",
+
+    // Items
+    "ITEM_FOUND": "Found %s!",
+    "ITEM_NO_ROOM": "Too bad!$The BAG is full!",
+    "ITEM_USED": "Used %s.",
+    "ITEM_CANT_USE": "Can't use that here.",
+
+    // Common NPC
+    "NPC_HELLO": "Hello there!",
+    "NPC_WELCOME": "Welcome!",
+    "NPC_THANKS": "Thank you!",
+
+    // Oak
+    "OAK_THANKS": "OAK: Thank you!",
+    "OAK_INTRO": "Hello there!$Welcome to the world of POKéMON!",
+
+    // Menu
+    "MENU_SAVE_COMPLETE": "GAME saved!",
+    "MENU_SAVE_ERROR": "Failed to save game.",
+    "MENU_LOAD_ERROR": "No save file found.",
+}

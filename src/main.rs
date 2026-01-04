@@ -858,6 +858,16 @@ struct BattleUi {
     scroll: usize,
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum StatusCondition {
+    None,
+    Paralysis,
+    Poison,
+    Burn,
+    Freeze,
+    Sleep(u8), // Sleep counter (0-7 turns)
+}
+
 struct BattleMon {
     species: String,
     level: u8,
@@ -871,8 +881,15 @@ struct BattleMon {
     catch_rate: u8,
     base_exp: u8,
     moves: Vec<String>,
+    move_pp: Vec<u8>, // Current PP for each move
     front_sprite: GrayscaleImage,
     back_sprite: GrayscaleImage,
+    status: StatusCondition,
+    // Stat stages: -6 to +6, reset on switch-out
+    stat_stage_attack: i8,
+    stat_stage_defense: i8,
+    stat_stage_speed: i8,
+    stat_stage_special: i8,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -4256,6 +4273,7 @@ struct MoveData {
     power: u8,
     move_type: String,
     accuracy: u8,
+    pp: u8,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -5362,6 +5380,28 @@ fn is_counter_tile(view: &MapView, tx: i32, ty: i32) -> bool {
     }
 }
 
+/// Check if there's a counter tile anywhere between start and end positions (exclusive of start).
+/// This handles the case where counter tiles are at odd offsets that the player can't target directly.
+fn has_counter_between(view: &MapView, start_tx: i32, start_ty: i32, end_tx: i32, end_ty: i32) -> bool {
+    if view.tileset.counter_tiles.is_empty() {
+        return false;
+    }
+    // Determine step direction
+    let dx = (end_tx - start_tx).signum();
+    let dy = (end_ty - start_ty).signum();
+    // Check all tiles from start (exclusive) to end (exclusive)
+    let mut tx = start_tx + dx;
+    let mut ty = start_ty + dy;
+    while tx != end_tx || ty != end_ty {
+        if is_counter_tile(view, tx, ty) {
+            return true;
+        }
+        tx += dx;
+        ty += dy;
+    }
+    false
+}
+
 fn choose_object_move_dir(range: ObjectMovementRange, rng: &mut u32) -> Facing {
     match range {
         ObjectMovementRange::UpDown => {
@@ -6032,6 +6072,11 @@ fn make_battle_mon_from_player_mon(
     )?;
 
     let hp = mon.hp.min(max_hp);
+
+    // Initialize PP for each move (default 20 PP per move)
+    // TODO: Load actual PP from move_db when available
+    let move_pp: Vec<u8> = moves.iter().map(|_| 20).collect();
+
     Ok(BattleMon {
         species: mon.species.clone(),
         level: mon.level,
@@ -6045,8 +6090,14 @@ fn make_battle_mon_from_player_mon(
         catch_rate: base.catch_rate,
         base_exp: base.base_exp,
         moves,
+        move_pp,
         front_sprite,
         back_sprite,
+        status: StatusCondition::None,
+        stat_stage_attack: 0,
+        stat_stage_defense: 0,
+        stat_stage_speed: 0,
+        stat_stage_special: 0,
     })
 }
 
@@ -6076,6 +6127,10 @@ fn make_battle_mon(
             .join(format!("{slug}b.png")),
     )?;
 
+    // Initialize PP for each move (default 20 PP per move)
+    // TODO: Load actual PP from move_db when available
+    let move_pp: Vec<u8> = moves.iter().map(|_| 20).collect();
+
     Ok(BattleMon {
         species: species_const.to_string(),
         level,
@@ -6089,8 +6144,14 @@ fn make_battle_mon(
         catch_rate: base.catch_rate,
         base_exp: base.base_exp,
         moves,
+        move_pp,
         front_sprite,
         back_sprite,
+        status: StatusCondition::None,
+        stat_stage_attack: 0,
+        stat_stage_defense: 0,
+        stat_stage_speed: 0,
+        stat_stage_special: 0,
     })
 }
 
@@ -6785,7 +6846,7 @@ fn battle_resolve_attack(
         if roll >= acc {
             line2 = "But it missed!".to_string();
         } else {
-            let (damage, mult10) = {
+            let (damage, mult10, is_crit) = {
                 let (attacker, defender) = if attacker_is_player {
                     (&battle.player, &battle.enemy)
                 } else {
@@ -6811,7 +6872,9 @@ fn battle_resolve_attack(
                         active.hp = battle.player.hp;
                     }
                 }
-                if mult10 > 10 {
+                if is_crit {
+                    line2 = "A critical hit!".to_string();
+                } else if mult10 > 10 {
                     line2 = "It's super effective!".to_string();
                 } else if mult10 < 10 {
                     line2 = "It's not very effective...".to_string();
@@ -6904,9 +6967,9 @@ fn battle_calc_damage(
     move_type: &str,
     type_chart: &TypeChart,
     rng: &mut u32,
-) -> (u16, u8) {
+) -> (u16, u8, bool) {
     if power == 0 {
-        return (0, 10);
+        return (0, 10, false);
     }
 
     let (atk, def) = if is_special_type(move_type) {
@@ -6921,6 +6984,16 @@ fn battle_calc_damage(
     let power = power as u16;
     let mut damage = (((((2 * level) / 5 + 2) * power * atk) / def) / 50) + 2;
 
+    // Critical hit calculation based on base speed
+    let crit_chance = (attacker.speed / 2).max(1);
+    let crit_roll = next_rand_u8(rng);
+    let is_crit = crit_roll < (crit_chance as u8 / 4).min(255);
+
+    // Apply critical hit multiplier (2x)
+    if is_crit {
+        damage = damage * 2;
+    }
+
     let rand = 217u16 + (next_rand_u8(rng) as u16 % 39);
     damage = (damage * rand) / 255;
 
@@ -6933,7 +7006,7 @@ fn battle_calc_damage(
     if mult10 > 0 && damage == 0 {
         damage = 1;
     }
-    (damage, mult10)
+    (damage, mult10, is_crit)
 }
 
 fn battle_type_multiplier_10(move_type: &str, defender: &BattleMon, type_chart: &TypeChart) -> u8 {
@@ -7997,17 +8070,20 @@ fn handle_a_button(
     let target_ty = view.player.ty + dy;
 
     // Check immediate target tile for NPC
-    // If not found and target is a counter tile, check one more tile in same direction
+    // If not found and there's a counter between player and far target, check across the counter
     // (Match original Pokemon Red: counter tiles extend talking range - see overworld.asm)
+    // Note: counter tiles may be at odd offsets, so we check all tiles between player and far target
     let obj_i = view
         .object_events
         .iter()
         .position(|o| o.tx == target_tx && o.ty == target_ty)
         .or_else(|| {
-            // If no NPC at immediate target and it's a counter tile, check across the counter
-            if is_counter_tile(view, target_tx, target_ty) {
-                let far_tx = target_tx + dx;
-                let far_ty = target_ty + dy;
+            // Check if any tile between player and far target is a counter tile
+            // Player moves in 2-tile steps, but counter tiles can be at any position
+            let far_tx = target_tx + dx;
+            let far_ty = target_ty + dy;
+            let has_counter = has_counter_between(view, view.player.tx, view.player.ty, far_tx, far_ty);
+            if has_counter {
                 view.object_events
                     .iter()
                     .position(|o| o.tx == far_tx && o.ty == far_ty)

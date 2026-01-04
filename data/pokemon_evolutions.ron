@@ -1,0 +1,334 @@
+{
+    "Rhydon": [],
+    "Kangaskhan": [],
+    "NidoranM": [
+        (method: "Level", level: Some(16), item: None, target: "NIDORINO"),
+    ],
+    "Clefairy": [
+        (method: "Item", level: None, item: Some("MOON_STONE"), target: "CLEFABLE"),
+    ],
+    "Spearow": [
+        (method: "Level", level: Some(20), item: None, target: "FEAROW"),
+    ],
+    "Voltorb": [
+        (method: "Level", level: Some(30), item: None, target: "ELECTRODE"),
+    ],
+    "Nidoking": [],
+    "Slowbro": [],
+    "Ivysaur": [
+        (method: "Level", level: Some(32), item: None, target: "VENUSAUR"),
+    ],
+    "Exeggutor": [],
+    "Lickitung": [],
+    "Exeggcute": [
+        (method: "Item", level: None, item: Some("LEAF_STONE"), target: "EXEGGUTOR"),
+    ],
+    "Grimer": [
+        (method: "Level", level: Some(38), item: None, target: "MUK"),
+    ],
+    "Gengar": [],
+    "NidoranF": [
+        (method: "Level", level: Some(16), item: None, target: "NIDORINA"),
+    ],
+    "Nidoqueen": [],
+    "Cubone": [
+        (method: "Level", level: Some(28), item: None, target: "MAROWAK"),
+    ],
+    "Rhyhorn": [
+        (method: "Level", level: Some(42), item: None, target: "RHYDON"),
+    ],
+    "Lapras": [],
+    "Arcanine": [],
+    "Mew": [],
+    "Gyarados": [],
+    "Shellder": [
+        (method: "Item", level: None, item: Some("WATER_STONE"), target: "CLOYSTER"),
+    ],
+    "Tentacool": [
+        (method: "Level", level: Some(30), item: None, target: "TENTACRUEL"),
+    ],
+    "Gastly": [
+        (method: "Level", level: Some(25), item: None, target: "HAUNTER"),
+    ],
+    "Scyther": [],
+    "Staryu": [
+        (method: "Item", level: None, item: Some("WATER_STONE"), target: "STARMIE"),
+    ],
+    "Blastoise": [],
+    "Pinsir": [],
+    "Tangela": [],
+    "MissingNo1F": [],
+    "MissingNo20": [],
+    "Growlithe": [
+        (method: "Item", level: None, item: Some("FIRE_STONE"), target: "ARCANINE"),
+    ],
+    "Onix": [],
+    "Fearow": [],
+    "Pidgey": [
+        (method: "Level", level: Some(18), item: None, target: "PIDGEOTTO"),
+    ],
+    "Slowpoke": [
+        (method: "Level", level: Some(37), item: None, target: "SLOWBRO"),
+    ],
+    "Kadabra": [
+        (method: "Trade", level: None, item: None, target: "ALAKAZAM"),
+    ],
+    "Graveler": [
+        (method: "Trade", level: None, item: None, target: "GOLEM"),
+    ],
+    "Chansey": [],
+    "Machoke": [
+        (method: "Trade", level: None, item: None, target: "MACHAMP"),
+    ],
+    "MrMime": [],
+    "Hitmonlee": [],
+    "Hitmonchan": [],
+    "Arbok": [],
+    "Parasect": [],
+    "Psyduck": [
+        (method: "Level", level: Some(33), item: None, target: "GOLDUCK"),
+    ],
+    "Drowzee": [
+        (method: "Level", level: Some(26), item: None, target: "HYPNO"),
+    ],
+    "Golem": [],
+    "MissingNo32": [],
+    "Magmar": [],
+    "MissingNo34": [],
+    "Electabuzz": [],
+    "Magneton": [],
+    "Koffing": [
+        (method: "Level", level: Some(35), item: None, target: "WEEZING"),
+    ],
+    "MissingNo38": [],
+    "Mankey": [
+        (method: "Level", level: Some(28), item: None, target: "PRIMEAPE"),
+    ],
+    "Seel": [
+        (method: "Level", level: Some(34), item: None, target: "DEWGONG"),
+    ],
+    "Diglett": [
+        (method: "Level", level: Some(26), item: None, target: "DUGTRIO"),
+    ],
+    "Tauros": [],
+    "MissingNo3D": [],
+    "MissingNo3E": [],
+    "MissingNo3F": [],
+    "Farfetchd": [],
+    "Venonat": [
+        (method: "Level", level: Some(31), item: None, target: "VENOMOTH"),
+    ],
+    "Dragonite": [],
+    "MissingNo43": [],
+    "MissingNo44": [],
+    "MissingNo45": [],
+    "Doduo": [
+        (method: "Level", level: Some(31), item: None, target: "DODRIO"),
+    ],
+    "Poliwag": [
+        (method: "Level", level: Some(25), item: None, target: "POLIWHIRL"),
+    ],
+    "Jynx": [],
+    "Moltres": [],
+    "Articuno": [],
+    "Zapdos": [],
+    "Ditto": [],
+    "Meowth": [
+        (method: "Level", level: Some(28), item: None, target: "PERSIAN"),
+    ],
+    "Krabby": [
+        (method: "Level", level: Some(28), item: None, target: "KINGLER"),
+    ],
+    "MissingNo4F": [],
+    "MissingNo50": [],
+    "MissingNo51": [],
+    "Vulpix": [
+        (method: "Item", level: None, item: Some("FIRE_STONE"), target: "NINETALES"),
+    ],
+    "Ninetales": [],
+    "Pikachu": [
+        (method: "Item", level: None, item: Some("THUNDER_STONE"), target: "RAICHU"),
+    ],
+    "Raichu": [],
+    "MissingNo56": [],
+    "MissingNo57": [],
+    "Dratini": [
+        (method: "Level", level: Some(30), item: None, target: "DRAGONAIR"),
+    ],
+    "Dragonair": [
+        (method: "Level", level: Some(55), item: None, target: "DRAGONITE"),
+    ],
+    "Kabuto": [
+        (method: "Level", level: Some(40), item: None, target: "KABUTOPS"),
+    ],
+    "Kabutops": [],
+    "Horsea": [
+        (method: "Level", level: Some(32), item: None, target: "SEADRA"),
+    ],
+    "Seadra": [],
+    "MissingNo5E": [],
+    "MissingNo5F": [],
+    "Sandshrew": [
+        (method: "Level", level: Some(22), item: None, target: "SANDSLASH"),
+    ],
+    "Sandslash": [],
+    "Omanyte": [
+        (method: "Level", level: Some(40), item: None, target: "OMASTAR"),
+    ],
+    "Omastar": [],
+    "Jigglypuff": [
+        (method: "Item", level: None, item: Some("MOON_STONE"), target: "WIGGLYTUFF"),
+    ],
+    "Wigglytuff": [],
+    "Eevee": [
+        (method: "Item", level: None, item: Some("FIRE_STONE"), target: "FLAREON"),
+        (method: "Item", level: None, item: Some("THUNDER_STONE"), target: "JOLTEON"),
+        (method: "Item", level: None, item: Some("WATER_STONE"), target: "VAPOREON"),
+    ],
+    "Flareon": [],
+    "Jolteon": [],
+    "Vaporeon": [],
+    "Machop": [
+        (method: "Level", level: Some(28), item: None, target: "MACHOKE"),
+    ],
+    "Zubat": [
+        (method: "Level", level: Some(22), item: None, target: "GOLBAT"),
+    ],
+    "Ekans": [
+        (method: "Level", level: Some(22), item: None, target: "ARBOK"),
+    ],
+    "Paras": [
+        (method: "Level", level: Some(24), item: None, target: "PARASECT"),
+    ],
+    "Poliwhirl": [
+        (method: "Item", level: None, item: Some("WATER_STONE"), target: "POLIWRATH"),
+    ],
+    "Poliwrath": [],
+    "Weedle": [
+        (method: "Level", level: Some(7), item: None, target: "KAKUNA"),
+    ],
+    "Kakuna": [
+        (method: "Level", level: Some(10), item: None, target: "BEEDRILL"),
+    ],
+    "Beedrill": [],
+    "MissingNo73": [],
+    "Dodrio": [],
+    "Primeape": [],
+    "Dugtrio": [],
+    "Venomoth": [],
+    "Dewgong": [],
+    "MissingNo79": [],
+    "MissingNo7A": [],
+    "Caterpie": [
+        (method: "Level", level: Some(7), item: None, target: "METAPOD"),
+    ],
+    "Metapod": [
+        (method: "Level", level: Some(10), item: None, target: "BUTTERFREE"),
+    ],
+    "Butterfree": [],
+    "Machamp": [],
+    "MissingNo7F": [],
+    "Golduck": [],
+    "Hypno": [],
+    "Golbat": [],
+    "Mewtwo": [],
+    "Snorlax": [],
+    "Magikarp": [
+        (method: "Level", level: Some(20), item: None, target: "GYARADOS"),
+    ],
+    "MissingNo86": [],
+    "MissingNo87": [],
+    "Muk": [],
+    "MissingNo8A": [],
+    "Kingler": [],
+    "Cloyster": [],
+    "MissingNo8C": [],
+    "Electrode": [],
+    "Clefable": [],
+    "Weezing": [],
+    "Persian": [],
+    "Marowak": [],
+    "MissingNo92": [],
+    "Haunter": [
+        (method: "Trade", level: None, item: None, target: "GENGAR"),
+    ],
+    "Abra": [
+        (method: "Level", level: Some(16), item: None, target: "KADABRA"),
+    ],
+    "Alakazam": [],
+    "Pidgeotto": [
+        (method: "Level", level: Some(36), item: None, target: "PIDGEOT"),
+    ],
+    "Pidgeot": [],
+    "Starmie": [],
+    "Bulbasaur": [
+        (method: "Level", level: Some(16), item: None, target: "IVYSAUR"),
+    ],
+    "Venusaur": [],
+    "Tentacruel": [],
+    "MissingNo9C": [],
+    "Goldeen": [
+        (method: "Level", level: Some(33), item: None, target: "SEAKING"),
+    ],
+    "Seaking": [],
+    "MissingNo9F": [],
+    "MissingNoA0": [],
+    "MissingNoA1": [],
+    "MissingNoA2": [],
+    "Ponyta": [
+        (method: "Level", level: Some(40), item: None, target: "RAPIDASH"),
+    ],
+    "Rapidash": [],
+    "Rattata": [
+        (method: "Level", level: Some(20), item: None, target: "RATICATE"),
+    ],
+    "Raticate": [],
+    "Nidorino": [
+        (method: "Item", level: None, item: Some("MOON_STONE"), target: "NIDOKING"),
+    ],
+    "Nidorina": [
+        (method: "Item", level: None, item: Some("MOON_STONE"), target: "NIDOQUEEN"),
+    ],
+    "Geodude": [
+        (method: "Level", level: Some(25), item: None, target: "GRAVELER"),
+    ],
+    "Porygon": [],
+    "Aerodactyl": [],
+    "MissingNoAC": [],
+    "Magnemite": [
+        (method: "Level", level: Some(30), item: None, target: "MAGNETON"),
+    ],
+    "MissingNoAE": [],
+    "MissingNoAF": [],
+    "Charmander": [
+        (method: "Level", level: Some(16), item: None, target: "CHARMELEON"),
+    ],
+    "Squirtle": [
+        (method: "Level", level: Some(16), item: None, target: "WARTORTLE"),
+    ],
+    "Charmeleon": [
+        (method: "Level", level: Some(36), item: None, target: "CHARIZARD"),
+    ],
+    "Wartortle": [
+        (method: "Level", level: Some(36), item: None, target: "BLASTOISE"),
+    ],
+    "Charizard": [],
+    "MissingNoB5": [],
+    "FossilKabutops": [],
+    "FossilAerodactyl": [],
+    "MonGhost": [],
+    "Oddish": [
+        (method: "Level", level: Some(21), item: None, target: "GLOOM"),
+    ],
+    "Gloom": [
+        (method: "Item", level: None, item: Some("LEAF_STONE"), target: "VILEPLUME"),
+    ],
+    "Vileplume": [],
+    "Bellsprout": [
+        (method: "Level", level: Some(21), item: None, target: "WEEPINBELL"),
+    ],
+    "Weepinbell": [
+        (method: "Item", level: None, item: Some("LEAF_STONE"), target: "VICTREEBEL"),
+    ],
+    "Victreebel": [],
+}

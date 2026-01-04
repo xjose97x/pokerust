@@ -177,7 +177,8 @@ def parse_moves_asm(path: Path) -> dict[str, dict[str, Any]]:
         power = parse_asm_int(parts[2])
         move_type = parts[3]
         accuracy = parse_asm_int(parts[4])
-        move_db[move_id] = {"power": power, "move_type": move_type, "accuracy": accuracy}
+        pp = parse_asm_int(parts[5])
+        move_db[move_id] = {"power": power, "move_type": move_type, "accuracy": accuracy, "pp": pp}
     if not move_db:
         raise RuntimeError(f"No moves parsed from {path}")
     return move_db
@@ -193,9 +194,281 @@ def generate_moves_ron(pokered_root: Path, data_dir: Path) -> None:
         lines.append(f"        power: {d['power']},")
         lines.append(f'        move_type: "{ron_escape(str(d["move_type"]))}",')
         lines.append(f"        accuracy: {d['accuracy']},")
+        lines.append(f"        pp: {d['pp']},")
         lines.append("    ),")
     lines.append("}")
     (data_dir / "moves.ron").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def parse_list_names(path: Path) -> list[str]:
+    """Parse a pokered names file that uses `li "NAME"` format."""
+    names: list[str] = []
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = strip_asm_comment(raw).strip()
+        if not line.startswith('li "'):
+            continue
+        # Extract text between quotes
+        match = re.search(r'li "([^"]*)"', line)
+        if match:
+            names.append(match.group(1))
+    return names
+
+
+def parse_constants_file(path: Path, prefix: str = "const ") -> list[str]:
+    """Parse a pokered constants file and extract constant names."""
+    constants: list[str] = []
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = strip_asm_comment(raw).strip()
+        if not line.startswith(prefix):
+            continue
+        # Extract constant name after "const "
+        parts = line[len(prefix):].split()
+        if parts:
+            const_name = parts[0]
+            constants.append(const_name)
+    return constants
+
+
+def generate_move_names_ron(pokered_root: Path, data_dir: Path) -> None:
+    """Generate move constant to display name mapping."""
+    # Parse move constants (POUND, KARATE_CHOP, etc.)
+    constants = parse_constants_file(pokered_root / "constants" / "move_constants.asm")
+    # Parse display names ("POUND", "KARATE CHOP", etc.)
+    names = parse_list_names(pokered_root / "data" / "moves" / "names.asm")
+
+    lines: list[str] = ["{"]
+    # Skip NO_MOVE (index 0) and map constants to display names
+    for const_name, display_name in zip(constants[1:], names):
+        lines.append(f'    "{ron_escape(const_name)}": "{ron_escape(display_name)}",')
+    lines.append("}")
+    (data_dir / "move_names.ron").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def generate_item_names_ron(pokered_root: Path, data_dir: Path) -> None:
+    """Generate item constant to display name mapping."""
+    # Parse item constants (MASTER_BALL, ULTRA_BALL, etc.)
+    constants = parse_constants_file(pokered_root / "constants" / "item_constants.asm")
+    # Parse display names ("MASTER BALL", "ULTRA BALL", etc.)
+    names = parse_list_names(pokered_root / "data" / "items" / "names.asm")
+
+    lines: list[str] = ["{"]
+    # Skip NO_ITEM (index 0) and map constants to display names
+    for const_name, display_name in zip(constants[1:], names):
+        lines.append(f'    "{ron_escape(const_name)}": "{ron_escape(display_name)}",')
+    lines.append("}")
+    (data_dir / "item_names.ron").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def parse_trainer_parties(path: Path) -> dict[str, list[list[tuple[int, str]]]]:
+    """Parse trainer party data from parties.asm.
+
+    Returns a dict mapping trainer class names to lists of parties.
+    Each party is a list of (level, pokemon_const) tuples.
+    """
+    trainer_parties: dict[str, list[list[tuple[int, str]]]] = {}
+    current_class: str | None = None
+
+    # Pattern to match trainer class data labels (e.g., "YoungsterData:")
+    class_label_re = re.compile(r"^([A-Z][A-Za-z0-9]+)Data:$")
+
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = strip_asm_comment(raw).strip()
+        if not line:
+            continue
+
+        # Check for trainer class label
+        m = class_label_re.match(line)
+        if m:
+            current_class = m.group(1)
+            trainer_parties[current_class] = []
+            continue
+
+        if current_class is None:
+            continue
+
+        # Parse party data lines (db ...)
+        if not line.startswith("db "):
+            continue
+
+        # Extract the data after "db "
+        data_str = line[3:].strip()
+        tokens = [t.strip() for t in data_str.split(",")]
+
+        if not tokens:
+            continue
+
+        party: list[tuple[int, str]] = []
+
+        # Check format: $FF means individual levels, otherwise shared level
+        if tokens[0] == "$FF":
+            # Individual level format: $FF, level1, pokemon1, level2, pokemon2, ..., 0
+            i = 1
+            while i + 1 < len(tokens):
+                level_tok = tokens[i]
+                pokemon_tok = tokens[i + 1]
+
+                if pokemon_tok == "0":
+                    break
+
+                try:
+                    level = parse_asm_int(level_tok)
+                    party.append((level, pokemon_tok))
+                except (ValueError, IndexError):
+                    break
+
+                i += 2
+        else:
+            # Shared level format: level, pokemon1, pokemon2, ..., 0
+            try:
+                level = parse_asm_int(tokens[0])
+                for pokemon_tok in tokens[1:]:
+                    if pokemon_tok == "0":
+                        break
+                    party.append((level, pokemon_tok))
+            except (ValueError, IndexError):
+                continue
+
+        if party:
+            trainer_parties[current_class].append(party)
+
+    return trainer_parties
+
+
+def generate_trainer_parties_ron(pokered_root: Path, data_dir: Path) -> None:
+    """Generate trainer party data."""
+    parties_by_class = parse_trainer_parties(
+        pokered_root / "data" / "trainers" / "parties.asm"
+    )
+
+    # Trainer class names in order (matching TrainerDataPointers order)
+    class_names = [
+        "Youngster", "BugCatcher", "Lass", "Sailor", "JrTrainerM", "JrTrainerF",
+        "Pokemaniac", "SuperNerd", "Hiker", "Biker", "Burglar", "Engineer",
+        "UnusedJuggler", "Fisher", "Swimmer", "CueBall", "Gambler", "Beauty",
+        "Psychic", "Rocker", "Juggler", "Tamer", "BirdKeeper", "Blackbelt",
+        "Rival1", "ProfOak", "Chief", "Scientist", "Giovanni", "Rocket",
+        "CooltrainerM", "CooltrainerF", "Bruno", "Brock", "Misty", "LtSurge",
+        "Erika", "Koga", "Blaine", "Sabrina", "Gentleman", "Rival2", "Rival3",
+        "Lorelei", "Channeler", "Agatha", "Lance"
+    ]
+
+    lines: list[str] = ["{"]
+
+    for class_name in class_names:
+        parties = parties_by_class.get(class_name, [])
+        lines.append(f'    "{ron_escape(class_name)}": [')
+
+        for party in parties:
+            lines.append("        [")
+            for level, pokemon in party:
+                lines.append("            (")
+                lines.append(f"                level: {level},")
+                lines.append(f'                species: "{ron_escape(pokemon)}",')
+                lines.append("            ),")
+            lines.append("        ],")
+
+        lines.append("    ],")
+
+    lines.append("}")
+    (data_dir / "trainer_parties.ron").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def parse_pokemon_evolutions(path: Path) -> dict[str, list[tuple[str, Any, str]]]:
+    """Parse Pokemon evolution data from evos_moves.asm.
+
+    Returns a dict mapping Pokemon names to lists of evolution tuples.
+    Each tuple is (method, param, target_species):
+    - ("Level", level, species) for level-based evolution
+    - ("Item", item_const, species) for item-based evolution
+    - ("Trade", None, species) for trade-based evolution
+    """
+    evolutions_by_pokemon: dict[str, list[tuple[str, Any, str]]] = {}
+    current_pokemon: str | None = None
+
+    # Pattern to match Pokemon evolution/moves labels (e.g., "BulbasaurEvosMoves:")
+    pokemon_label_re = re.compile(r"^([A-Z][A-Za-z0-9]+)EvosMoves:$")
+
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = strip_asm_comment(raw).strip()
+        if not line:
+            continue
+
+        # Check for Pokemon label
+        m = pokemon_label_re.match(line)
+        if m:
+            current_pokemon = m.group(1)
+            evolutions_by_pokemon[current_pokemon] = []
+            continue
+
+        if current_pokemon is None:
+            continue
+
+        # Parse evolution data lines (db EVOLVE_...)
+        if not line.startswith("db "):
+            continue
+
+        # Extract the data after "db "
+        data_str = line[3:].strip()
+        tokens = [t.strip() for t in data_str.split(",")]
+
+        if not tokens:
+            continue
+
+        # db 0 marks end of evolution section
+        if tokens[0] == "0":
+            current_pokemon = None
+            continue
+
+        # Parse evolution entry
+        if tokens[0] == "EVOLVE_LEVEL" and len(tokens) >= 3:
+            # db EVOLVE_LEVEL, level, species
+            try:
+                level = parse_asm_int(tokens[1])
+                species = tokens[2]
+                evolutions_by_pokemon[current_pokemon].append(("Level", level, species))
+            except (ValueError, IndexError):
+                continue
+
+        elif tokens[0] == "EVOLVE_ITEM" and len(tokens) >= 4:
+            # db EVOLVE_ITEM, item, min_level, species
+            # We ignore min_level (usually 1) for simplicity
+            item = tokens[1]
+            species = tokens[3]
+            evolutions_by_pokemon[current_pokemon].append(("Item", item, species))
+
+        elif tokens[0] == "EVOLVE_TRADE" and len(tokens) >= 3:
+            # db EVOLVE_TRADE, min_level, species
+            species = tokens[2]
+            evolutions_by_pokemon[current_pokemon].append(("Trade", None, species))
+
+    return evolutions_by_pokemon
+
+
+def generate_pokemon_evolutions_ron(pokered_root: Path, data_dir: Path) -> None:
+    """Generate Pokemon evolution data."""
+    evolutions_by_pokemon = parse_pokemon_evolutions(
+        pokered_root / "data" / "pokemon" / "evos_moves.asm"
+    )
+
+    lines: list[str] = ["{"]
+
+    for pokemon, evolutions in evolutions_by_pokemon.items():
+        if not evolutions:
+            # Pokemon with no evolutions - use empty array
+            lines.append(f'    "{ron_escape(pokemon)}": [],')
+        else:
+            lines.append(f'    "{ron_escape(pokemon)}": [')
+            for method, param, target in evolutions:
+                if method == "Level":
+                    lines.append(f'        (method: "Level", level: Some({param}), item: None, target: "{ron_escape(target)}"),')
+                elif method == "Item":
+                    lines.append(f'        (method: "Item", level: None, item: Some("{ron_escape(param)}"), target: "{ron_escape(target)}"),')
+                elif method == "Trade":
+                    lines.append(f'        (method: "Trade", level: None, item: None, target: "{ron_escape(target)}"),')
+            lines.append("    ],")
+
+    lines.append("}")
+    (data_dir / "pokemon_evolutions.ron").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def parse_hidden_objects(path: Path) -> dict[str, list[dict[str, Any]]]:
@@ -457,10 +730,6 @@ def generate_map_events_ron(pokered_root: Path, pokerust_root: Path, data_dir: P
     (data_dir / "map_events.ron").write_text("\n".join(entries) + "\n", encoding="utf-8")
 
 
-def write_empty_map(path: Path) -> None:
-    path.write_text("{\n}\n", encoding="utf-8")
-
-
 def main() -> int:
     ap = argparse.ArgumentParser(
         description="Generate Rust-owned RON data for pokerust from a pokered checkout."
@@ -492,10 +761,11 @@ def main() -> int:
     generate_moves_ron(pokered_root, data_dir)
     generate_map_events_ron(pokered_root, pokerust_root, data_dir)
 
-    # Ensure these files parse as the types expected by the Rust runtime.
-    write_empty_map(data_dir / "item_names.ron")
-    write_empty_map(data_dir / "move_names.ron")
-    write_empty_map(data_dir / "trainer_parties.ron")
+    # Generate name mappings and trainer parties
+    generate_move_names_ron(pokered_root, data_dir)
+    generate_item_names_ron(pokered_root, data_dir)
+    generate_trainer_parties_ron(pokered_root, data_dir)
+    generate_pokemon_evolutions_ron(pokered_root, data_dir)
 
     return 0
 
