@@ -120,12 +120,19 @@ struct Dialog {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
+enum PokedexMode {
+    List,
+    SideMenu { side_cursor: usize },
+    Data,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
 enum MenuScreen {
     Root,
     Items,
     Party,
     Options,
-    Pokedex { cursor: usize, scroll: usize },
+    Pokedex { cursor: usize, scroll: usize, mode: PokedexMode },
     TeachMove { item_id: String },
 }
 
@@ -964,6 +971,41 @@ const ROOT_MENU_ITEMS: [&str; 6] = ["POKéDEX", "POKéMON", "ITEM", "SAVE", "OPT
 const ITEMS_VISIBLE_ROWS: usize = 12;
 const BATTLE_ITEMS_VISIBLE_ROWS: usize = 4;
 
+// Pokemon names in Pokedex order (1-151)
+const POKEDEX_SPECIES: [&str; 151] = [
+    "BULBASAUR", "IVYSAUR", "VENUSAUR", "CHARMANDER", "CHARMELEON",
+    "CHARIZARD", "SQUIRTLE", "WARTORTLE", "BLASTOISE", "CATERPIE",
+    "METAPOD", "BUTTERFREE", "WEEDLE", "KAKUNA", "BEEDRILL",
+    "PIDGEY", "PIDGEOTTO", "PIDGEOT", "RATTATA", "RATICATE",
+    "SPEAROW", "FEAROW", "EKANS", "ARBOK", "PIKACHU",
+    "RAICHU", "SANDSHREW", "SANDSLASH", "NIDORAN_F", "NIDORINA",
+    "NIDOQUEEN", "NIDORAN_M", "NIDORINO", "NIDOKING", "CLEFAIRY",
+    "CLEFABLE", "VULPIX", "NINETALES", "JIGGLYPUFF", "WIGGLYTUFF",
+    "ZUBAT", "GOLBAT", "ODDISH", "GLOOM", "VILEPLUME",
+    "PARAS", "PARASECT", "VENONAT", "VENOMOTH", "DIGLETT",
+    "DUGTRIO", "MEOWTH", "PERSIAN", "PSYDUCK", "GOLDUCK",
+    "MANKEY", "PRIMEAPE", "GROWLITHE", "ARCANINE", "POLIWAG",
+    "POLIWHIRL", "POLIWRATH", "ABRA", "KADABRA", "ALAKAZAM",
+    "MACHOP", "MACHOKE", "MACHAMP", "BELLSPROUT", "WEEPINBELL",
+    "VICTREEBEL", "TENTACOOL", "TENTACRUEL", "GEODUDE", "GRAVELER",
+    "GOLEM", "PONYTA", "RAPIDASH", "SLOWPOKE", "SLOWBRO",
+    "MAGNEMITE", "MAGNETON", "FARFETCHD", "DODUO", "DODRIO",
+    "SEEL", "DEWGONG", "GRIMER", "MUK", "SHELLDER",
+    "CLOYSTER", "GASTLY", "HAUNTER", "GENGAR", "ONIX",
+    "DROWZEE", "HYPNO", "KRABBY", "KINGLER", "VOLTORB",
+    "ELECTRODE", "EXEGGCUTE", "EXEGGUTOR", "CUBONE", "MAROWAK",
+    "HITMONLEE", "HITMONCHAN", "LICKITUNG", "KOFFING", "WEEZING",
+    "RHYHORN", "RHYDON", "CHANSEY", "TANGELA", "KANGASKHAN",
+    "HORSEA", "SEADRA", "GOLDEEN", "SEAKING", "STARYU",
+    "STARMIE", "MR_MIME", "SCYTHER", "JYNX", "ELECTABUZZ",
+    "MAGMAR", "PINSIR", "TAUROS", "MAGIKARP", "GYARADOS",
+    "LAPRAS", "DITTO", "EEVEE", "VAPOREON", "JOLTEON",
+    "FLAREON", "PORYGON", "OMANYTE", "OMASTAR", "KABUTO",
+    "KABUTOPS", "AERODACTYL", "SNORLAX", "ARTICUNO", "ZAPDOS",
+    "MOLTRES", "DRATINI", "DRAGONAIR", "DRAGONITE", "MEWTWO",
+    "MEW",
+];
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 enum ObjectMovement {
     Walk,
@@ -1483,6 +1525,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                         &font,
                         &data.item_display_names,
                         &data.pokemon_display_names,
+                        &data.pokemon_stats,
                         &data.move_display_names,
                     ),
                     Mode::Battle => {
@@ -1768,6 +1811,7 @@ fn render_map_frame(
     font: &GrayscaleImage,
     item_display_names: &HashMap<String, String>,
     pokemon_display_names: &HashMap<String, String>,
+    pokemon_stats: &HashMap<String, BaseStats>,
     move_display_names: &HashMap<String, String>,
 ) {
     gb_frame.fill(dmg_palette_color(0));
@@ -1831,6 +1875,7 @@ fn render_map_frame(
             view,
             item_display_names,
             pokemon_display_names,
+            pokemon_stats,
             move_display_names,
         );
     }
@@ -2095,6 +2140,7 @@ fn draw_menu(
     view: &MapView,
     item_display_names: &HashMap<String, String>,
     pokemon_display_names: &HashMap<String, String>,
+    pokemon_stats: &HashMap<String, BaseStats>,
     _move_display_names: &HashMap<String, String>,
 ) {
     let Some(menu) = &view.menu else {
@@ -2497,110 +2543,149 @@ fn draw_menu(
                 }
             }
         }
-        MenuScreen::Pokedex { cursor, scroll } => {
-            // Draw outer box
-            let outer_x = 4;
-            let outer_y = 4;
-            let outer_w = GB_WIDTH as i32 - 8;
-            let outer_h = GB_HEIGHT as i32 - 8;
+        MenuScreen::Pokedex { cursor, scroll, ref mode } => {
+            match mode {
+                PokedexMode::List | PokedexMode::SideMenu { .. } => {
+                    // Draw main Pokedex list view
+                    let list_x = 4;
+                    let list_y = 4;
+                    let list_w = 110;
+                    let list_h = GB_HEIGHT as i32 - 8;
 
-            fill_rect(
-                gb_frame,
-                GB_WIDTH,
-                GB_HEIGHT,
-                outer_x,
-                outer_y,
-                outer_w,
-                outer_h,
-                dmg_palette_color(3),
-            );
-            fill_rect(
-                gb_frame,
-                GB_WIDTH,
-                GB_HEIGHT,
-                outer_x + 2,
-                outer_y + 2,
-                outer_w - 4,
-                outer_h - 4,
-                dmg_palette_color(0),
-            );
+                    // Draw list box
+                    fill_rect(gb_frame, GB_WIDTH, GB_HEIGHT, list_x, list_y, list_w, list_h, dmg_palette_color(3));
+                    fill_rect(gb_frame, GB_WIDTH, GB_HEIGHT, list_x + 2, list_y + 2, list_w - 4, list_h - 4, dmg_palette_color(0));
 
-            // Title
-            draw_text_line(
-                gb_frame,
-                GB_WIDTH,
-                GB_HEIGHT,
-                font,
-                "POKéDEX",
-                outer_x + 8,
-                outer_y + 8,
-            );
+                    // Title
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "CONTENTS", list_x + 8, list_y + 6);
 
-            // Stats on right side
-            let seen = view.pokedex_seen.len();
-            let caught = view.pokedex_caught.len();
+                    // Pokemon list
+                    let list_start_y = list_y + 18;
+                    let visible_rows = 7;
 
-            draw_text_line(
-                gb_frame,
-                GB_WIDTH,
-                GB_HEIGHT,
-                font,
-                &format!("Seen:{}", seen),
-                GB_WIDTH as i32 - 50,
-                outer_y + 8,
-            );
-            draw_text_line(
-                gb_frame,
-                GB_WIDTH,
-                GB_HEIGHT,
-                font,
-                &format!("Own:{}", caught),
-                GB_WIDTH as i32 - 50,
-                outer_y + 16,
-            );
+                    for i in 0..visible_rows {
+                        let dex_idx = scroll + i;
+                        if dex_idx >= 151 {
+                            break;
+                        }
 
-            // Pokémon list (simplified - showing first 151 entries)
-            // For full implementation, we'd need Pokemon name data
-            let list_start_y = outer_y + 28;
-            let visible_rows = 8;
+                        let dex_num = dex_idx + 1;
+                        let species = POKEDEX_SPECIES[dex_idx];
+                        let y = list_start_y + (i as i32 * 14);
+                        let is_selected = dex_idx == cursor;
 
-            for i in 0..visible_rows {
-                let dex_num = scroll + i + 1;
-                if dex_num > 151 {
-                    break;
+                        // Cursor
+                        if is_selected && matches!(mode, PokedexMode::List) {
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, ">", list_x + 6, y);
+                        }
+
+                        // Check if seen/caught
+                        let is_caught = view.pokedex_caught.contains(species);
+                        let is_seen = view.pokedex_seen.contains(species);
+
+                        if is_seen || is_caught {
+                            // Pokedex number
+                            let num_text = format!("{:03}", dex_num);
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &num_text, list_x + 16, y);
+
+                            // Caught indicator (Pokeball)
+                            if is_caught {
+                                draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "o", list_x + 44, y);
+                            }
+
+                            // Pokemon name
+                            let display_name = pokemon_display_names.get(species)
+                                .map(|s| s.as_str())
+                                .unwrap_or(species);
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, display_name, list_x + 52, y);
+                        } else {
+                            // Not seen - show placeholder
+                            let num_text = format!("{:03}", dex_num);
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &num_text, list_x + 16, y);
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "-----", list_x + 52, y);
+                        }
+                    }
+
+                    // Right side panel
+                    let panel_x = list_x + list_w + 2;
+                    let panel_y = list_y;
+                    let panel_w = GB_WIDTH as i32 - panel_x - 4;
+                    let panel_h = list_h;
+
+                    fill_rect(gb_frame, GB_WIDTH, GB_HEIGHT, panel_x, panel_y, panel_w, panel_h, dmg_palette_color(3));
+                    fill_rect(gb_frame, GB_WIDTH, GB_HEIGHT, panel_x + 2, panel_y + 2, panel_w - 4, panel_h - 4, dmg_palette_color(0));
+
+                    // Seen/Owned counts
+                    let seen = view.pokedex_seen.len();
+                    let caught = view.pokedex_caught.len();
+
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "SEEN", panel_x + 6, panel_y + 10);
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("{:3}", seen), panel_x + 10, panel_y + 22);
+
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "OWN", panel_x + 6, panel_y + 38);
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("{:3}", caught), panel_x + 10, panel_y + 50);
+
+                    // Side menu (DATA/CRY/AREA/QUIT)
+                    if let PokedexMode::SideMenu { side_cursor } = mode {
+                        let menu_y = panel_y + 70;
+                        let menu_items = ["DATA", "CRY", "AREA", "QUIT"];
+
+                        for (idx, item) in menu_items.iter().enumerate() {
+                            let y = menu_y + (idx as i32 * 12);
+                            if idx == *side_cursor {
+                                draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, ">", panel_x + 4, y);
+                            }
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, item, panel_x + 12, y);
+                        }
+                    }
                 }
+                PokedexMode::Data => {
+                    // Pokemon data detail screen
+                    let species = POKEDEX_SPECIES[cursor];
+                    let display_name = pokemon_display_names.get(species)
+                        .map(|s| s.as_str())
+                        .unwrap_or(species);
 
-                let y = list_start_y + (i as i32 * 12);
-                let is_selected = (scroll + i) == cursor;
+                    // Draw box
+                    let data_x = 4;
+                    let data_y = 4;
+                    let data_w = GB_WIDTH as i32 - 8;
+                    let data_h = GB_HEIGHT as i32 - 8;
 
-                // Draw cursor
-                if is_selected {
-                    draw_text_line(
-                        gb_frame,
-                        GB_WIDTH,
-                        GB_HEIGHT,
-                        font,
-                        ">",
-                        outer_x + 8,
-                        y,
-                    );
+                    fill_rect(gb_frame, GB_WIDTH, GB_HEIGHT, data_x, data_y, data_w, data_h, dmg_palette_color(3));
+                    fill_rect(gb_frame, GB_WIDTH, GB_HEIGHT, data_x + 2, data_y + 2, data_w - 4, data_h - 4, dmg_palette_color(0));
+
+                    // Pokemon name and number
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, display_name, data_x + 8, data_y + 8);
+                    let num_text = format!("No.{:03}", cursor + 1);
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &num_text, data_x + 8, data_y + 20);
+
+                    // Get Pokemon stats if available
+                    if let Some(stats) = pokemon_stats.get(species) {
+                        let y_offset = data_y + 36;
+
+                        // Type information
+                        let type1_str = stats.type1.strip_prefix("TYPE_").or_else(|| stats.type1.strip_prefix("TYPES_")).unwrap_or(&stats.type1);
+                        let type2_str = stats.type2.strip_prefix("TYPE_").or_else(|| stats.type2.strip_prefix("TYPES_")).unwrap_or(&stats.type2);
+
+                        if type1_str == type2_str {
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("TYPE/{}", type1_str), data_x + 8, y_offset);
+                        } else {
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("TYPE1/{}", type1_str), data_x + 8, y_offset);
+                            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("TYPE2/{}", type2_str), data_x + 8, y_offset + 12);
+                        }
+
+                        // Base stats
+                        draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("HP    {:3}", stats.hp), data_x + 8, y_offset + 30);
+                        draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("ATTACK{:3}", stats.attack), data_x + 8, y_offset + 42);
+                        draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("DFENSE{:3}", stats.defense), data_x + 8, y_offset + 54);
+                        draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("SPEED {:3}", stats.speed), data_x + 8, y_offset + 66);
+                        draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("SPECIAL{:3}", stats.special), data_x + 8, y_offset + 78);
+                    }
+
+                    // Instruction text
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Press B to return", data_x + 8, data_y + data_h - 16);
                 }
-
-                // Draw Pokedex number and status indicator
-                let num_text = format!("{:03}", dex_num);
-                draw_text_line(
-                    gb_frame,
-                    GB_WIDTH,
-                    GB_HEIGHT,
-                    font,
-                    &num_text,
-                    outer_x + 20,
-                    y,
-                );
-
-                // For a full implementation, we'd show Pokemon names here
-                // For now, just show caught/seen indicator
-                // This is a simplified version
             }
         }
     }
@@ -7905,21 +7990,34 @@ fn menu_nav(view: &mut MapView, delta: i32) {
     };
 
     // Special handling for Pokedex which uses its own cursor/scroll
-    if let MenuScreen::Pokedex { ref mut cursor, ref mut scroll } = menu.screen {
-        const POKEDEX_VISIBLE_ROWS: usize = 8;
-        let new_cursor = (*cursor as i32 + delta).clamp(0, 150) as usize; // 0-150 for 151 Pokemon
-        *cursor = new_cursor;
+    if let MenuScreen::Pokedex { ref mut cursor, ref mut scroll, ref mut mode } = menu.screen {
+        match mode {
+            PokedexMode::List => {
+                const POKEDEX_VISIBLE_ROWS: usize = 7;
+                let new_cursor = (*cursor as i32 + delta).clamp(0, 150) as usize; // 0-150 for 151 Pokemon
+                *cursor = new_cursor;
 
-        // Update scroll to keep cursor visible
-        let max_scroll = 151usize.saturating_sub(POKEDEX_VISIBLE_ROWS);
-        if new_cursor < *scroll {
-            *scroll = new_cursor.min(max_scroll);
-        } else if new_cursor >= *scroll + POKEDEX_VISIBLE_ROWS {
-            *scroll = (new_cursor + 1)
-                .saturating_sub(POKEDEX_VISIBLE_ROWS)
-                .min(max_scroll);
+                // Update scroll to keep cursor visible
+                let max_scroll = 151usize.saturating_sub(POKEDEX_VISIBLE_ROWS);
+                if new_cursor < *scroll {
+                    *scroll = new_cursor.min(max_scroll);
+                } else if new_cursor >= *scroll + POKEDEX_VISIBLE_ROWS {
+                    *scroll = (new_cursor + 1)
+                        .saturating_sub(POKEDEX_VISIBLE_ROWS)
+                        .min(max_scroll);
+                }
+                return;
+            }
+            PokedexMode::SideMenu { side_cursor } => {
+                // Navigate in side menu (4 options: DATA, CRY, AREA, QUIT)
+                *side_cursor = (*side_cursor as i32 + delta).clamp(0, 3) as usize;
+                return;
+            }
+            PokedexMode::Data => {
+                // No navigation in data view
+                return;
+            }
         }
-        return;
     }
 
     let item_count = match menu.screen {
@@ -8092,11 +8190,26 @@ fn handle_b_button(view: &mut MapView) {
             menu.scroll = 0;
             view.menu = Some(menu);
         }
-        MenuScreen::Pokedex { .. } => {
-            menu.screen = MenuScreen::Root;
-            menu.selection = 0;
-            menu.scroll = 0;
-            view.menu = Some(menu);
+        MenuScreen::Pokedex { cursor, scroll, ref mode } => {
+            match mode {
+                PokedexMode::List => {
+                    // B from list goes back to root menu
+                    menu.screen = MenuScreen::Root;
+                    menu.selection = 0;
+                    menu.scroll = 0;
+                    view.menu = Some(menu);
+                }
+                PokedexMode::SideMenu { .. } => {
+                    // B from side menu returns to list
+                    menu.screen = MenuScreen::Pokedex { cursor, scroll, mode: PokedexMode::List };
+                    view.menu = Some(menu);
+                }
+                PokedexMode::Data => {
+                    // B from data view returns to list
+                    menu.screen = MenuScreen::Pokedex { cursor, scroll, mode: PokedexMode::List };
+                    view.menu = Some(menu);
+                }
+            }
         }
         MenuScreen::TeachMove { .. } => {
             menu.screen = MenuScreen::Items;
@@ -8643,7 +8756,7 @@ fn handle_menu_a_button(
     match menu.screen {
         MenuScreen::Root => match menu.selection {
             0 => {
-                menu.screen = MenuScreen::Pokedex { cursor: 0, scroll: 0 };
+                menu.screen = MenuScreen::Pokedex { cursor: 0, scroll: 0, mode: PokedexMode::List };
                 menu.selection = 0;
                 menu.scroll = 0;
                 view.menu = Some(menu);
@@ -8813,9 +8926,47 @@ fn handle_menu_a_button(
             }
             view.menu = Some(menu);
         }
-        MenuScreen::Pokedex { .. } => {
-            // For now, just keep the menu open, no action on selection
-            view.menu = Some(menu);
+        MenuScreen::Pokedex { cursor, scroll, ref mode } => {
+            match mode {
+                PokedexMode::List => {
+                    // Check if Pokemon is seen
+                    let species = POKEDEX_SPECIES[cursor];
+                    if view.pokedex_seen.contains(species) || view.pokedex_caught.contains(species) {
+                        // Show side menu
+                        menu.screen = MenuScreen::Pokedex { cursor, scroll, mode: PokedexMode::SideMenu { side_cursor: 0 } };
+                    }
+                    view.menu = Some(menu);
+                }
+                PokedexMode::SideMenu { side_cursor } => {
+                    match side_cursor {
+                        0 => {
+                            // DATA - show Pokemon data screen
+                            menu.screen = MenuScreen::Pokedex { cursor, scroll, mode: PokedexMode::Data };
+                            view.menu = Some(menu);
+                        }
+                        1 => {
+                            // CRY - play Pokemon cry (not implemented yet)
+                            view.menu = Some(menu);
+                        }
+                        2 => {
+                            // AREA - show Pokemon habitat (not implemented yet)
+                            view.menu = Some(menu);
+                        }
+                        3 => {
+                            // QUIT - return to list
+                            menu.screen = MenuScreen::Pokedex { cursor, scroll, mode: PokedexMode::List };
+                            view.menu = Some(menu);
+                        }
+                        _ => {
+                            view.menu = Some(menu);
+                        }
+                    }
+                }
+                PokedexMode::Data => {
+                    // No action on A in data view
+                    view.menu = Some(menu);
+                }
+            }
         }
         MenuScreen::TeachMove { ref item_id } => {
             // TM/HM teaching - Pokemon selection
