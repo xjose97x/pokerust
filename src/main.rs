@@ -125,6 +125,7 @@ enum MenuScreen {
     Items,
     Party,
     Options,
+    Pokedex,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -954,6 +955,8 @@ struct BattleState {
     dialog: Option<Dialog>,
     events: VecDeque<BattleEvent>,
     rng: u32,
+    pokedex_seen: HashSet<String>,
+    pokedex_caught: HashSet<String>,
 }
 
 const ROOT_MENU_ITEMS: [&str; 6] = ["POKéDEX", "POKéMON", "ITEM", "SAVE", "OPTION", "EXIT"];
@@ -1540,6 +1543,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                         &data.pokemon_stats,
                         &data.pokemon_moves,
                         map_view.rng,
+                        map_view.pokedex_seen.clone(),
+                        map_view.pokedex_caught.clone(),
                     ) {
                         Ok(battle) => {
                             battle_state = Some(battle);
@@ -1711,6 +1716,8 @@ struct MapView {
     pc_current_box: usize,
     pc: Option<PcState>,
     options: GameOptions,
+    pokedex_seen: HashSet<String>,
+    pokedex_caught: HashSet<String>,
 }
 
 struct MapHeaderInfo {
@@ -2415,6 +2422,68 @@ fn draw_menu(
                     draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, option, list_x, y);
                 }
             }
+        }
+        MenuScreen::Pokedex => {
+            let outer_x = 4;
+            let outer_y = 4;
+            let outer_w = GB_WIDTH as i32 - 8;
+            let outer_h = GB_HEIGHT as i32 - 8;
+
+            fill_rect(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                outer_x,
+                outer_y,
+                outer_w,
+                outer_h,
+                dmg_palette_color(3),
+            );
+            fill_rect(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                outer_x + 2,
+                outer_y + 2,
+                outer_w - 4,
+                outer_h - 4,
+                dmg_palette_color(0),
+            );
+
+            draw_text_line(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                font,
+                "POKéDEX",
+                outer_x + 8,
+                outer_y + 8,
+            );
+
+            let list_x = outer_x + 8;
+            let list_y0 = outer_y + 24;
+
+            let seen = view.pokedex_seen.len();
+            let caught = view.pokedex_caught.len();
+
+            draw_text_line(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                font,
+                &format!("Seen: {}", seen),
+                list_x,
+                list_y0,
+            );
+            draw_text_line(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                font,
+                &format!("Caught: {}", caught),
+                list_x,
+                list_y0 + 16,
+            );
         }
     }
 }
@@ -3856,6 +3925,8 @@ fn load_map_view(
         pc_current_box: 0,
         pc: None,
         options: GameOptions::default(),
+        pokedex_seen: HashSet::new(),
+        pokedex_caught: HashSet::new(),
     })
 }
 
@@ -4446,7 +4517,6 @@ struct PokemonEvolution {
     level: Option<u8>,
     #[serde(default)]
     item: Option<String>,
-    #[serde(rename = "target")]
     species: String,
 }
 
@@ -6057,6 +6127,8 @@ fn start_battle_from_pending(
     pokemon_stats: &HashMap<String, BaseStats>,
     pokemon_moves: &HashMap<String, PokemonMoves>,
     rng: u32,
+    pokedex_seen: HashSet<String>,
+    pokedex_caught: HashSet<String>,
 ) -> Result<BattleState, Box<dyn Error>> {
     let mut rng = rng;
     let (kind, enemy_party) = match pending {
@@ -6156,6 +6228,9 @@ fn start_battle_from_pending(
         pokemon_moves,
     )?;
 
+    let mut pokedex_seen = pokedex_seen;
+    let pokedex_caught = pokedex_caught;
+
     let mut battle = BattleState {
         kind,
         player,
@@ -6175,7 +6250,13 @@ fn start_battle_from_pending(
         dialog: None,
         events: VecDeque::new(),
         rng,
+        pokedex_seen: pokedex_seen.clone(),
+        pokedex_caught: pokedex_caught.clone(),
     };
+
+    // Mark enemy Pokemon as seen
+    pokedex_seen.insert(battle.enemy.species.clone());
+    battle.pokedex_seen = pokedex_seen;
 
     let enemy_name = pokemon_display_names
         .get(&battle.enemy.species)
@@ -6568,6 +6649,9 @@ fn battle_handle_a_button(
 
                         battle.events.clear();
                         if captured {
+                            // Mark Pokemon as caught in Pokedex
+                            battle.pokedex_caught.insert(battle.enemy.species.clone());
+
                             let had_room = battle.player_party.len() < 6;
                             if had_room {
                                 if let Ok(mut mon) = make_player_mon(
@@ -6972,6 +7056,9 @@ fn battle_pump_events(
                     pokemon_stats,
                     pokemon_moves,
                 )?;
+                // Mark new enemy Pokemon as seen
+                battle.pokedex_seen.insert(battle.enemy.species.clone());
+
                 let enemy_name = pokemon_display_names
                     .get(&battle.enemy.species)
                     .map(|s| s.as_str())
@@ -7489,6 +7576,8 @@ fn end_battle(
         inventory,
         enemy_party,
         rng,
+        pokedex_seen,
+        pokedex_caught,
         ..
     } = battle;
 
@@ -7497,6 +7586,8 @@ fn end_battle(
     map_view.pending_battle = None;
     map_view.party = player_party;
     map_view.inventory = inventory;
+    map_view.pokedex_seen = pokedex_seen;
+    map_view.pokedex_caught = pokedex_caught;
 
     match (&kind, result) {
         (
@@ -7700,6 +7791,7 @@ fn menu_nav(view: &mut MapView, delta: i32) {
         MenuScreen::Items => view.inventory.len(),
         MenuScreen::Party => view.party.len(),
         MenuScreen::Options => 3, // Text Speed, Battle Animations, Sound
+        MenuScreen::Pokedex => 1, // Just one item for simple view
     };
     if item_count == 0 {
         menu.selection = 0;
@@ -7860,6 +7952,12 @@ fn handle_b_button(view: &mut MapView) {
         MenuScreen::Options => {
             menu.screen = MenuScreen::Root;
             menu.selection = 4;
+            menu.scroll = 0;
+            view.menu = Some(menu);
+        }
+        MenuScreen::Pokedex => {
+            menu.screen = MenuScreen::Root;
+            menu.selection = 0;
             menu.scroll = 0;
             view.menu = Some(menu);
         }
@@ -8401,6 +8499,12 @@ fn handle_menu_a_button(
 
     match menu.screen {
         MenuScreen::Root => match menu.selection {
+            0 => {
+                menu.screen = MenuScreen::Pokedex;
+                menu.selection = 0;
+                menu.scroll = 0;
+                view.menu = Some(menu);
+            }
             1 => {
                 menu.screen = MenuScreen::Party;
                 menu.selection = 0;
@@ -8559,6 +8663,20 @@ fn handle_menu_a_button(
                 _ => {}
             }
             view.menu = Some(menu);
+        }
+        MenuScreen::Pokedex => {
+            // Simple Pokedex - just show seen/caught counts
+            let seen = view.pokedex_seen.len();
+            let caught = view.pokedex_caught.len();
+            view.menu = Some(menu);
+            open_dialog_from_lines(
+                view,
+                vec![
+                    format!("POKéDEX"),
+                    format!("Seen: {}", seen),
+                    format!("Caught: {}", caught),
+                ],
+            );
         }
     }
 
