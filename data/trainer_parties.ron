@@ -1,2 +1,13 @@
 {
+    "Rival1Data": [
+        [
+            (level: 5, species: "SQUIRTLE"),
+        ],
+        [
+            (level: 5, species: "BULBASAUR"),
+        ],
+        [
+            (level: 5, species: "CHARMANDER"),
+        ],
+    ]
 }

@@ -1028,7 +1028,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut args = std::env::args();
     let _exe = args.next();
     let map_name_arg = args.next();
-    let map_name = map_name_arg.as_deref().unwrap_or("PalletTown");
+    let map_name = map_name_arg.as_deref().unwrap_or("RedsHouse2F");
 
     let event_loop = EventLoop::new()?;
     let window = Rc::new(
@@ -1592,6 +1592,9 @@ struct Tileset {
     tiles_per_row: u32,
     tile_count: u32,
     grass_tile_id: Option<u8>,
+    // Counter tiles allow talking to NPCs 2 tiles away (across counters)
+    // From tileset_headers.asm: Pokecenter/Mart use $18,$19,$1E
+    counter_tiles: Vec<u8>,
 }
 
 struct Player {
@@ -3521,11 +3524,13 @@ fn load_map_view(
         .get(&tileset_label)
         .copied()
         .ok_or_else(|| format!("Missing grass tile id for `{tileset_label}` in `data/tileset_headers.ron`"))?;
+    let counter_tiles = get_counter_tiles_for_tileset(&tileset_label);
     let tileset = Tileset {
         img: tileset_png,
         tiles_per_row,
         tile_count,
         grass_tile_id,
+        counter_tiles,
     };
 
     let passable_tiles = game_data
@@ -3557,14 +3562,20 @@ fn load_map_view(
     };
 
     let player_sprite = load_grayscale_png(&pokered_root.join("gfx/sprites/red.png"))?;
-    let (player_tx, player_ty) = find_spawn_position(
-        width_blocks,
-        height_blocks,
-        &blocks,
-        &blockset,
-        &passable_tiles,
-    )
-    .unwrap_or((0, 0));
+    // Match original Pokemon Red spawn positions (special_warps.asm)
+    // NewGameWarp: REDS_HOUSE_2F at (3, 6) in block coords = (6, 12) in tile coords
+    let (player_tx, player_ty) = if map_name == "RedsHouse2F" {
+        (6, 12) // Original new game spawn position
+    } else {
+        find_spawn_position(
+            width_blocks,
+            height_blocks,
+            &blocks,
+            &blockset,
+            &passable_tiles,
+        )
+        .unwrap_or((0, 0))
+    };
 
     let events_data = game_data
         .map_events
@@ -3588,6 +3599,13 @@ fn load_map_view(
     }
     if header.map_name == "OaksLab" && events.contains("EVENT_BATTLED_RIVAL_IN_OAKS_LAB") {
         object_events.retain(|o| o.text_id != "TEXT_OAKSLAB_RIVAL");
+    }
+    // Match original Pokemon Red: OAK2 (at bottom of lab) is only shown during intro sequence
+    // when Oak walks in from the door. OAK1 (at top) is the main Oak after intro.
+    // Since we skip the intro, always hide OAK2 (see hide_show_data.asm: both start HIDDEN,
+    // OAK2 shown briefly during entry, then hidden when OAK1 is shown at the top)
+    if header.map_name == "OaksLab" {
+        object_events.retain(|o| o.text_id != "TEXT_OAKSLAB_OAK2");
     }
     if header.map_name == "PalletTown" {
         object_events.retain(|o| o.text_id != "TEXT_PALLETTOWN_OAK");
@@ -4725,6 +4743,22 @@ fn parse_tileset_grass_tile_id(asm: &str, tileset_label: &str) -> Option<Option<
     None
 }
 
+/// Returns the counter tiles for a tileset that allow talking across counters.
+/// From tileset_headers.asm - format: tileset Name, counter1, counter2, counter3, grass, anim
+fn get_counter_tiles_for_tileset(tileset_label: &str) -> Vec<u8> {
+    // Counter tiles from pokered/data/tilesets/tileset_headers.asm
+    // These tiles allow talking to NPCs 2 tiles away (across the counter)
+    match tileset_label {
+        "Pokecenter" | "Mart" | "POKECENTER" | "MART" => vec![0x18, 0x19, 0x1E],
+        "Dojo" | "Gym" | "DOJO" | "GYM" => vec![0x3A],
+        "ForestGate" | "Museum" | "Gate" | "FOREST_GATE" | "MUSEUM" | "GATE" => vec![0x17, 0x32],
+        "Cemetery" | "Facility" | "CEMETERY" | "FACILITY" => vec![0x12],
+        "Lobby" | "LOBBY" => vec![0x15, 0x36],
+        "Club" | "CLUB" => vec![0x07, 0x17],
+        _ => vec![],
+    }
+}
+
 fn parse_passable_tiles_for_label(asm: &str, label: &str) -> Option<HashSet<u8>> {
     let mut pending_labels: Vec<String> = Vec::new();
     for raw_line in asm.lines() {
@@ -5283,6 +5317,48 @@ fn object_blocks_tile(obj: &ObjectEvent, tx: i32, ty: i32) -> bool {
         (m.start_tx == tx && m.start_ty == ty) || (m.dest_tx == tx && m.dest_ty == ty)
     } else {
         obj.tx == tx && obj.ty == ty
+    }
+}
+
+/// Get the tile ID at a given tile coordinate.
+/// Returns None if the coordinates are out of bounds.
+fn get_tile_id_at(map: &MapData, blockset: &Blockset, tx: i32, ty: i32) -> Option<u8> {
+    if tx < 0 || ty < 0 {
+        return None;
+    }
+    let tx = tx as u32;
+    let ty = ty as u32;
+    let map_w_tiles = map.width_blocks * BLOCK_TILES;
+    let map_h_tiles = map.height_blocks * BLOCK_TILES;
+    if tx >= map_w_tiles || ty >= map_h_tiles {
+        return None;
+    }
+    let block_x = tx / BLOCK_TILES;
+    let block_y = ty / BLOCK_TILES;
+    let block_i = (block_y * map.width_blocks + block_x) as usize;
+    if block_i >= map.blocks.len() {
+        return None;
+    }
+    let block_id = map.blocks[block_i] as usize;
+    if block_id >= blockset.blocks.len() {
+        return None;
+    }
+    let block = &blockset.blocks[block_id];
+    let tile_x = tx % BLOCK_TILES;
+    let tile_y = ty % BLOCK_TILES;
+    let tile_i = (tile_y * BLOCK_TILES + tile_x) as usize;
+    Some(block[tile_i])
+}
+
+/// Check if the tile at the given position is a counter tile for the current tileset.
+fn is_counter_tile(view: &MapView, tx: i32, ty: i32) -> bool {
+    if view.tileset.counter_tiles.is_empty() {
+        return false;
+    }
+    if let Some(tile_id) = get_tile_id_at(&view.map, &view.blockset, tx, ty) {
+        view.tileset.counter_tiles.contains(&tile_id)
+    } else {
+        false
     }
 }
 
@@ -7920,11 +7996,27 @@ fn handle_a_button(
     let target_tx = view.player.tx + dx;
     let target_ty = view.player.ty + dy;
 
-    if let Some(obj_i) = view
+    // Check immediate target tile for NPC
+    // If not found and target is a counter tile, check one more tile in same direction
+    // (Match original Pokemon Red: counter tiles extend talking range - see overworld.asm)
+    let obj_i = view
         .object_events
         .iter()
         .position(|o| o.tx == target_tx && o.ty == target_ty)
-    {
+        .or_else(|| {
+            // If no NPC at immediate target and it's a counter tile, check across the counter
+            if is_counter_tile(view, target_tx, target_ty) {
+                let far_tx = target_tx + dx;
+                let far_ty = target_ty + dy;
+                view.object_events
+                    .iter()
+                    .position(|o| o.tx == far_tx && o.ty == far_ty)
+            } else {
+                None
+            }
+        });
+
+    if let Some(obj_i) = obj_i {
         match view.object_events[obj_i].kind.clone() {
             ObjectKind::Item { item_id } => {
                 let text_id = view.object_events[obj_i].text_id.clone();

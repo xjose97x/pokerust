@@ -5208,8 +5208,8 @@
     ),
     "RedsHouse1F": (
         warp_events: [
-            (x: 2, y: 7, dest_map: LastMap, dest_warp_id: 1),
-            (x: 3, y: 7, dest_map: LastMap, dest_warp_id: 1),
+            (x: 2, y: 7, dest_map: MapId("PALLET_TOWN"), dest_warp_id: 1),
+            (x: 3, y: 7, dest_map: MapId("PALLET_TOWN"), dest_warp_id: 1),
             (x: 7, y: 1, dest_map: MapId("REDS_HOUSE_2F"), dest_warp_id: 1),
         ],
         bg_events: [
