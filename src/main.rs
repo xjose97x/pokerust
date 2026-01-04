@@ -850,12 +850,16 @@ enum BattleUiScreen {
     Fight,
     Party,
     Items,
+    LearnMove,
+    Evolution,
 }
 
 struct BattleUi {
     screen: BattleUiScreen,
     selection: usize,
     scroll: usize,
+    move_to_learn: Option<String>,
+    evolution_target: Option<String>,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -908,6 +912,8 @@ enum BattleEvent {
     SendOutNextEnemy,
     SendOutNextPlayer,
     EndBattle { result: BattleResult },
+    LearnMove { move_id: String },
+    Evolution { target_species: String },
 }
 
 struct BattleState {
@@ -3026,6 +3032,68 @@ fn draw_battle_bottom_box(
                 }
             }
         }
+        BattleUiScreen::LearnMove => {
+            let move_to_learn = battle.ui.move_to_learn.as_ref().map(|s| s.as_str()).unwrap_or("");
+            let move_name = move_display_names
+                .get(move_to_learn)
+                .map(|s| s.as_str())
+                .unwrap_or(move_to_learn);
+
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &format!("Learning {}", move_name), 8, y0 + 8);
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Forget which?", 8, y0 + 16);
+
+            let list_y0 = y0 + 24;
+            let mon = &battle.player_party[battle.player_party_index];
+
+            // Show current moves + "Don't learn" option
+            for (i, mov) in mon.moves.iter().enumerate() {
+                let display = move_display_names
+                    .get(mov)
+                    .map(|s| s.as_str())
+                    .unwrap_or(mov.as_str());
+                let y = list_y0 + (i as i32) * TILE_SIZE as i32;
+                let selected = i == battle.ui.selection;
+                if selected {
+                    fill_rect(
+                        gb_frame,
+                        GB_WIDTH,
+                        GB_HEIGHT,
+                        6,
+                        y - 2,
+                        GB_WIDTH as i32 - 12,
+                        TILE_SIZE as i32,
+                        dmg_palette_color(3),
+                    );
+                    draw_text_line_tinted(gb_frame, GB_WIDTH, GB_HEIGHT, font, display, 8, y, 0);
+                } else {
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, display, 8, y);
+                }
+            }
+
+            // Show "Don't learn" option
+            let cancel_i = mon.moves.len();
+            let y = list_y0 + (cancel_i as i32) * TILE_SIZE as i32;
+            let selected = cancel_i == battle.ui.selection;
+            if selected {
+                fill_rect(
+                    gb_frame,
+                    GB_WIDTH,
+                    GB_HEIGHT,
+                    6,
+                    y - 2,
+                    GB_WIDTH as i32 - 12,
+                    TILE_SIZE as i32,
+                    dmg_palette_color(3),
+                );
+                draw_text_line_tinted(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Don't learn", 8, y, 0);
+            } else {
+                draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Don't learn", 8, y);
+            }
+        }
+        BattleUiScreen::Evolution => {
+            // Evolution screen just shows dialog, no special UI needed
+            draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, "Evolution...", 8, y0 + 8);
+        }
     }
 }
 
@@ -4283,6 +4351,7 @@ struct PokemonEvolution {
     level: Option<u8>,
     #[serde(default)]
     item: Option<String>,
+    #[serde(rename = "target")]
     species: String,
 }
 
@@ -4440,6 +4509,41 @@ fn pokemon_moves_at_level(
         .into_iter()
         .rev()
         .collect()
+}
+
+fn pokemon_moves_learned_at_level(
+    species_const: &str,
+    level: u8,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
+) -> Vec<String> {
+    let key = species_const_to_ron_key(species_const);
+    let Some(moves) = pokemon_moves.get(&key) else {
+        return vec![];
+    };
+    let mut learned: Vec<String> = Vec::new();
+    for entry in &moves.learnset {
+        if entry.level == level && entry.move_id != "NO_MOVE" {
+            learned.push(entry.move_id.clone());
+        }
+    }
+    learned
+}
+
+fn pokemon_evolution_at_level(
+    species_const: &str,
+    level: u8,
+    pokemon_moves: &HashMap<String, PokemonMoves>,
+) -> Option<String> {
+    let key = species_const_to_ron_key(species_const);
+    let Some(moves) = pokemon_moves.get(&key) else {
+        return None;
+    };
+    for evo in &moves.evolutions {
+        if evo.method == "Level" && evo.level == Some(level) {
+            return Some(evo.species.clone());
+        }
+    }
+    None
 }
 
 fn trainer_party_for_opponent(
@@ -5970,6 +6074,8 @@ fn start_battle_from_pending(
             screen: BattleUiScreen::Command,
             selection: 0,
             scroll: 0,
+            move_to_learn: None,
+            evolution_target: None,
         },
         dialog: None,
         events: VecDeque::new(),
@@ -6480,6 +6586,126 @@ fn battle_handle_a_button(
                 }
             }
         }
+        BattleUiScreen::LearnMove => {
+            let mon = &battle.player_party[battle.player_party_index];
+            let num_moves = mon.moves.len();
+            let move_to_learn = battle.ui.move_to_learn.clone().unwrap_or_default();
+            let player_name = pokemon_display_names
+                .get(&battle.player.species)
+                .cloned()
+                .unwrap_or_else(|| battle.player.species.clone());
+            let move_name = move_display_names
+                .get(&move_to_learn)
+                .cloned()
+                .unwrap_or_else(|| move_to_learn.clone());
+
+            if battle.ui.selection < num_moves {
+                // Replace the selected move
+                let old_move = battle.player_party[battle.player_party_index].moves[battle.ui.selection].clone();
+                let old_move_name = move_display_names
+                    .get(&old_move)
+                    .map(|s| s.as_str())
+                    .unwrap_or(old_move.as_str());
+
+                battle.player_party[battle.player_party_index].moves[battle.ui.selection] = move_to_learn.clone();
+                battle.player.moves[battle.ui.selection] = move_to_learn;
+
+                battle.ui.screen = BattleUiScreen::Command;
+                battle.ui.selection = 0;
+                battle.ui.scroll = 0;
+                battle.ui.move_to_learn = None;
+
+                battle.dialog = Some(Dialog {
+                    lines: wrap_dialog_lines(
+                        vec![
+                            format!("1, 2, and... Poof!"),
+                            format!("{player_name} forgot {old_move_name}."),
+                            format!("And..."),
+                            format!("{player_name} learned {move_name}!"),
+                        ],
+                        18,
+                    ),
+                    cursor: 0,
+                });
+            } else {
+                // Don't learn the move
+                battle.ui.screen = BattleUiScreen::Command;
+                battle.ui.selection = 0;
+                battle.ui.scroll = 0;
+                battle.ui.move_to_learn = None;
+
+                battle.dialog = Some(Dialog {
+                    lines: wrap_dialog_lines(
+                        vec![
+                            format!("{player_name} did not learn {move_name}."),
+                            String::new(),
+                        ],
+                        18,
+                    ),
+                    cursor: 0,
+                });
+            }
+        }
+        BattleUiScreen::Evolution => {
+            // Pressing A confirms evolution
+            let target_species = battle.ui.evolution_target.clone().unwrap_or_default();
+            let old_name = pokemon_display_names
+                .get(&battle.player.species)
+                .cloned()
+                .unwrap_or_else(|| battle.player.species.clone());
+            let new_name = pokemon_display_names
+                .get(&target_species)
+                .cloned()
+                .unwrap_or_else(|| target_species.clone());
+
+            // Evolve the Pokemon in the party
+            battle.player_party[battle.player_party_index].species = target_species.clone();
+
+            // Update the battle mon
+            if let Ok(base) = base_stats_for_species(pokemon_stats, &target_species) {
+                let mon_level = battle.player_party[battle.player_party_index].level;
+                let old_hp = battle.player_party[battle.player_party_index].hp;
+                let old_max_hp = battle.player_party[battle.player_party_index].max_hp;
+
+                let (max_hp, attack, defense, speed, special) = calc_battle_stats(&base, mon_level);
+                battle.player_party[battle.player_party_index].max_hp = max_hp;
+
+                // Heal the difference in max HP
+                if max_hp > old_max_hp {
+                    battle.player_party[battle.player_party_index].hp = old_hp + (max_hp - old_max_hp);
+                } else {
+                    battle.player_party[battle.player_party_index].hp = old_hp.min(max_hp);
+                }
+
+                // Update battle mon stats
+                battle.player.species = target_species.clone();
+                battle.player.types = (base.type1.clone(), base.type2.clone());
+                battle.player.max_hp = max_hp;
+                battle.player.hp = battle.player_party[battle.player_party_index].hp;
+                battle.player.attack = attack;
+                battle.player.defense = defense;
+                battle.player.speed = speed;
+                battle.player.special = special;
+                battle.player.catch_rate = base.catch_rate;
+                battle.player.base_exp = base.base_exp;
+            }
+
+            battle.ui.screen = BattleUiScreen::Command;
+            battle.ui.selection = 0;
+            battle.ui.scroll = 0;
+            battle.ui.evolution_target = None;
+
+            battle.dialog = Some(Dialog {
+                lines: wrap_dialog_lines(
+                    vec![
+                        format!("Congratulations! Your {old_name}"),
+                        format!("evolved into {new_name}!"),
+                    ],
+                    18,
+                ),
+                cursor: 0,
+            });
+        }
     }
 
     battle_pump_events(
@@ -6526,6 +6752,55 @@ fn battle_handle_b_button(
         battle.ui.screen = BattleUiScreen::Command;
         battle.ui.selection = 0;
         battle.ui.scroll = 0;
+    } else if battle.ui.screen == BattleUiScreen::LearnMove {
+        // Pressing B cancels learning the move
+        let move_to_learn = battle.ui.move_to_learn.clone().unwrap_or_default();
+        let player_name = pokemon_display_names
+            .get(&battle.player.species)
+            .cloned()
+            .unwrap_or_else(|| battle.player.species.clone());
+        let move_name = move_display_names
+            .get(&move_to_learn)
+            .cloned()
+            .unwrap_or_else(|| move_to_learn.clone());
+
+        battle.ui.screen = BattleUiScreen::Command;
+        battle.ui.selection = 0;
+        battle.ui.scroll = 0;
+        battle.ui.move_to_learn = None;
+
+        battle.dialog = Some(Dialog {
+            lines: wrap_dialog_lines(
+                vec![
+                    format!("{player_name} did not learn {move_name}."),
+                    String::new(),
+                ],
+                18,
+            ),
+            cursor: 0,
+        });
+    } else if battle.ui.screen == BattleUiScreen::Evolution {
+        // Pressing B cancels evolution
+        let player_name = pokemon_display_names
+            .get(&battle.player.species)
+            .cloned()
+            .unwrap_or_else(|| battle.player.species.clone());
+
+        battle.ui.screen = BattleUiScreen::Command;
+        battle.ui.selection = 0;
+        battle.ui.scroll = 0;
+        battle.ui.evolution_target = None;
+
+        battle.dialog = Some(Dialog {
+            lines: wrap_dialog_lines(
+                vec![
+                    format!("Huh? {player_name} stopped evolving!"),
+                    String::new(),
+                ],
+                18,
+            ),
+            cursor: 0,
+        });
     }
 
     Ok(None)
@@ -6650,6 +6925,73 @@ fn battle_pump_events(
                     ),
                     cursor: 0,
                 });
+                return Ok(None);
+            }
+            BattleEvent::Evolution { target_species } => {
+                let player_name = pokemon_display_names
+                    .get(&battle.player.species)
+                    .map(|s| s.as_str())
+                    .unwrap_or(battle.player.species.as_str());
+
+                battle.ui.screen = BattleUiScreen::Evolution;
+                battle.ui.selection = 0;
+                battle.ui.evolution_target = Some(target_species.clone());
+
+                battle.dialog = Some(Dialog {
+                    lines: wrap_dialog_lines(
+                        vec![
+                            format!("What? {player_name} is evolving!"),
+                            String::new(),
+                        ],
+                        18,
+                    ),
+                    cursor: 0,
+                });
+                return Ok(None);
+            }
+            BattleEvent::LearnMove { move_id } => {
+                let player_name = pokemon_display_names
+                    .get(&battle.player.species)
+                    .map(|s| s.as_str())
+                    .unwrap_or(battle.player.species.as_str());
+                let move_name = move_display_names
+                    .get(&move_id)
+                    .map(|s| s.to_string())
+                    .unwrap_or_else(|| move_id.clone());
+
+                let mon = &battle.player_party[battle.player_party_index];
+                if mon.moves.len() < 4 {
+                    // Automatically learn the move if we have room
+                    battle.player_party[battle.player_party_index]
+                        .moves
+                        .push(move_id.clone());
+                    battle.player.moves.push(move_id);
+                    battle.dialog = Some(Dialog {
+                        lines: wrap_dialog_lines(
+                            vec![
+                                format!("{player_name} learned {move_name}!"),
+                                String::new(),
+                            ],
+                            18,
+                        ),
+                        cursor: 0,
+                    });
+                } else {
+                    // Need to choose which move to forget
+                    battle.ui.screen = BattleUiScreen::LearnMove;
+                    battle.ui.selection = 0;
+                    battle.ui.move_to_learn = Some(move_id);
+                    battle.dialog = Some(Dialog {
+                        lines: wrap_dialog_lines(
+                            vec![
+                                format!("{player_name} is trying to learn {move_name}."),
+                                format!("But {player_name} already knows 4 moves."),
+                            ],
+                            18,
+                        ),
+                        cursor: 0,
+                    });
+                }
                 return Ok(None);
             }
             BattleEvent::EndBattle { result } => return Ok(Some(result)),
@@ -6780,14 +7122,22 @@ fn battle_award_exp_to_active_player(
         mon.hp = mon.hp.min(new_max_hp);
     }
 
-    let learned = pokemon_moves_at_level(
+    // Check for evolution at this level (before learning new moves)
+    if let Some(target_species) = pokemon_evolution_at_level(&mon.species, mon.level, pokemon_moves) {
+        battle.events.push_back(BattleEvent::Evolution { target_species });
+    }
+
+    // Queue LearnMove events for each new move at this level
+    let new_moves = pokemon_moves_learned_at_level(
         &mon.species,
         mon.level,
         pokemon_moves,
     );
-    if !learned.is_empty() {
-        mon.moves = learned;
+    for move_id in new_moves {
+        battle.events.push_back(BattleEvent::LearnMove { move_id });
     }
+
+    // Ensure Pokemon has at least one move
     if mon.moves.is_empty() {
         mon.moves.push("TACKLE".to_string());
     }
@@ -7217,6 +7567,18 @@ fn battle_nav(battle: &mut BattleState, dx: i32, dy: i32) {
                     .saturating_sub(BATTLE_ITEMS_VISIBLE_ROWS)
                     .min(max_scroll);
             }
+        }
+        BattleUiScreen::LearnMove => {
+            // 4 moves + "Don't learn" option = 5 total options
+            let len = 5;
+            if dy < 0 {
+                battle.ui.selection = battle.ui.selection.saturating_sub(1);
+            } else if dy > 0 {
+                battle.ui.selection = (battle.ui.selection + 1).min(len - 1);
+            }
+        }
+        BattleUiScreen::Evolution => {
+            // No navigation needed for evolution screen (just A to confirm, B to cancel)
         }
     }
 }
@@ -7969,16 +8331,70 @@ fn handle_menu_a_button(
                 open_dialog_from_lines(view, vec!["No items.".to_string(), String::new()]);
             } else {
                 let idx = menu.selection.min(ids.len() - 1);
-                let item_id = &ids[idx];
+                let item_id = ids[idx].clone();
                 let display_name = item_display_names
-                    .get(item_id)
+                    .get(&item_id)
                     .cloned()
-                    .unwrap_or_else(|| fallback_item_display_name(item_id));
-                view.menu = Some(menu);
-                open_dialog_from_lines(
-                    view,
-                    vec![display_name, "Use not implemented.".to_string()],
-                );
+                    .unwrap_or_else(|| fallback_item_display_name(&item_id));
+
+                // Check if this is a healing item
+                if matches!(
+                    item_id.as_str(),
+                    "POTION" | "SUPER_POTION" | "HYPER_POTION" | "MAX_POTION" | "FRESH_WATER" | "SODA_POP" | "LEMONADE"
+                ) {
+                    let heal_amount: u16 = match item_id.as_str() {
+                        "POTION" => 20,
+                        "SUPER_POTION" => 50,
+                        "HYPER_POTION" => 200,
+                        "MAX_POTION" => 999,
+                        "FRESH_WATER" => 50,
+                        "SODA_POP" => 60,
+                        "LEMONADE" => 80,
+                        _ => 0,
+                    };
+
+                    // Find first injured Pokemon
+                    if let Some(mon_idx) = view.party.iter().position(|m| m.hp < m.max_hp && m.hp > 0) {
+                        let mon = &mut view.party[mon_idx];
+                        let old_hp = mon.hp;
+                        mon.hp = (mon.hp + heal_amount).min(mon.max_hp);
+                        let healed = mon.hp - old_hp;
+
+                        consume_item(&mut view.inventory, &item_id, 1);
+
+                        let pokemon_name = pokemon_display_names
+                            .get(&mon.species)
+                            .cloned()
+                            .unwrap_or_else(|| fallback_pokemon_display_name(&mon.species));
+
+                        view.menu = Some(menu);
+                        open_dialog_from_lines(
+                            view,
+                            vec![
+                                format!("Used {display_name}!"),
+                                format!("{pokemon_name} recovered {healed} HP!"),
+                            ],
+                        );
+                    } else {
+                        view.menu = Some(menu);
+                        open_dialog_from_lines(
+                            view,
+                            vec!["All Pokémon are already healthy!".to_string(), String::new()],
+                        );
+                    }
+                } else if matches!(item_id.as_str(), "POKE_BALL" | "GREAT_BALL" | "ULTRA_BALL" | "MASTER_BALL") {
+                    view.menu = Some(menu);
+                    open_dialog_from_lines(
+                        view,
+                        vec!["Cannot use that here.".to_string(), String::new()],
+                    );
+                } else {
+                    view.menu = Some(menu);
+                    open_dialog_from_lines(
+                        view,
+                        vec![display_name, "Use not implemented yet.".to_string()],
+                    );
+                }
             }
         }
         MenuScreen::Party => {
