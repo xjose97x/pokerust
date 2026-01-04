@@ -124,6 +124,31 @@ enum MenuScreen {
     Root,
     Items,
     Party,
+    Options,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+struct GameOptions {
+    text_speed: TextSpeed,
+    battle_animations: bool,
+    sound_enabled: bool,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+enum TextSpeed {
+    Fast,
+    Medium,
+    Slow,
+}
+
+impl Default for GameOptions {
+    fn default() -> Self {
+        Self {
+            text_speed: TextSpeed::Medium,
+            battle_animations: true,
+            sound_enabled: true,
+        }
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -1685,6 +1710,7 @@ struct MapView {
     pc_boxes: Vec<Vec<PlayerMon>>,
     pc_current_box: usize,
     pc: Option<PcState>,
+    options: GameOptions,
 }
 
 struct MapHeaderInfo {
@@ -2319,6 +2345,74 @@ fn draw_menu(
                         draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &name, list_x, y);
                         draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &hp_s, hp_x, y);
                     }
+                }
+            }
+        }
+        MenuScreen::Options => {
+            let outer_x = 4;
+            let outer_y = 4;
+            let outer_w = GB_WIDTH as i32 - 8;
+            let outer_h = GB_HEIGHT as i32 - 8;
+
+            fill_rect(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                outer_x,
+                outer_y,
+                outer_w,
+                outer_h,
+                dmg_palette_color(3),
+            );
+            fill_rect(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                outer_x + 2,
+                outer_y + 2,
+                outer_w - 4,
+                outer_h - 4,
+                dmg_palette_color(0),
+            );
+
+            draw_text_line(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                font,
+                "OPTIONS",
+                outer_x + 8,
+                outer_y + 8,
+            );
+
+            let list_x = outer_x + 8;
+            let list_y0 = outer_y + 24;
+
+            // Draw options with current values
+            let options = [
+                format!("TEXT SPEED: {:?}", view.options.text_speed).to_uppercase(),
+                format!("BATTLE ANIM: {}", if view.options.battle_animations { "ON" } else { "OFF" }),
+                format!("SOUND: {}", if view.options.sound_enabled { "ON" } else { "OFF" }),
+            ];
+
+            for (i, option) in options.iter().enumerate() {
+                let y = list_y0 + (i as i32) * TILE_SIZE as i32;
+                if i == menu.selection {
+                    fill_rect(
+                        gb_frame,
+                        GB_WIDTH,
+                        GB_HEIGHT,
+                        outer_x + 4,
+                        y - 2,
+                        outer_w - 8,
+                        TILE_SIZE as i32,
+                        dmg_palette_color(3),
+                    );
+                    draw_text_line_tinted(
+                        gb_frame, GB_WIDTH, GB_HEIGHT, font, option, list_x, y, 0,
+                    );
+                } else {
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, option, list_x, y);
                 }
             }
         }
@@ -3761,6 +3855,7 @@ fn load_map_view(
         pc_boxes: vec![Vec::new(); 12],
         pc_current_box: 0,
         pc: None,
+        options: GameOptions::default(),
     })
 }
 
@@ -7604,6 +7699,7 @@ fn menu_nav(view: &mut MapView, delta: i32) {
         MenuScreen::Root => ROOT_MENU_ITEMS.len(),
         MenuScreen::Items => view.inventory.len(),
         MenuScreen::Party => view.party.len(),
+        MenuScreen::Options => 3, // Text Speed, Battle Animations, Sound
     };
     if item_count == 0 {
         menu.selection = 0;
@@ -7758,6 +7854,12 @@ fn handle_b_button(view: &mut MapView) {
         MenuScreen::Party => {
             menu.screen = MenuScreen::Root;
             menu.selection = 1;
+            menu.scroll = 0;
+            view.menu = Some(menu);
+        }
+        MenuScreen::Options => {
+            menu.screen = MenuScreen::Root;
+            menu.selection = 4;
             menu.scroll = 0;
             view.menu = Some(menu);
         }
@@ -8318,6 +8420,12 @@ fn handle_menu_a_button(
                     open_dialog_from_lines(view, vec!["Saved.".to_string(), String::new()]);
                 }
             }
+            4 => {
+                menu.screen = MenuScreen::Options;
+                menu.selection = 0;
+                menu.scroll = 0;
+                view.menu = Some(menu);
+            }
             5 => {}
             _ => {
                 view.menu = Some(menu);
@@ -8427,6 +8535,30 @@ fn handle_menu_a_button(
                 view.menu = Some(menu);
                 open_dialog_from_lines(view, lines);
             }
+        }
+        MenuScreen::Options => {
+            // Options: Text Speed, Battle Animations, Sound
+            let option_index = menu.selection;
+            match option_index {
+                0 => {
+                    // Cycle text speed
+                    view.options.text_speed = match view.options.text_speed {
+                        TextSpeed::Fast => TextSpeed::Medium,
+                        TextSpeed::Medium => TextSpeed::Slow,
+                        TextSpeed::Slow => TextSpeed::Fast,
+                    };
+                }
+                1 => {
+                    // Toggle battle animations
+                    view.options.battle_animations = !view.options.battle_animations;
+                }
+                2 => {
+                    // Toggle sound
+                    view.options.sound_enabled = !view.options.sound_enabled;
+                }
+                _ => {}
+            }
+            view.menu = Some(menu);
         }
     }
 
