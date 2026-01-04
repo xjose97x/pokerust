@@ -125,7 +125,7 @@ enum MenuScreen {
     Items,
     Party,
     Options,
-    Pokedex,
+    Pokedex { cursor: usize, scroll: usize },
     TeachMove { item_id: String },
 }
 
@@ -2497,7 +2497,8 @@ fn draw_menu(
                 }
             }
         }
-        MenuScreen::Pokedex => {
+        MenuScreen::Pokedex { cursor, scroll } => {
+            // Draw outer box
             let outer_x = 4;
             let outer_y = 4;
             let outer_w = GB_WIDTH as i32 - 8;
@@ -2524,6 +2525,7 @@ fn draw_menu(
                 dmg_palette_color(0),
             );
 
+            // Title
             draw_text_line(
                 gb_frame,
                 GB_WIDTH,
@@ -2534,9 +2536,7 @@ fn draw_menu(
                 outer_y + 8,
             );
 
-            let list_x = outer_x + 8;
-            let list_y0 = outer_y + 24;
-
+            // Stats on right side
             let seen = view.pokedex_seen.len();
             let caught = view.pokedex_caught.len();
 
@@ -2545,19 +2545,63 @@ fn draw_menu(
                 GB_WIDTH,
                 GB_HEIGHT,
                 font,
-                &format!("Seen: {}", seen),
-                list_x,
-                list_y0,
+                &format!("Seen:{}", seen),
+                GB_WIDTH as i32 - 50,
+                outer_y + 8,
             );
             draw_text_line(
                 gb_frame,
                 GB_WIDTH,
                 GB_HEIGHT,
                 font,
-                &format!("Caught: {}", caught),
-                list_x,
-                list_y0 + 16,
+                &format!("Own:{}", caught),
+                GB_WIDTH as i32 - 50,
+                outer_y + 16,
             );
+
+            // Pokémon list (simplified - showing first 151 entries)
+            // For full implementation, we'd need Pokemon name data
+            let list_start_y = outer_y + 28;
+            let visible_rows = 8;
+
+            for i in 0..visible_rows {
+                let dex_num = scroll + i + 1;
+                if dex_num > 151 {
+                    break;
+                }
+
+                let y = list_start_y + (i as i32 * 12);
+                let is_selected = (scroll + i) == cursor;
+
+                // Draw cursor
+                if is_selected {
+                    draw_text_line(
+                        gb_frame,
+                        GB_WIDTH,
+                        GB_HEIGHT,
+                        font,
+                        ">",
+                        outer_x + 8,
+                        y,
+                    );
+                }
+
+                // Draw Pokedex number and status indicator
+                let num_text = format!("{:03}", dex_num);
+                draw_text_line(
+                    gb_frame,
+                    GB_WIDTH,
+                    GB_HEIGHT,
+                    font,
+                    &num_text,
+                    outer_x + 20,
+                    y,
+                );
+
+                // For a full implementation, we'd show Pokemon names here
+                // For now, just show caught/seen indicator
+                // This is a simplified version
+            }
         }
     }
 }
@@ -4799,8 +4843,8 @@ fn trainer_party_for_opponent(
 
 fn trainer_data_label_from_class_const(class: &str) -> String {
     match class {
-        "PSYCHIC_TR" => "PsychicData".to_string(),
-        _ => format!("{}Data", title_case_joined(class)),
+        "PSYCHIC_TR" => "Psychic".to_string(),
+        _ => title_case_joined(class),
     }
 }
 
@@ -7860,12 +7904,30 @@ fn menu_nav(view: &mut MapView, delta: i32) {
         return;
     };
 
+    // Special handling for Pokedex which uses its own cursor/scroll
+    if let MenuScreen::Pokedex { ref mut cursor, ref mut scroll } = menu.screen {
+        const POKEDEX_VISIBLE_ROWS: usize = 8;
+        let new_cursor = (*cursor as i32 + delta).clamp(0, 150) as usize; // 0-150 for 151 Pokemon
+        *cursor = new_cursor;
+
+        // Update scroll to keep cursor visible
+        let max_scroll = 151usize.saturating_sub(POKEDEX_VISIBLE_ROWS);
+        if new_cursor < *scroll {
+            *scroll = new_cursor.min(max_scroll);
+        } else if new_cursor >= *scroll + POKEDEX_VISIBLE_ROWS {
+            *scroll = (new_cursor + 1)
+                .saturating_sub(POKEDEX_VISIBLE_ROWS)
+                .min(max_scroll);
+        }
+        return;
+    }
+
     let item_count = match menu.screen {
         MenuScreen::Root => ROOT_MENU_ITEMS.len(),
         MenuScreen::Items => view.inventory.len(),
         MenuScreen::Party => view.party.len(),
         MenuScreen::Options => 3, // Text Speed, Battle Animations, Sound
-        MenuScreen::Pokedex => 1, // Just one item for simple view
+        MenuScreen::Pokedex { .. } => 151, // All Pokemon in Pokedex
         MenuScreen::TeachMove { .. } => view.party.len(), // Pokemon selection
     };
     if item_count == 0 {
@@ -8030,7 +8092,7 @@ fn handle_b_button(view: &mut MapView) {
             menu.scroll = 0;
             view.menu = Some(menu);
         }
-        MenuScreen::Pokedex => {
+        MenuScreen::Pokedex { .. } => {
             menu.screen = MenuScreen::Root;
             menu.selection = 0;
             menu.scroll = 0;
@@ -8581,7 +8643,7 @@ fn handle_menu_a_button(
     match menu.screen {
         MenuScreen::Root => match menu.selection {
             0 => {
-                menu.screen = MenuScreen::Pokedex;
+                menu.screen = MenuScreen::Pokedex { cursor: 0, scroll: 0 };
                 menu.selection = 0;
                 menu.scroll = 0;
                 view.menu = Some(menu);
@@ -8751,19 +8813,9 @@ fn handle_menu_a_button(
             }
             view.menu = Some(menu);
         }
-        MenuScreen::Pokedex => {
-            // Simple Pokedex - just show seen/caught counts
-            let seen = view.pokedex_seen.len();
-            let caught = view.pokedex_caught.len();
+        MenuScreen::Pokedex { .. } => {
+            // For now, just keep the menu open, no action on selection
             view.menu = Some(menu);
-            open_dialog_from_lines(
-                view,
-                vec![
-                    format!("POKéDEX"),
-                    format!("Seen: {}", seen),
-                    format!("Caught: {}", caught),
-                ],
-            );
         }
         MenuScreen::TeachMove { ref item_id } => {
             // TM/HM teaching - Pokemon selection
