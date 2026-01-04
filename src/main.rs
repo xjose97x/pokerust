@@ -119,13 +119,14 @@ struct Dialog {
     cursor: usize,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 enum MenuScreen {
     Root,
     Items,
     Party,
     Options,
     Pokedex,
+    TeachMove { item_id: String },
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -2420,6 +2421,79 @@ fn draw_menu(
                     );
                 } else {
                     draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, option, list_x, y);
+                }
+            }
+        }
+        MenuScreen::TeachMove { ref item_id } => {
+            // Draw Pokemon selection screen
+            let outer_x = 4;
+            let outer_y = 4;
+            let outer_w = GB_WIDTH as i32 - 8;
+            let outer_h = GB_HEIGHT as i32 - 8;
+
+            fill_rect(
+                gb_frame,
+                GB_WIDTH,
+                GB_WIDTH,
+                outer_x,
+                outer_y,
+                outer_w,
+                outer_h,
+                dmg_palette_color(3),
+            );
+            fill_rect(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                outer_x + 2,
+                outer_y + 2,
+                outer_w - 4,
+                outer_h - 4,
+                dmg_palette_color(0),
+            );
+
+            // Draw title
+            let title = if item_id.starts_with("TM_") {
+                "Teach TM"
+            } else {
+                "Teach HM"
+            };
+            draw_text_line(
+                gb_frame,
+                GB_WIDTH,
+                GB_HEIGHT,
+                font,
+                title,
+                outer_x + 8,
+                outer_y + 8,
+            );
+
+            // Draw Pokemon list
+            let list_x = outer_x + 8;
+            let list_y0 = outer_y + 24;
+
+            for (i, mon) in view.party.iter().enumerate() {
+                let y = list_y0 + (i as i32) * TILE_SIZE as i32;
+                let name = pokemon_display_names
+                    .get(&mon.species)
+                    .map(|s| s.as_str())
+                    .unwrap_or(mon.species.as_str());
+                let line = format!("{} L{}", name, mon.level);
+
+                if i == menu.selection {
+                    fill_rect(
+                        gb_frame,
+                        GB_WIDTH,
+                        GB_HEIGHT,
+                        outer_x + 4,
+                        y - 2,
+                        outer_w - 8,
+                        TILE_SIZE as i32,
+                        dmg_palette_color(3),
+                    );
+                    draw_text_line_tinted(gb_frame, GB_WIDTH, GB_HEIGHT, font, &line, list_x, y, 0);
+                } else {
+                    draw_text_line(gb_frame, GB_WIDTH, GB_HEIGHT, font, &line, list_x, y);
                 }
             }
         }
@@ -7792,6 +7866,7 @@ fn menu_nav(view: &mut MapView, delta: i32) {
         MenuScreen::Party => view.party.len(),
         MenuScreen::Options => 3, // Text Speed, Battle Animations, Sound
         MenuScreen::Pokedex => 1, // Just one item for simple view
+        MenuScreen::TeachMove { .. } => view.party.len(), // Pokemon selection
     };
     if item_count == 0 {
         menu.selection = 0;
@@ -7957,6 +8032,12 @@ fn handle_b_button(view: &mut MapView) {
         }
         MenuScreen::Pokedex => {
             menu.screen = MenuScreen::Root;
+            menu.selection = 0;
+            menu.scroll = 0;
+            view.menu = Some(menu);
+        }
+        MenuScreen::TeachMove { .. } => {
+            menu.screen = MenuScreen::Items;
             menu.selection = 0;
             menu.scroll = 0;
             view.menu = Some(menu);
@@ -8600,6 +8681,12 @@ fn handle_menu_a_button(
                         view,
                         vec!["Cannot use that here.".to_string(), String::new()],
                     );
+                } else if item_id.starts_with("TM_") || item_id.starts_with("HM_") {
+                    // TM/HM teaching - show Pokemon selection screen
+                    menu.screen = MenuScreen::TeachMove { item_id: item_id.clone() };
+                    menu.selection = 0;
+                    menu.scroll = 0;
+                    view.menu = Some(menu);
                 } else {
                     view.menu = Some(menu);
                     open_dialog_from_lines(
@@ -8677,6 +8764,88 @@ fn handle_menu_a_button(
                     format!("Caught: {}", caught),
                 ],
             );
+        }
+        MenuScreen::TeachMove { ref item_id } => {
+            // TM/HM teaching - Pokemon selection
+            if view.party.is_empty() {
+                view.menu = Some(menu);
+                open_dialog_from_lines(view, vec!["No Pokémon.".to_string(), String::new()]);
+            } else {
+                let idx = menu.selection.min(view.party.len() - 1);
+
+                // Extract move name from item_id (e.g., "TM_MEGA_PUNCH" -> "MEGA_PUNCH")
+                let move_id = if item_id.starts_with("TM_") {
+                    item_id.strip_prefix("TM_").unwrap_or("").to_string()
+                } else if item_id.starts_with("HM_") {
+                    item_id.strip_prefix("HM_").unwrap_or("").to_string()
+                } else {
+                    item_id.clone()
+                };
+
+                let move_name = move_display_names
+                    .get(&move_id)
+                    .cloned()
+                    .unwrap_or_else(|| fallback_item_display_name(&move_id));
+
+                let mon = &mut view.party[idx];
+
+                // Check if Pokemon already knows the move
+                if mon.moves.contains(&move_id) {
+                    let pokemon_name = pokemon_display_names
+                        .get(&mon.species)
+                        .cloned()
+                        .unwrap_or_else(|| fallback_pokemon_display_name(&mon.species));
+                    view.menu = Some(menu);
+                    open_dialog_from_lines(
+                        view,
+                        vec![
+                            format!("{pokemon_name} already"),
+                            format!("knows {move_name}."),
+                        ],
+                    );
+                } else if mon.moves.len() < 4 {
+                    // Can learn the move directly
+                    mon.moves.push(move_id.clone());
+
+                    // Consume TMs but not HMs
+                    let is_tm = item_id.starts_with("TM_");
+                    if is_tm {
+                        consume_item(&mut view.inventory, item_id, 1);
+                    }
+
+                    let pokemon_name = pokemon_display_names
+                        .get(&mon.species)
+                        .cloned()
+                        .unwrap_or_else(|| fallback_pokemon_display_name(&mon.species));
+
+                    menu.screen = MenuScreen::Items;
+                    menu.selection = 0;
+                    menu.scroll = 0;
+                    view.menu = Some(menu);
+                    open_dialog_from_lines(
+                        view,
+                        vec![
+                            format!("{pokemon_name} learned"),
+                            format!("{move_name}!"),
+                        ],
+                    );
+                } else {
+                    // Pokemon knows 4 moves - would need to choose which to forget
+                    // For now, just show a message
+                    let pokemon_name = pokemon_display_names
+                        .get(&mon.species)
+                        .cloned()
+                        .unwrap_or_else(|| fallback_pokemon_display_name(&mon.species));
+                    view.menu = Some(menu);
+                    open_dialog_from_lines(
+                        view,
+                        vec![
+                            format!("{pokemon_name} already"),
+                            "knows 4 moves.".to_string(),
+                        ],
+                    );
+                }
+            }
         }
     }
 
